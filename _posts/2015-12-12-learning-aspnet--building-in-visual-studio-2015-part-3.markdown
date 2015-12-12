@@ -114,7 +114,7 @@ It does two things:
 1. Calls `ConfigureServices` - which is a way to setup dependency injection containers
 
 2. Calls `Configure` - contains a list of things that are going to run as a request comes in and as a response goes back out.
-* Within configure we call app.UseIISPlatformHandler(); which is middleware that integrates with IIS. We're going to go ahead and get rid of that though. Also delete `"Microsoft.AspNet.IISPlatformHandler": "1.0.0-rc1-final"` from the `project.json` file
+* Within configure we call `app.UseIISPlatformHandler();` which is middleware that integrates with IIS. We're going to go ahead and get rid of that though. Also delete `"Microsoft.AspNet.IISPlatformHandler": "1.0.0-rc1-final"` from the `project.json` file
 * `app.Run` contains a little piece of code that runs each time a new request comes in.
 
 ## Running our App

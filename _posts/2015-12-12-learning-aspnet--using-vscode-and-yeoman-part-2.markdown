@@ -140,7 +140,7 @@ Next we want to open this project in VSCode. This can easily be done by simply t
 C:\Users\Nathan\OneDrive\02 - Code\15 - ASP.NET\vscode\TheWorld>code .
 {% endhighlight bat %}
 
-You will be greeted with the lightweight visual studio code suite with the files we just generated loaded into the Working File menu.
+You will be greeted with the lightweight visual studio code suite with the files we just generated loaded into the `Working File` menu.
 
 Go ahead and open the project.json file (you'll recognize this file from the previous tutorial) and have a look at its contents.
 
@@ -158,7 +158,7 @@ The first block is some of the simple project specifications relating to version
   },
 {% endhighlight js %}
 
-The next block is one we'll be using quite regularly, the dependencies for the project listing the NuGets we're going to use when building our application.
+The next block is one we'll be using quite regularly, the dependencies for the project listing the `NuGets` we're going to use when building our application.
 
 {% highlight js %}
 "dependencies": {
@@ -218,9 +218,9 @@ Finally we've got some specified commands and housekeeping code.
 }
 {% endhighlight js %}
 
-Next open up the Startup.cs file. You'll notice along the top bar that there will be unresolved dependencies which you'll be asked to resolve by clicking Restore.
+Next open up the `Startup.cs` file. You'll notice along the top bar that there will be unresolved dependencies which you'll be asked to resolve by clicking Restore.
 
-A terminal windows will spring open and begin downloading and installing all the required NuGet packages. If this is your first time using these NuGet packages, there's a good chance it'll take some time to install.
+A terminal windows will spring open and begin downloading and installing all the required `NuGet` packages. If this is your first time using these `NuGet` packages, there's a good chance it'll take some time to install.
 
 {% highlight bat %}
 Restore complete, 167284ms elapsed
@@ -277,4 +277,4 @@ info: Microsoft.AspNet.Hosting.Internal.HostingEngine[2]
 
 ## Summary
 
-We've leart how to generate code using Yeoman and edit/view it in Visual Studio Code. In the next lesson we'll be learning how to do the same thing, from scratch in Visual Studio 2015. Hopefully I'm not going into too much detail, but I think it's beneficial to have the whole process documented instead of assuming everything will understand exactly what's going on.
+We've learnt how to generate code using Yeoman and edit/view it in `Visual Studio Code`. In the next lesson we'll be learning how to do the same thing, from scratch in `Visual Studio 2015`. Hopefully I'm not going into too much detail, but I think it's beneficial to have the whole process documented instead of assuming everything will understand exactly what's going on.
