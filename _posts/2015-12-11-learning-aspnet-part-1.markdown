@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Learning ASP.NET (Part 1)"
+title: "Learning ASP.NET - Installing ASP.NET Runtime (Part 1)"
 date: "2015-12-11"
 tags:
  - asp.net
