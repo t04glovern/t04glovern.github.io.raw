@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Learning ASP.NET - Using VScode and Yeoman (Part 2)"
-date: "2015-12-12"
+date: "2015-12-11"
 tags:
  - asp.net
  - windows
