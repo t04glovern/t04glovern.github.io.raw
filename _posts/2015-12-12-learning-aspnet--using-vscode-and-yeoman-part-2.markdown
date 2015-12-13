@@ -11,7 +11,7 @@ tags:
 
 ## Installing and Using Yeoman
 
-`ASP.NET` uses a tool called yeoman to assist in the development of applications for the web by generating the base project file structure and configurations so you can get to work quickly; rather than fiddling around with the same stuff every time you create a new project.
+`ASP.NET` uses a tool called yeoman to assist in the development of applications for the web by generating the base project file structure and configurations so you can get to work quickly; rather than fiddling around with the same things every time you need to create a new project.
 
 You can install `Yeoman` using the following command:
 

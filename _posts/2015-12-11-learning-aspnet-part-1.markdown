@@ -32,7 +32,7 @@ There are three frameworks available, each of them seamlessly integrate with one
 
 2. Download and install `ASP.NET 5` from [here](https://go.microsoft.com/fwlink/?LinkId=627627).
 
-3. You will now have access to the `DNVM` cmdlet. Running the following command with display a full list of commands you have access to.
+3. You will now have access to the `DNVM` cmdlet. Running the following command will display a full list of commands you have access to.
 
 {% highlight bat %}
 C:\Users\Nathan>dnvm
@@ -82,7 +82,7 @@ Active Version           Runtime Architecture OperatingSystem Alias
        1.0.0-rc1-update1 coreclr x86          win
 {% endhighlight bat %}
 
-These runtimes are stored in your user directory; you can prove this by listing the files in `.dnx\runtimes`. Run the following to show a list of installed runtimes under your home directory.
+These runtimes are stored in your user directory, and you can prove this by listing the files in `.dnx\runtimes`. Run the following to show a list of installed runtimes under your home directory.
 
 {% highlight bat %}
 C:\Users\Nathan>dir .dnx\runtimes
@@ -101,7 +101,7 @@ C:\Users\Nathan>dir .dnx\runtimes
                6 Dir(s)  44,004,626,432 bytes free
 {% endhighlight bat %}
 
-You can also run `dnvm upgrade` in order to pull down the most recent version of the ASP.NET 5 runtime. If there is a more recent runtime available it will be downloaded and set as your default runtime.
+You can also run `dnvm upgrade` in order to pull down the most recent versions of the ASP.NET 5 runtime. If there is a more recent runtime available it will be downloaded and set as your default runtime.
 
 {% highlight bat %}
 C:\Users\Nathan>dnvm upgrade
@@ -112,13 +112,13 @@ Adding C:\Users\Nathan\.dnx\runtimes\dnx-clr-win-x86.1.0.0-rc1-update1\bin to us
 Updating alias 'default' to 'dnx-clr-win-x86.1.0.0-rc1-update1'
 {% endhighlight bat %}
 
-You can also manually pull down other versions using the following in order to support different architecture.
+You can also manually pull down other versions using the following in order to support different architectures.
 
 {% highlight bat %}
 dnvm install 1.0.0-rc1-update1 -arch x64
 {% endhighlight bat %}
 
-You might also want the `coreclr` versions, in which case you can run the following to pull down the respective version. Also do the same for the x86 version
+You might also want the `coreclr` versions, in which case you can run the following to pull down the respective version. Do the same for the x86 version.
 
 {% highlight bat %}
 dnvm install 1.0.0-rc1-update1 -r coreclr
@@ -152,7 +152,7 @@ At this stage we are ready to use the runtime we just installed. In order to do 
 
 `project.json`
 
-Specifies the framework we want to use. can also contain other project based traits
+Specifies the framework we want to use. can also contain other project based traits (you'll see this in up-comming tutorials)
 {% highlight js %}
 {
   "frameworks":
@@ -177,7 +177,7 @@ public class Program
 }
 {% endhighlight csharp %}
 
-And that's it!. You can run your Hello World using the following syntax
+And that's it!. You can run your Hello World using the following syntax:
 
 {% highlight bat %}
 C:\Users\Nathan\OneDrive\02 - Code\15 - ASP.NET\helloWorld>dnx run program.cs
@@ -186,4 +186,4 @@ Hello World
 
 ## Summary
 
-As someone new to the .NET scene I was astounded by how simple it was to get started with ASP.NET and can't wait to get my fingers into some more difficult challenges. I would highly recommend checking out the [course](https://app.pluralsight.com/library/courses/aspdotnet-5-ef7-bootstrap-angular-web-app) I wrote this for; and even follow along with me as I make my way through the several hours worth of [FREE](https://myprodscussu1.app.vssubscriptions.visualstudio.com/Dashboard) content.
+As someone new to the .NET scene I was astounded by how simple it was to get started with ASP.NET and I can't wait to get my fingers into some more difficult challenges. I would highly recommend checking out the [course](https://app.pluralsight.com/library/courses/aspdotnet-5-ef7-bootstrap-angular-web-app) I wrote this for; and even follow along with me as I make my way through the several hours worth of [FREE](https://myprodscussu1.app.vssubscriptions.visualstudio.com/Dashboard) content.
