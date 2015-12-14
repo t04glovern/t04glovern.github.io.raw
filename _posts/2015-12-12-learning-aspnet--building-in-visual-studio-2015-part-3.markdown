@@ -24,7 +24,7 @@ Proceed to create a new `C#` Project and select the `ASP-NET Web Application` te
 
 ![ASP.NET Create app]({{ site.url }}/images/posts/asp.net-create-app-vs.png)
 
-You will now be asked to select a template. Normally we would select the `Web Application` under `ASP.NET 5 Templates`, however we want to learn how this all comes together; so we're going to select the `Empty` template.
+You will now be asked to select a template. Normally we would select the `Web Application` under `ASP.NET 5 Templates`, however we want to learn how this all comes together; so we're going to select the `Empty` template for now.
 
 You might also want to uncheck `Host in the cloud`.
 
@@ -64,7 +64,7 @@ You might also want to uncheck `Host in the cloud`.
 }
 {% endhighlight js %}
 
-A big thing to look out for is to make sure that you've got the correct `ASP.NET` runtimes installed. If you have a look at the entries under `dependencies`; just make sure that they end in `1.0.0-rc1-final`. If they don't, or have a previous version; check back at my previous guide and follow the instructions to install the latest runtime.
+A big thing to look out for is to make sure that you've got the correct `ASP.NET` runtime installed. If you have a look at the entries under `dependencies`; just make sure that they end in `1.0.0-rc1-final`. If they don't, or have a previous version; check back at my previous guide and follow the instructions to install the latest runtime.
 
 ## Startup.cs
 
