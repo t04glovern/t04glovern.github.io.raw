@@ -58,4 +58,198 @@ void loop() {
 }
 {% endhighlight java %}
 
-Writing this code to the board and executing immediately gave me positive results spilling
+Writing this code to the board and executing immediately gave me positive results spilling into the console.
+
+{% highlight bat %}
+X Axis Value: 1019
+Y Axis Value: 500
+X Axis Value: 1019
+Y Axis Value: 500
+X Axis Value: 1019
+Y Axis Value: 252
+X Axis Value: 1019
+Y Axis Value: 39
+X Axis Value: 1019
+Y Axis Value: 0
+X Axis Value: 1014
+Y Axis Value: 0
+X Axis Value: 811
+Y Axis Value: 0
+{% endhighlight bat %}
+
+`NOTE` On some boards you might notice raw values similar to the following flow into the console
+
+{% highlight bat %}
+fžfžffx˜˜æ˜à˜˜€†f˜fžfžffx˜˜æ˜à˜˜€†f˜fžfžffx˜˜æ˜à˜˜€†f˜fžfžffx˜˜æ˜à˜˜€†f˜
+{% endhighlight bat %}
+
+Fixing this problem is as simple as adding a delay to the bottom of the loop() function. It occurs because new values are fed into the microcontroller before it has time to write the values out the Serial lines.
+
+{% highlight java %}
+// Delay allowing system to process
+delay(30);
+{% endhighlight java %}
+
+# Understanding the RGB Module
+
+The RGB unit I decided to use has four inputs. Three of those inputs take a variable voltage and uses that value to display a colour based on three sets of 0-255 integers (Red Blue Green combination).
+
+First I added declarations for the high and low sensor values.
+
+{% highlight java %}
+// Sensor High/Low Declarations
+int sensorXLow = 0;
+int sensorXHigh = 1023;
+int sensorYLow = 0;
+int sensorYHigh = 1023;
+{% endhighlight java %}
+
+Then I setup a calibration test within my loop() that will update the sensor high and low values when they go above or below the expected results
+
+{% highlight java %}
+// Calibrate High/Low X
+if (sensorXValue > sensorXHigh){
+  sensorXHigh = sensorXValue;
+}
+if (sensorXValue < sensorXLow){
+  sensorXLow = sensorXValue;
+}
+
+// Calibrate High/Low Y
+if (sensorYValue > sensorYHigh){
+  sensorYHigh = sensorYValue;
+}
+if (sensorYValue < sensorYLow){
+  sensorYLow = sensorYValue;
+}
+{% endhighlight java %}
+
+Using this setup means that I also deal with expected values and even if I do get a curveball input, my system will know how to deal with it.
+
+# Interface RGB Unit with PWM Pins
+
+Now that we are importing logical data we're safe to move forward and interface the RGB unit. First I connected the Digital PWM pins in series with the RGB legs on my LED. Following that I added code to map the digital ports to meaningful names
+
+{% highlight java %}
+// Digital/PMW PIN Declarations
+const int redLEDPin = 11;
+const int greenLEDPin = 10;
+const int blueLEDPin = 9;
+{% endhighlight java %}
+
+Next I setup RGB variable declarations and initialized them to 0;
+
+{% highlight java %}
+// RGB Variable Declarations
+int redValue = 0;
+int greenValue = 0;
+int blueValue = 0;
+{% endhighlight java %}
+
+Within setup() I added code to initialize the three pins are OUTPUT
+
+{% highlight java %}
+// set LED pins to output
+pinMode(redLEDPin,OUTPUT);
+pinMode(greenLEDPin,OUTPUT);
+pinMode(blueLEDPin,OUTPUT);
+{% endhighlight java %}
+
+Using the map() function in conjunction with the high and low X/Y sensor values I scaled my raw inputs to values between 0-255. Because I didn't have any good way of generating a value for the Blue pin input, I used a mix of the X and Y sensor values to generate a reasonable value for Blue.
+
+{% highlight java %}
+// Calculate and map new values
+int valueX = map(sensorXValue,sensorXLow,sensorXHigh, 0, 255);
+int valueY = map(sensorYValue,sensorYLow,sensorYHigh, 0, 255);
+int valueMix = map((sensorXValue+sensorYValue),0,1024, 0, 255);
+{% endhighlight java %}
+
+Finally I added the following code to write the three final RGB values out to the LED
+
+{% highlight java %}
+// Write values out to RGB LED
+analogWrite(redLEDPin, valueX);
+analogWrite(greenLEDPin, valueY);
+analogWrite(blueLEDPin, valueMix);
+{% endhighlight java %}
+
+# Run the Code
+
+Presto! my code works great~
+
+![Thumbstick RGB Run]({{ site.url }}/images/posts/arduino-thumbstick.gif)
+
+Below is a full copy of the final code used at runtime
+
+{% highlight java %}
+// Analog PIN Declarations
+const int sensorPinX = A0;
+const int sensorPinY = A1;
+
+// Digital/PMW PIN Declarations
+const int redLEDPin = 11;
+const int greenLEDPin = 10;
+const int blueLEDPin = 9;
+
+// RGB Variable Declarations
+int redValue = 0;
+int greenValue = 0;
+int blueValue = 0;
+
+// Sensor High/Low Declarations
+int sensorXLow = 0;
+int sensorXHigh = 1023;
+int sensorYLow = 0;
+int sensorYHigh = 1023;
+
+void setup() {
+  // open a serial port
+  Serial.begin(9600);
+
+  // set LED pins to output
+  pinMode(redLEDPin,OUTPUT);
+  pinMode(greenLEDPin,OUTPUT);
+  pinMode(blueLEDPin,OUTPUT);
+}
+
+void loop() {
+  // Read sensor values
+  int sensorXValue = analogRead(sensorPinX);
+  int sensorYValue = analogRead(sensorPinY);
+
+  // Calibrate High/Low X
+  if (sensorXValue > sensorXHigh){
+    sensorXHigh = sensorXValue;
+  }
+  if (sensorXValue < sensorXLow){
+    sensorXLow = sensorXValue;
+  }
+
+  // Calibrate High/Low Y
+  if (sensorYValue > sensorYHigh){
+    sensorYHigh = sensorYValue;
+  }
+  if (sensorYValue < sensorYLow){
+    sensorYLow = sensorYValue;
+  }
+
+  // Calculate and map new values
+  int valueX = map(sensorXValue,sensorXLow,sensorXHigh, 0, 255);
+  int valueY = map(sensorYValue,sensorYLow,sensorYHigh, 0, 255);
+  int valueMix = map((sensorXValue+sensorYValue),0,1024, 0, 255);
+
+  // Print results to console
+  Serial.print("X Axis Value: ");
+  Serial.println(valueX);
+  Serial.print("Y Axis Value: ");
+  Serial.println(valueY);
+
+  // Write values out to RGB LED
+  analogWrite(redLEDPin, valueX);
+  analogWrite(greenLEDPin, valueY);
+  analogWrite(blueLEDPin, valueMix);
+
+  // Delay allowing system to process
+  delay(30);
+}
+{% endhighlight java %}
