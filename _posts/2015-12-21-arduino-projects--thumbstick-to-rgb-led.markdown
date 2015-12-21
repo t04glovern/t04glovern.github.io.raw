@@ -124,11 +124,11 @@ if (sensorYValue < sensorYLow){
 }
 {% endhighlight java %}
 
-Using this setup means that I also deal with expected values and even if I do get a curve-ball input, my system will know how to deal with it.
+Using this setup means that I always deal with expected values and even if I do get a curve-ball input, my system will know how to deal with it.
 
 # Interface RGB Unit with PWM Pins
 
-Now that we are importing logical data we're safe to move forward and interface the RGB unit. First I connected the `Digital PWM pins` in series with the RGB legs on my LED. Following that I added code to map the digital ports to meaningful names
+Now that we are importing logical data, we're safe to move forward and interface the RGB unit. First I connected the `Digital PWM pins` in series with the RGB legs and a single 220Ω Resistor on  each leg of my LED. Following that I added code to map the digital ports to meaningful names
 
 {% highlight java %}
 // Digital/PMW PIN Declarations
@@ -146,7 +146,7 @@ int greenValue = 0;
 int blueValue = 0;
 {% endhighlight java %}
 
-Within `setup()` I added code to initialize the three pins are `OUTPUT`
+Within `setup()` I added code to initialize the three pinModes to `OUTPUT`
 
 {% highlight java %}
 // set LED pins to output
@@ -155,7 +155,7 @@ pinMode(greenLEDPin,OUTPUT);
 pinMode(blueLEDPin,OUTPUT);
 {% endhighlight java %}
 
-Using the `map()` function in conjunction with the high and low `X/Y` sensor values I scaled my raw inputs to values between 0-255. Because I didn't have any good way of generating a value for the Blue pin input, I used a mix of the X and Y sensor values to generate a reasonable value for Blue.
+Using the `map()` function in conjunction with the high and low `X/Y` sensor values; I scaled my raw inputs to values between 0-255. Because I didn't have any good way of generating a value for the Blue pin input, I used a mix of the X and Y sensor values to generate a reasonable value for Blue.
 
 {% highlight java %}
 // Calculate and map new values
