@@ -33,7 +33,7 @@ The final schematic I'll be referring to throughout the design process is shown 
 
 To start with I wanted to make sure that I could easily read from logical values from the thumbstick. In order to do this I connected the `VRx` and `VRy` lines to the Analog IN Pins `AO` and `A1` on the `Arduino` board.
 
-I then ran 5Volts and a grounding line to the other two pins on the thumbstick. The following code was then used to read from the Analog PINs and output the results to the Serial console.
+I then ran 5 volts and a grounding line to the other two pins on the thumbstick. The following code was then used to read from the Analog PINs and output the results to the Serial console.
 
 {% highlight java %}
 // Analog PIN Declarations
@@ -83,7 +83,7 @@ Y Axis Value: 0
 fžfžffx˜˜æ˜à˜˜€†f˜fžfžffx˜˜æ˜à˜˜€†f˜fžfžffx˜˜æ˜à˜˜€†f˜fžfžffx˜˜æ˜à˜˜€†f˜
 {% endhighlight bat %}
 
-Fixing this problem is as simple as adding a delay to the bottom of the loop() function. It occurs because new values are fed into the microcontroller before it has time to write the values out the Serial lines.
+Fixing this problem is as simple as adding a delay to the bottom of the `loop()` function. It occurs because new values are fed into the microcontroller before it has time to write the values out the Serial lines.
 
 {% highlight java %}
 // Delay allowing system to process
@@ -92,7 +92,7 @@ delay(30);
 
 # Understanding the RGB Module
 
-The RGB unit I decided to use has four inputs. Three of those inputs take a variable voltage and uses that value to display a colour based on three sets of 0-255 integers (Red Blue Green combination).
+The `RGB` unit I decided to use has four inputs. Three of those inputs take a variable voltage and uses that value to display a colour based on three sets of 0-255 integers (`Red` `Blue` `Green` combination).
 
 First I added declarations for the high and low sensor values.
 
@@ -104,7 +104,7 @@ int sensorYLow = 0;
 int sensorYHigh = 1023;
 {% endhighlight java %}
 
-Then I setup a calibration test within my loop() that will update the sensor high and low values when they go above or below the expected results
+Then I setup a calibration test within my `loop()` that will update the sensor high and low values when they go above or below the expected results
 
 {% highlight java %}
 // Calibrate High/Low X
@@ -124,11 +124,11 @@ if (sensorYValue < sensorYLow){
 }
 {% endhighlight java %}
 
-Using this setup means that I also deal with expected values and even if I do get a curveball input, my system will know how to deal with it.
+Using this setup means that I also deal with expected values and even if I do get a curve-ball input, my system will know how to deal with it.
 
 # Interface RGB Unit with PWM Pins
 
-Now that we are importing logical data we're safe to move forward and interface the RGB unit. First I connected the Digital PWM pins in series with the RGB legs on my LED. Following that I added code to map the digital ports to meaningful names
+Now that we are importing logical data we're safe to move forward and interface the RGB unit. First I connected the `Digital PWM pins` in series with the RGB legs on my LED. Following that I added code to map the digital ports to meaningful names
 
 {% highlight java %}
 // Digital/PMW PIN Declarations
@@ -146,7 +146,7 @@ int greenValue = 0;
 int blueValue = 0;
 {% endhighlight java %}
 
-Within setup() I added code to initialize the three pins are OUTPUT
+Within `setup()` I added code to initialize the three pins are `OUTPUT`
 
 {% highlight java %}
 // set LED pins to output
@@ -155,7 +155,7 @@ pinMode(greenLEDPin,OUTPUT);
 pinMode(blueLEDPin,OUTPUT);
 {% endhighlight java %}
 
-Using the map() function in conjunction with the high and low X/Y sensor values I scaled my raw inputs to values between 0-255. Because I didn't have any good way of generating a value for the Blue pin input, I used a mix of the X and Y sensor values to generate a reasonable value for Blue.
+Using the `map()` function in conjunction with the high and low `X/Y` sensor values I scaled my raw inputs to values between 0-255. Because I didn't have any good way of generating a value for the Blue pin input, I used a mix of the X and Y sensor values to generate a reasonable value for Blue.
 
 {% highlight java %}
 // Calculate and map new values
@@ -175,7 +175,7 @@ analogWrite(blueLEDPin, valueMix);
 
 # Run the Code
 
-Presto! my code works great~
+Presto! my code works great
 
 ![Thumbstick RGB Run]({{ site.url }}/images/posts/arduino-thumbstick.gif)
 
