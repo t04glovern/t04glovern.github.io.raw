@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Arduino Project - LCD Displays"
+title: "Arduino Projects - LCD Displays"
 date: "2015-12-22"
 tags:
  - arduino
