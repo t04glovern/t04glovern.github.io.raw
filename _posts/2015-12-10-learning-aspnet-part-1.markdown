@@ -2,6 +2,8 @@
 layout: post
 title: "Learning ASP.NET - Installing ASP.NET Runtime (Part 1)"
 date: "2015-12-10"
+comments: true
+description: We run through the basics of the ASP.NET framework including installing and configuring the platform
 tags:
  - asp.net
  - windows

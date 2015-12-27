@@ -2,6 +2,8 @@
 layout: post
 title: "Arduino Projects - LCD Displays"
 date: "2015-12-22"
+comments: true
+description: We explore the different functions of a simple LCD display, while also getting and Arduino to control and display my blogs title correctly
 tags:
  - arduino
  - electronics

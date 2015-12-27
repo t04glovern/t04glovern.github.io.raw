@@ -14,15 +14,14 @@ social:
   github: t04glovern
   stackoverflow: 5443325
   linkedin: glovernathan
-  #instagram: ''
-  #lastfm: ''
+  instagram: nathanglove
+  lastfm: t04glovern
   rss: feed.xml
 
 # Google Analytics key, leave blank to ignore
 google_analytics_key: UA-71336829-1
 # Yandex metrika (https://metrica.yandex.com/) leave blanc to ignore or put true to use
 yandex_metrika: true
-
 
 # Set this to your disqus shortname to enable comments. Note that the 'comments'
 # setting below must also be true. Individual posts can override 'comments' to
@@ -31,11 +30,11 @@ disqus: t04glovern
 comments: true
 
 permalink: /:year/:month/:title
-
+gems: [jekyll-paginate]
 # Enable for using pages, more details are here: http://jekyllrb.com/docs/pagination/
 paginate: 10
 
-highlighter: pygments
+#highlighter: pygments
 #markdown: redcarpet
 #redcarpet:
 #  extensions: ["no_intra_emphasis", "fenced_code_blocks", "autolink", "tables", "with_toc_data"]

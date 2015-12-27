@@ -2,6 +2,8 @@
 layout: post
 title: "Learning ASP.NET - Building in Visual Studio 2015 (Part 3)"
 date: "2015-12-12"
+comments: true
+description: Expanding on the things we've learned from deploying via Yeoman, we now create a project from scratch without the use of templates.
 tags:
  - asp.net
  - windows

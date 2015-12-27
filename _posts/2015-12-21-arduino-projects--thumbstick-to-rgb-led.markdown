@@ -2,6 +2,8 @@
 layout: post
 title: "Arduino Projects - Thumbstick to RGB LED"
 date: "2015-12-21"
+comments: true
+description: We work on a small Arduino project that uses an analog stick to control a RGB LED
 tags:
  - arduino
  - electronics
