@@ -4,6 +4,7 @@ title: "Installing Node.js the easy way"
 date: "2015-12-09"
 comments: true
 description: A simple method for installing any version of Node.js using bash.
+share: true
 tags:
  - node.js
  - bash

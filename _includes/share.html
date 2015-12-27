@@ -1,69 +1,54 @@
 {% if page.share == true %}
-<!-- Social Button HTML -->
 
-<div class="share-bar">
- Share:
+<!-- Social Button HTML -->
+<div class="fa fa-share-bar">
+<h4 class="fa fa-share-alt section-title">Share Post :</h4>
+
 <!-- Twitter -->
-<a href="https://twitter.com/share?
-    text={{ page.title }}
-    &url={{ page.shorturl }}
-    &via=" class="share-btn twitter">
-  <i class="fa fa-twitter"></i>
+<a class="btn btn-default btn-sm twitter" href="http://twitter.com/share?text={{page.title | encode}}{% if site.author.twitter%}&via={{site.author.twitter}}{% endif %}" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+  <i class="fa fa-twitter fa-lg"></i>
+  Twitter
 </a>
 
 <!-- Google Plus -->
-<!--the Google+ link url;
-    base = https://plus.google.com/share? -->
-
-<a href="https://plus.google.com/share?
-    url=http://tomhohenstein.com{{ page.url }}
-    &hl=en-US"
-    onclick="javascript:window.open(this.href,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;"
-    class="share-btn google-plus">
-  <i class="fa fa-google-plus"></i>
+<a class="btn btn-default btn-sm gplus" onclick="window.open('https://plus.google.com/share?url='+window.location.href, 'google-plus-share', 'width=490,height=530');return false;">
+  <i class="fa fa-google-plus fa-lg"></i>
+  Google+
 </a>
 
 <!-- Facebook -->
-<a href="https://www.facebook.com/dialog/share
-    ?app_id=946372735391329&display=popup
-    &href={{ site.url }}{{ page.url }}
-    &redirect_uri={{ site.url }}{{ page.url }}"
-    class="share-btn facebook">
-  <i class="fa fa-facebook"></i>
+<a class="btn btn-default btn-sm facebook" href="https://www.facebook.com/sharer/sharer.php" onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+  <i class="fa fa-facebook fa-lg"></i>
+  Facebook
 </a>
 
 <!-- StumbleUpon (url, title) -->
 <!--
-<a href="http://www.stumbleupon.com/submit?url=<URL>&title=<TITLE>" target="_blank" class="share-btn stumbleupon">
-  <i class="fa fa-stumbleupon"></i>
+<a class="btn btn-default btn-sm StumbleUpon" href="http://www.stumbleupon.com/submit?url={{ site.url }}{{ page.url }}&title={{ page.title }}" target="_blank" class="share-btn stumbleupon">
+  <i class="fa fa-stumbleupon fa-lg"></i>
+  StumbleUpon
 </a>
 -->
 
 <!-- Reddit (url, title) -->
-<!--
-<a href="http://reddit.com/submit?url=<URL>&title=<TITLE>" target="_blank" class="share-btn reddit">
-  <i class="fa fa-reddit"></i>
+<a class="btn btn-default btn-sm reddit" href="http://reddit.com/submit?url={{ site.url }}{{ page.url }}&title={{ page.title }}" target="_blank" class="share-btn reddit">
+  <i class="fa fa-reddit fa-lg"></i>
+  Reddit
 </a>
--->
 
 <!-- LinkedIn -->
-<!--the LinkedIn base url
-    http://www.linkedin.com/shareArticle?mini=true -->
-
-<a href="http://www.linkedin.com/shareArticle
-    ?mini=true
-    &url={{ site.url }}{{ page.url }}
-    &title={{ page.title }}
-    &source={{ site.title }}"
-     class="share-btn linkedin">
-  <i class="fa fa-linkedin"></i>
+<a class="btn btn-default btn-sm linkedin" href="http://www.linkedin.com/shareArticle?mini=true&url={{ site.url }}{{ page.url }}&title={{ page.title }}&source={{ site.title }}">
+  <i class="fa fa-linkedin fa-lg"></i>
+  LinkedIn
 </a>
 
 <!-- Email -->
-<a href="mailto:?subject=<SUBJECT&body=<BODY>" target="_blank" class="share-btn email">
+<!--
+<a class="btn btn-default btn-sm email" href="mailto:?subject=<SUBJECT&body=<BODY>" target="_blank" class="share-btn email">
   <i class="fa fa-envelope"></i>
+  Email
 </a>
-</div>
-
+-->
+</div><p></p>
 
 {% endif %}
