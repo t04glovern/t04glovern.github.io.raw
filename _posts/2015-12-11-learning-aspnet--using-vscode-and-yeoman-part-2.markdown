@@ -4,6 +4,8 @@ title: "Learning ASP.NET - Using VScode and Yeoman (Part 2)"
 date: "2015-12-11"
 comments: true
 description: Using Yeoman to deploy a ASP.NET project template, we generate our first working page
+share: true
+author: nathan
 tags:
  - asp.net
  - windows

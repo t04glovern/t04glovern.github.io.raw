@@ -4,6 +4,8 @@ title: "Arduino Projects - Working with Sound"
 date: "2015-12-26"
 comments: true
 description: Today we learn how sound is produced and understand how we can create tones using the Arduino tone() library
+share: true
+author: nathan
 tags:
  - arduino
  - electronics

@@ -1,3 +1,5 @@
+{% if page.author == "nathan" %}
+
 <section class="site-author1 col-sm-2">
   <br>
   <img src="http://www.gravatar.com/avatar/{{site.author.email_md5}}" class="img-rounded author-image" />
@@ -7,3 +9,5 @@
 <h4 class="section-title author-name">{{site.author.name}}</h4>
 <p class="author-bio">{{site.author.bio}}</p>
 </section>
+
+{% endif %}
