@@ -17,13 +17,17 @@ For the last 24 hours there has been a major fault with the vendor infrastructur
 
 ## Denial
 
+![Denial]({{ site.url }}/images/posts/internet-denial.jpg)
+
 I woke up this morning like any other morning in an Australian summer; with a dry mouth and covered in sweat. I picked up my phone to check see what everyone was up to and noticed the little yellow exclamation point on my WiFi symbol indicating that I was connected to WiFi, but had no connection to the outside world.
 
-I rolled my eyes assuming that the kittens we were looking after had pumped the wireless AP out of its socket again, meaning I would have to get out of bed before I could even think about getting online. I contemplated switching to 4G but quickly dismissed that idea when I remembered I only had 70mb to last me the next 3 days. With a heavy groan I lifted my frail husk of a body out of bed, beads of sweat dripping down my skin as I did so.... It was bloody hot.
+I rolled my eyes assuming that the kittens we were looking after had bumped the wireless AP out of its socket again, meaning I would have to get out of bed before I could even think about getting online. I contemplated switching to 4G but quickly dismissed that idea when I remembered I only had 70mb to last me the next 3 days. With a heavy groan I lifted my frail husk of a body out of bed, beads of sweat dripping down my skin as I did so.... It was bloody hot.
 
-As I walked towards the room where the access point was a sickening through came to mind; my phone had been connected to the WiFi, it just wasn't routing to any outside networks.... meaning that the issues probably wasn't the access point at all. I made a sharp turn into my study and ripped the cord from the wall connecting my router/modem to power. After a moment I plugged the cord back in and took a long, deep breath as I watched the internet LED light flash on then back off.
+As I walked towards the room where the access point was a sickening through came to mind; my phone had been connected to the WiFi, it just wasn't routing to any outside networks.... meaning that the issue probably wasn't the access point at all. I made a sharp turn into my study and ripped the cord from the wall connecting my router/modem to power. After a moment I plugged the cord back in and took a long, deep breath as I watched the internet LED light flash on then back off.
 
 ## Anger
+
+![Anger]({{ site.url }}/images/posts/internet-anger.jpg)
 
 NO! I am not ready for this... This is my damn day off and I had plans to play vidya and maybe do some study. Now I'm not going to get anything done and it's all *Insert ISP name here*'s fault! I slammed my finger down on the power button to my desktop and navigated to the IP of my router, while also loading up the *Insert ISP name here* Facebook page to check if anyone else was reporting issues.
 
@@ -69,11 +73,11 @@ There was also quite a few somewhat pissed of people who clearly shared my frust
 
 * `And then the one who gets trolled hard`
 
-![Trolled 1]({{ site.url }}/images/posts/internet-fuel-the-rage.png)
-
 ![Trolled 2]({{ site.url }}/images/posts/internet-fuel-the-rage-2.png)
 
 ## Bargaining
+
+![Bargin]({{ site.url }}/images/posts/internet-bargin.jpg)
 
 Once I'd finished reviewing some of the more humorous posts I began to brainstorm how I was going to get access to the internet while I wait for the home connection to come back up. All bets were on the table and I was seriously considering some pretty awful options.
 
@@ -85,6 +89,10 @@ The only option I had left is to maybe buy a datapack for my phone and use my me
 
 ## Depression
 
+![Hello Darkness]({{ site.url }}/images/posts/internet-hello-darkness.jpg)
+
+Hello darkness, my old friend.
+
 Oh god this is worse than I thought It would be. In the back of my mind I had told myself I would get it back pretty quickly and still have enough time in the day to get my stuff done. It is now nearly 2pm and there's been no status updates on the network issues.
 
 I think this might be it for me, there isn't much point even trying anymore if I can't watching re-runs of Arrested Development on netflix while browsing memes.
@@ -93,9 +101,9 @@ If there is an all powerful god out there, why does he put me through this tortu
 
 I can't deal
 
-Hello darkness, my old friend.
-
 ## Acceptance
+
+![Acceptance]({{ site.url }}/images/posts/internet-acceptance.jpg)
 
 Okay It isn't as bad as I'd first thought. I worked out I could still blog locally as git would still track all my changes offline. I got a bit of cleaning done around the house and spent some time reading a book.
 
