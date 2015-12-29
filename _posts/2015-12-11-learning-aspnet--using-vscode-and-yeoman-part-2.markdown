@@ -281,4 +281,4 @@ info: Microsoft.AspNet.Hosting.Internal.HostingEngine[2]
 
 ## Summary
 
-We've learnt how to generate code using Yeoman and edit/view it in `Visual Studio Code`. In the next lesson we'll be learning how to do the same thing, from scratch in `Visual Studio 2015`. Hopefully I'm not going into too much detail, but I think it's beneficial to have the whole process documented instead of assuming everything will understand exactly what's going on.
+We've learned how to generate code using Yeoman and edit/view it in `Visual Studio Code`. In the next lesson we'll be learning how to do the same thing, from scratch in `Visual Studio 2015`. Hopefully I'm not going into too much detail, but I think it's beneficial to have the whole process documented instead of assuming everything will understand exactly what's going on.

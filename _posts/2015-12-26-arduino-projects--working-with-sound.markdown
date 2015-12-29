@@ -12,11 +12,11 @@ tags:
  - sound
 ---
 
-# Introduction
+## Introduction
 
 Tonight we're going to be looking into how sound is produced and also run through the steps required to get our `Arduino` to produce sound. The `Arduino`can produce sounds a number of ways; The simplest method, and the one we're going to look into is the [`tone()`](https://www.arduino.cc/en/Reference/Tone) function.
 
-# Understanding how a speaker works
+## Understanding how a speaker works
 
 Sound is transmitted through the air as a pressure wave. As an object such as a speaker, drum, or a bell vibrates, that object also vibrates the air around it. As the air particles vibrate, they transfer energy to the particles around them, vibrating these particles as well. This chain reaction creates a pressure wave that is transferred from the sound source to your eardrum.
 
@@ -50,7 +50,7 @@ Looking at the speaker above, we can step through the process used to make a ton
 
 4. This back-and-forth vibration, in turn, vibrates the air in front of the speaker, effectively creating a sound wave that can travel to your eardrum.
 
-# Using the tone() function
+## Using the tone() function
 
 `Arduino IDE` includes a built-in function for easily making sounds with arbitrary frequencies. The [`tone()`](https://www.arduino.cc/en/Reference/Tone) function generates a square wave of the selected frequency on the output pin of your choice. The tone() function accepts three arguments:
 
@@ -210,7 +210,7 @@ void loop() {
 
 Run your code and enjoy the jams! Note that since we haven't setup this code to `loop`; you'll need to either reboot your `Arduino` or press the `reset button` on the board to get the tone to replay. You could even move the code block in `setup()` down into `loop()` to get it to continuously play the tones.
 
-# Conclusion
+## Conclusion
 
 I wish I had more to say on this topic, It turned out to be a lot easier than I expected. I hope to expand on some ideas with the speaker in some later projects; but for now it was great to just learn the fundamental details about how a speaker actually works. I hope it was helpful for you as well :)
 

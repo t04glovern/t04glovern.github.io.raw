@@ -1,0 +1,102 @@
+---
+layout: post
+title: "I Can't ping 8.8.8.8"
+date: "2015-12-28"
+comments: true
+description: Today I go through the longest period without Internet I've had since moving into our new place.
+share: true
+author: nathan
+tags:
+ - internet
+ - grief
+---
+
+## Introduction (To Hell)
+
+For the last 24 hours there has been a major fault with the vendor infrastructure that provides the NBN connection to our house. I've been through periods without Internet before, but I've never had to deal with an outage on a public holiday and knew from the get-go that It was likely to be a difficult time in my life.
+
+## Denial
+
+I woke up this morning like any other morning in an Australian summer; with a dry mouth and covered in sweat. I picked up my phone to check see what everyone was up to and noticed the little yellow exclamation point on my WiFi symbol indicating that I was connected to WiFi, but had no connection to the outside world.
+
+I rolled my eyes assuming that the kittens we were looking after had pumped the wireless AP out of its socket again, meaning I would have to get out of bed before I could even think about getting online. I contemplated switching to 4G but quickly dismissed that idea when I remembered I only had 70mb to last me the next 3 days. With a heavy groan I lifted my frail husk of a body out of bed, beads of sweat dripping down my skin as I did so.... It was bloody hot.
+
+As I walked towards the room where the access point was a sickening through came to mind; my phone had been connected to the WiFi, it just wasn't routing to any outside networks.... meaning that the issues probably wasn't the access point at all. I made a sharp turn into my study and ripped the cord from the wall connecting my router/modem to power. After a moment I plugged the cord back in and took a long, deep breath as I watched the internet LED light flash on then back off.
+
+## Anger
+
+NO! I am not ready for this... This is my damn day off and I had plans to play vidya and maybe do some study. Now I'm not going to get anything done and it's all *Insert ISP name here*'s fault! I slammed my finger down on the power button to my desktop and navigated to the IP of my router, while also loading up the *Insert ISP name here* Facebook page to check if anyone else was reporting issues.
+
+I opened the login page and was greeted by the following message under `Internet Connections`:
+
+{% highlight bash %}
+Internet: Connected since 01.01.1970, 08:01, iiNet NBN, IP address: xxx.xxx.xxx.xxx
+{% endhighlight bash %}
+
+Oh, well that explains everything; I've traveled in time to the year 1970 when fibreoptics weren't even commercially used for data transmission. That's why I don't have internet, that makes complete sense you stupid fricken router.
+
+I picked up my phone and started to read some of the comments on the *Insert ISP name here* Facebook page. My heart rate slowed down and I felt a little at ease when I noticed that It wasn't just me having issues; In fact a very large proportion of NBN users were having issues and *Insert ISP name here* was posting regular updates regarding the ETR.
+
+There was also quite a few somewhat pissed of people who clearly shared my frustration and had taken to the internet (ironically) to vent.
+
+* `The one who thinks it's as easy as turning it off and on`
+
+![Not Qualified]({{ site.url }}/images/posts/internet-not-qualified.png)
+
+* `The one who states the obvious`
+
+![States the Obvious]({{ site.url }}/images/posts/internet-state-the-obvious.png)
+
+* `The one who wants technical support but complains when things don't work straight away`
+
+![Posting Heaps]({{ site.url }}/images/posts/internet-posting-heaps.png)
+
+* `The one who is feeling pissed off and angry.` Don't worry buddy, I feel your pain
+
+![Angry]({{ site.url }}/images/posts/internet-angry.png)
+
+* `The one with empty threats`
+
+![Empty Threat]({{ site.url }}/images/posts/internet-call-her-bluff.png)
+
+* `The one who uses the "O" word whenever he can`
+
+![O word]({{ site.url }}/images/posts/internet-throwing-around-the-O.png)
+
+* `The one who doesn't know how good they have it`
+
+![ADSL > NBN]({{ site.url }}/images/posts/internet-back-to-adsl.png)
+
+* `And then the one who gets trolled hard`
+
+![Trolled 1]({{ site.url }}/images/posts/internet-fuel-the-rage.png)
+
+![Trolled 2]({{ site.url }}/images/posts/internet-fuel-the-rage-2.png)
+
+## Bargaining
+
+Once I'd finished reviewing some of the more humorous posts I began to brainstorm how I was going to get access to the internet while I wait for the home connection to come back up. All bets were on the table and I was seriously considering some pretty awful options.
+
+Maccas always seems like it would be a good option, but it never is. You trudge down to the store and order a coffee that normally tastes burnt like the pits of hell. Then you end up only finding a seat at a table in a high traffic area because everyone else in your area had the same bright idea. You finally setup your laptop on the dirty, crusty table and connect to the WiFI only to find that it's slower than grandmas dial up because everyone else in the store is streaming netflix. The same goes for coffee shops and dome coffee. Don't even bother.
+
+Maybe I could go to a friends house or my parents? No that would require socializing and considering it's a 40 degree day, I don't think I can handle the small talk and heat at the same time.
+
+The only option I had left is to maybe buy a datapack for my phone and use my megabytes sparingly. Unfortunately I have a high daily usage as it is (over 4-5gb easily) and I doubt I could hold back from spending $50+ on data, so I best not tempt myself at all.
+
+## Depression
+
+Oh god this is worse than I thought It would be. In the back of my mind I had told myself I would get it back pretty quickly and still have enough time in the day to get my stuff done. It is now nearly 2pm and there's been no status updates on the network issues.
+
+I think this might be it for me, there isn't much point even trying anymore if I can't watching re-runs of Arrested Development on netflix while browsing memes.
+
+If there is an all powerful god out there, why does he put me through this torture.
+
+I can't deal
+
+Hello darkness, my old friend.
+
+## Acceptance
+
+Okay It isn't as bad as I'd first thought. I worked out I could still blog locally as git would still track all my changes offline. I got a bit of cleaning done around the house and spent some time reading a book.
+
+It was relaxing, and I've realized that it isn't the end of the world. I'm not saying I'm happy about this situation, but I do think I may have blown the whole thing out of proportion.

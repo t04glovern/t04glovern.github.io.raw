@@ -94,7 +94,7 @@ Fixing this problem is as simple as adding a delay to the bottom of the `loop()`
 delay(30);
 {% endhighlight java %}
 
-# Understanding the RGB Module
+## Understanding the RGB Module
 
 The `RGB` unit I decided to use has four inputs. Three of those inputs take a variable voltage and uses that value to display a colour based on three sets of 0-255 integers (`Red` `Blue` `Green` combination).
 
@@ -130,7 +130,7 @@ if (sensorYValue < sensorYLow){
 
 Using this setup means that I always deal with expected values and even if I do get a curve-ball input, my system will know how to deal with it.
 
-# Interface RGB Unit with PWM Pins
+## Interface RGB Unit with PWM Pins
 
 Now that we are importing logical data, we're safe to move forward and interface the RGB unit. First I connected the `Digital PWM pins` in series with the RGB legs and a single 220Ω Resistor on  each leg of my LED. Following that I added code to map the digital ports to meaningful names
 
@@ -177,7 +177,7 @@ analogWrite(greenLEDPin, valueY);
 analogWrite(blueLEDPin, valueMix);
 {% endhighlight java %}
 
-# Run the Code
+## Run the Code
 
 Presto! my code works great
 
