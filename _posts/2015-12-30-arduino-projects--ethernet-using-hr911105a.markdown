@@ -118,4 +118,100 @@ Yay! We got it working. That's a really simple example though, and we still don'
 
 ## Build a Webserver
 
-tbc
+Lets open a new project and begin. Start by adding the appropriate code to include the EtherCard library:
+
+{% highlight c %}
+#include <EtherCard.h>
+{% endhighlight c %}
+
+Next we'll setup a place where we can specify static IP information. We'll do that by creating and populating the following byte arrays with relevant IP network information
+
+{% highlight c %}
+// Ethernet interface ip address
+static byte myip[] = { 192,168,188,200 };
+// Gateway ip address
+static byte gwip[] = { 192,168,188,254 };
+// DNS ip address
+static byte dnsip[] = { 192,168,188,254 };
+// Subnet mask
+static byte mask[] = { 255,255,255,0 };
+{% endhighlight c %}
+
+Add a another byte array to store the mac address of the interface. You can either make up one yourself or obtain the interfaces actual address from the board itself. If you can't be bothered with either of these things feel free to use mine.
+
+{% highlight c %}
+// Ethernet mac address - must be unique on your network
+static byte mymac[] = { 0x74,0x69,0x69,0x2D,0x30,0x31 };
+{% endhighlight c %}
+
+I would also recommend adding the following line to specify the TCP/IP buffer size. We will be using this later during the interface initialization.
+
+{% highlight c %}
+// TCP/IP send and receive buffer
+byte Ethernet::buffer[500];
+{% endhighlight c %}
+
+Now lets get started on the setup() code. We'll start by opening up a serial connection for debugging with the baud rate of 57600
+
+{% highlight c %}
+void setup() {
+  Serial.begin(57600);
+  Serial.println("\n[Debugger]");
+{% endhighlight c %}
+
+Now we need to initialize the Ethernet interface using the `ether.begin()` function. If we have a look at the functions definition in the `EtherCard.h` file we can see what values it accepts.
+
+{% highlight c %}
+    /**   @brief  Initialize the network interface
+    *     @param  size Size of data buffer
+    *     @param  macaddr Hardware address to assign to the network interface (6 bytes)
+    *     @param  csPin Arduino pin number connected to chip select. Default = 8
+    *     @return <i>uint8_t</i> Firmware version or zero on failure.
+    */
+    static uint8_t begin (const uint16_t size, const uint8_t* macaddr,
+                          uint8_t csPin =8);
+{% endhighlight c %}
+
+We can use the information above to construct the ether.begin() function using the Ethernet buffer size and our Ethernet mac address. We also want to wrap this initialization in an `if statement` to confirm the interface is constructed correctly. Use the following syntax to get that done:
+
+{% highlight c %}
+if (ether.begin(sizeof Ethernet::buffer, mymac) == 0)
+    Serial.println( "Failed to access Ethernet controller");
+{% endhighlight c %}
+
+Next we need to setup the interface with either DHCP or the static values we declared earlier on. You can choose to do either by implementing one of the following solutions:
+
+`DHCP`
+{% highlight c %}
+ether.dhcpSetup()
+{% endhighlight c %}
+
+`Static` implementation is defined in `EtherCard.h`
+
+{% highlight c %}
+/**   @brief  Configure network interface with static IP
+*     @param  my_ip IP address (4 bytes). 0 for no change.
+*     @param  gw_ip Gateway address (4 bytes). 0 for no change. Default = 0
+*     @param  dns_ip DNS address (4 bytes). 0 for no change. Default = 0
+*     @param  mask Subnet mask (4 bytes). 0 for no change. Default = 0
+*     @return <i>bool</i> Returns true on success - actually always true
+*/
+static bool staticSetup (const uint8_t* my_ip,
+                         const uint8_t* gw_ip = 0,
+                         const uint8_t* dns_ip = 0,
+                         const uint8_t* mask = 0);
+{% endhighlight c %}
+
+And therefore can be implemented as follows:
+
+{% highlight c %}
+ether.staticSetup(myip, gwip, dnsip, mask);
+{% endhighlight c %}
+
+At this point, we should have our interface setup. Just to make sure lets write out the IP values to serial:
+
+{% highlight c %}
+ether.printIp("IP:  ", ether.myip);
+ether.printIp("GW:  ", ether.gwip);  
+ether.printIp("DNS: ", ether.dnsip);
+{% endhighlight c %}
