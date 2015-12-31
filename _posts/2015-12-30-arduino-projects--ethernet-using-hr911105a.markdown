@@ -144,17 +144,18 @@ Add a another byte array to store the mac address of the interface. You can eith
 static byte mymac[] = { 0x74,0x69,0x69,0x2D,0x30,0x31 };
 {% endhighlight c %}
 
-I would also recommend adding the following line to specify the TCP/IP buffer size. We will be using this later during the interface initialization.
+I would also recommend adding the following line to specify the `TCP/IP buffer size`. We will be using this later during the interface initialization.
 
 {% highlight c %}
 // TCP/IP send and receive buffer
 byte Ethernet::buffer[500];
 {% endhighlight c %}
 
-Now lets get started on the setup() code. We'll start by opening up a serial connection for debugging with the baud rate of 57600
+Now lets get started on the `setup()` code. We'll start by opening up a serial connection for debugging with the baud rate of 57600
 
 {% highlight c %}
 void setup() {
+  // Open a serial connection for debugging
   Serial.begin(57600);
   Serial.println("\n[Debugger]");
 {% endhighlight c %}
@@ -175,8 +176,9 @@ Now we need to initialize the Ethernet interface using the `ether.begin()` funct
 We can use the information above to construct the ether.begin() function using the Ethernet buffer size and our Ethernet mac address. We also want to wrap this initialization in an `if statement` to confirm the interface is constructed correctly. Use the following syntax to get that done:
 
 {% highlight c %}
+// Initialize the Ethernet interface
 if (ether.begin(sizeof Ethernet::buffer, mymac) == 0)
-    Serial.println( "Failed to access Ethernet controller");
+  Serial.println( "Failed to access Ethernet controller");
 {% endhighlight c %}
 
 Next we need to setup the interface with either DHCP or the static values we declared earlier on. You can choose to do either by implementing one of the following solutions:
@@ -205,13 +207,104 @@ static bool staticSetup (const uint8_t* my_ip,
 And therefore can be implemented as follows:
 
 {% highlight c %}
+// Setup IP statically
 ether.staticSetup(myip, gwip, dnsip, mask);
 {% endhighlight c %}
 
 At this point, we should have our interface setup. Just to make sure lets write out the IP values to serial:
 
 {% highlight c %}
+// Print IP information out to serial line
 ether.printIp("IP:  ", ether.myip);
-ether.printIp("GW:  ", ether.gwip);  
+ether.printIp("GW:  ", ether.gwip);
 ether.printIp("DNS: ", ether.dnsip);
+{% endhighlight c %}
+
+Now that we have the interface up and running we can work on publishing a HTML page to the interface when someone tries to connect to the web server. We'll be storing our test html page within the Arduino code itself. If you have an SD card and a SD adapter on your Arduino you can also tell the microcontroller to serve the page from the SD directory. In my case however I am simply going to build the HTML directly onto the Arduino chip.
+
+Back at the top of your program add the following as a constant char array. It will store your text in the Arduinos `program memory` (PROGMEM)
+
+{% highlight c %}
+// Define the HTML that will be served
+const char page[] PROGMEM =
+"HTTP/1.0 503 Service Unavailable\r\n"
+"Content-Type: text/html\r\n"
+"Retry-After: 600\r\n"
+"\r\n"
+"<html>"
+  "<head><title>"
+    "Arduino Webserver Example"
+  "</title></head>"
+  "<body>"
+    "<h3>Congratulations, you can see this page!</h3>"
+    "<p><em>"
+      "Keep learning!<br />"
+      "And have a happy new year"
+    "</em></p>"
+  "</body>"
+"</html>"
+;
+{% endhighlight c %}
+
+The only thing left to do is to setup some code in the `loop()` to serve the page whenever someone connects. This is done via the following code block:
+
+{% highlight c %}
+void loop(){
+  // wait for an incoming TCP packet, but ignore its contents
+  if (ether.packetLoop(ether.packetReceive())) {
+    memcpy_P(ether.tcpOffset(), page, sizeof page);
+    ether.httpServerReply(sizeof page - 1);
+  }
+}
+{% endhighlight c %}
+
+Lets explore what each of the functions in the loop() block do:
+
+1. `packetLoop()` - Waits for and accepts a TCP/IP connection from the Ethernet interface. In this case the `packetReceive()` function is the parameter this function takes.
+
+{% highlight c %}
+static uint16_t packetLoop (uint16_t plen);
+
+/**   @brief  Accept a TCP/IP connection
+*     @param  port IP port to accept on - do nothing if wrong port
+*     @param  plen Number of bytes in packet
+*     @return <i>uint16_t</i> Offset within packet of TCP payload. Zero for no data.
+*/
+{% endhighlight c %}
+
+2. `packetReceive()` - Defined in the enc28j60.h file, this function copies the packet data from the Ethernet controllers memory and passes it to the `packetLoop()` function
+
+{% highlight c %}
+static uint16_t packetReceive ();
+
+/**   @brief  Copy data from ENC28J60 memory
+*     @param  page Data page of memory
+*     @param  data Pointer to buffer to copy data to
+*/
+{% endhighlight c %}
+
+3. `memcpy_P` - Takes three arguments:
+* `destination` - ether.tcpOffset() will receive our bytes
+* `source` - The declared page array we declared and stored in PROGMEM
+* `num` - The number of bytes we want to copy to destination, in this case it's the `sizeof` (returns size in bytes) the `page array`
+
+4. `tcpOffset()` - Initializes the SPI interface and serves as a input for the TCP payload
+
+{% highlight c %}
+static uint8_t* tcpOffset () { return buffer + 0x36; } //!< Pointer to the start of TCP payload
+
+/**   @brief  Initialise SPI interface
+*     @note   Configures Arduino pins as input / output, etc.
+*/
+{% endhighlight c %}
+
+5. `httpServerReply()` - advises the interface of how many bytes make up the TCP payload. In this case it's the byte size of the page array minus 1
+
+{% highlight c %}
+static void httpServerReply (uint16_t dlen);
+
+/**   @brief  Send a response to a HTTP request
+*     @param  dlen Size of the HTTP (TCP) payload
+*     @param  flags TCP flags
+*/
 {% endhighlight c %}
