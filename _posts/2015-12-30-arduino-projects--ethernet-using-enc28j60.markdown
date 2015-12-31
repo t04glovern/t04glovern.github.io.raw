@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Arduino Projects - Ethernet using HR911105A"
+title: "Arduino Projects - Ethernet using a ENC28J60 Ethernet Controller"
 date: "2015-12-30"
 comments: true
 description: Tonight I decided to give Ethernet interfacing with the Arduino a go.
