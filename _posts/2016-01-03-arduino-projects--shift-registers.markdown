@@ -79,4 +79,131 @@ shiftOut(dataPin, clockPin, bitOrder, value)
 
 * `value` - The value to shift out. If you are feeding in a binary number similar to the example above; it must be prefixed with a capital `B` in order to alert the Arduino IDE to interpret the following numbers as binary rather than an integer. `eg. B10101010`
 
-In order to wire up this circuit I
+Using this knowledge I went about setting up my circuit. My goal was to have eight LEDs controlled by our three pin inputs and have them display in binary the numbers 0-255. Refer to my circuit diagram below for reference.
+
+![Shift Register Circuit]({{ site.url }}/images/posts/arduino-shift-reg-board.png)
+
+One you've wired up your circuit you'll have something that will look at little bit like the following (maybe a little neater than mine even).
+
+![Shift Register Circuit]({{ site.url }}/images/posts/arduino-shift-reg-pic.jpg)
+
+## The Code
+
+The code is actually super easy; We start with our pin constants along with a variable to store the current value we're inserting into the LED
+
+{% highlight c %}
+const int SER = 8; // Serial output to shift register
+const int LATCH = 9; // Shift register latch pin
+const int CLK = 10; // Shift register clock pin
+
+int value = 0; // Value to display
+{% endhighlight c %}
+
+Next in the setup() we specify our pinModes
+
+{% highlight c %}
+pinMode(SER, OUTPUT);
+pinMode(LATCH, OUTPUT);
+pinMode(CLK, OUTPUT);
+{% endhighlight c %}
+
+Then we move down into the loop() and add first hold the LATCH pin low to start feeding our value into the shift register
+
+{% highlight c %}
+digitalWrite(LATCH, LOW); // Latch low
+{% endhighlight c %}
+
+Now we use the shiftOut() function to push our value into the shift register. note that `value` should match the value we declared earlier on.
+
+{% highlight c %}
+shiftOut(SER, CLK, LSBFIRST, value); // Shift most sig. bit first
+{% endhighlight c %}
+
+Finally we set the latch to high and push the loaded value our of the shift registers pins to light up the LEDs
+
+{% highlight c %}
+digitalWrite(LATCH, HIGH); // Latch high, show pattern
+{% endhighlight c %}
+
+If you run the code now, you should get no LEDs lighting up. This is because we are passing in a value of 0 (as declared in the `value` variable); so lets go ahead and create a method of cycling from all the different numbers that we can represent in binary on our LEDs. The following code will increment the value of `value` by 1 each time the Shift register latches. If the value reaches 255, it resets back to 0 and continues.
+
+{% highlight c %}
+// check value is less than the 255 limit and reset if it isn't
+if(value < 255)
+{
+    value++;
+}
+else
+{
+  value = 0;
+}
+{% endhighlight c %}
+
+It it also worth adding in some delay code so that we can actually see the changes occurring
+
+{% highlight c %}
+delay(100);
+{% endhighlight c %}
+
+Lets run the code!
+
+![Shift Demo]({{ site.url }}/images/posts/arduino-shift-demo.gif)
+
+## Expand on ideas
+
+With what we now know, we can do some pretty cool things. Another idea I went ahead and implemented using the Shift register circuit we built + a simple potentiometer input can be seen below. I've also included the code that I used to complete it.
+
+![Shift Demo]({{ site.url }}/images/posts/arduino-shift-reg-potent-board.png)
+
+{% highlight c %}
+const int SER = 8; // Serial output to shift register
+const int LATCH = 9; // Shift register latch pin
+const int CLK = 10; // Shift register clock pin
+
+const int IN = A0; // Input from potentiometer
+
+int potentLow = 0;
+int potentHigh = 1024;
+
+void setup() {
+  pinMode(SER, OUTPUT);
+  pinMode(LATCH, OUTPUT);
+  pinMode(CLK, OUTPUT);
+}
+
+void loop() {
+  int value = analogRead(IN);
+
+  if (value > potentHigh){
+    potentHigh = value;
+  }
+  if (value < potentLow){
+    potentLow = value;
+  }
+
+  int valueOut = map(value,potentLow,potentHigh, 0, 255);
+
+  if(value <= 32){valueOut = 1;}
+  if(value > 32 && value <= 64){valueOut = 3;}
+  if(value > 64 && value <= 96){valueOut = 7;}
+  if(value > 96 && value <= 128){valueOut = 15;}
+  if(value > 128 && value <= 160){valueOut = 31;}
+  if(value > 160 && value <= 192){valueOut = 63;}
+  if(value > 192 && value <= 224){valueOut = 127;}
+  if(value > 224){valueOut = 255;}
+
+  digitalWrite(LATCH, LOW); // Latch low
+  shiftOut(SER, CLK, LSBFIRST, valueOut); // Shift most sig. bit first
+  digitalWrite(LATCH, HIGH); // Latch high, show pattern
+
+  delay(10);
+}
+{% endhighlight c %}
+
+![Shift Demo]({{ site.url }}/images/posts/arduino-shift-demo-potent.gif)
+
+## Conclusion
+
+Shift Registers are very powerful when used in the right places. They can be changed together allowing expansion outwards from 8bit to as many Shift Registers as required. Overall this project was a really interesting look into what is available and has given me a lot of really interesting ideas for future projects.
+
+I would love to hear what projects you've used Shift registers for in the past, or even what you plan to do with them in the future!
