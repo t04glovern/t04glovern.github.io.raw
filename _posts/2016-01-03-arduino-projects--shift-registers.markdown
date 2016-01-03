@@ -60,3 +60,23 @@ Below depicts the process we would take if we wanted to set every other LED to t
 ![Shift Register Process]({{ site.url }}/images/posts/arduino-shift-process.png)
 
 First, the LATCH pin is set low so that the current LED states are not changed while new values are shifted in. Then, the LED states are shifted into the registers in order on the CLOCK edge from the DATA line. After all the values have been shifted in, the LATCH pin is set high again, and the values are outputted from the shift registers.
+
+## Shifting Serial Data from the Arduino
+
+Now that we understand how the Shift Register works, we can write Arduino code to control the shift register. Luckily there is already a library for controlling this type of system called [ShiftOut](https://www.arduino.cc/en/Reference/ShiftOut).
+
+`ShiftOut()` is setup to shift out a byte of data at a time. It can be told to start shifting from either the most or least significant bit and uses the following syntax with the listed arguments:
+
+{% highlight c %}
+shiftOut(dataPin, clockPin, bitOrder, value)
+{% endhighlight c %}
+
+* `dataPin` - Specifies the data pin (SER) number
+
+* `clockPin` - Specifies the clock pin (SRCLK) number
+
+* `bitOrder` - Set to either MSBFIRST or LSBFIRST to define what order we want the bits read into the shift register
+
+* `value` - The value to shift out. If you are feeding in a binary number similar to the example above; it must be prefixed with a capital `B` in order to alert the Arduino IDE to interpret the following numbers as binary rather than an integer. `eg. B10101010`
+
+In order to wire up this circuit I
