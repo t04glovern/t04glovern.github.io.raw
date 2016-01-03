@@ -51,7 +51,7 @@ Take a look at the pin-out diagram for our Shift register below
 
 ## How the Shift Register works
 
-A shift register is a `synchronous device`; it only acts on the r`ising edge` of the clock signal. Every time the clock signal transitions from low to high, all the values currently stored in the eight output registers are shifted over one position (the last one is either discarded or output on the `Q(H)'` pin if you are cascading registers).
+A shift register is a `synchronous device`; it only acts on the `rising edge` of the clock signal. Every time the clock signal transitions from low to high, all the values currently stored in the eight output registers are shifted over one position (the last one is either discarded or output on the `Q(H)'` pin if you are cascading registers).
 
 Simultaneously, the value currently on the DATA input is shifted into the first position. By doing this eight times, the present values are shifted out and the new values are shifted into the register. The `LATCH pin` is set high at the end of the cycle to make the newly shifted values appear on the outputs.
 
