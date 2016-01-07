@@ -15,7 +15,7 @@ tags:
 
 ## Introduction
 
-This week I picked up some new toys to play with and decided I might as well document my experiences as I try to get a better understanding of how to use my new modules. I got a USB to Serial module and an `Ethernet shield`; which also has a `SD card reader` attached. My goal is to be able to send serial data down the USB interface and have it then saved into a new file on the inserted SD card.
+This week I picked up some new toys to play with and decided I might as well document my experiences as I try to get a better understanding of how to use my new modules. I got a USB to Serial module and an `Ethernet shield`; which also has a `SD card reader` attached. During this tutorial I'll go over the FT232RL chip in detail and finish up with some information on reading and writing to an SD card.
 
 I have a feeling this process might be harder than it lets on, so lets get started.
 
@@ -45,8 +45,76 @@ Then select `Browse for driver software on your computer` and point to the direc
 
 Once the drivers are loaded successfully you'll see the device appear under the `COM ports` section of the device view.
 
-![USB to Serial Error 4]({{ site.url }}/images/posts/arduino-usb-serial-driver-error-5.png)
+![USB to Serial Error 5]({{ site.url }}/images/posts/arduino-usb-serial-driver-error-5.png)
 
 Awesome, we know that our device is actually going to function! Lets move on to interfacing with the module.
 
-##
+## FT232RL Pins
+
+![FT232RL Board]({{ site.url }}/images/posts/arduino-ft232rl-board.jpg)
+
+The FT232RL chip is a `28pin SSOP IC`. The specifics of the chip are outlined in the datasheet [here](http://www.ftdichip.com/Support/Documents/DataSheets/ICs/DS_FT232R.pdf).
+
+The Pin on the IC can be viewed below. I've tried my best to summarize.
+
+![FT232RL Pinout]({{ site.url }}/images/posts/arduino-ft232rl-pinouts.png)
+
+1. USB Interface Group
+
+* `Pin 15 (USBDP)` - USB Data Signal Plus, incorporating internal series resistor and 1.5kΩ pull up resistor to 3.3V.
+
+* `Pin 16 (USBDM)` - USB Data Signal Minus, incorporating internal series resistor.
+
+2. Power and Ground Group
+
+* `Pin 4 (VCCIO)` - +1.8V to +5.25V supply to the UART Interface and CBUS group pins
+
+* `Pin 7, 18, 21 (GND)` - Group Supply Pins
+
+* `Pin 17 (3V3OUT)` - +3.3V output from integrated LDO regulator.
+
+* `Pin 20 (VCC)` - +3.3V to +5.25V supply to the device core.
+
+* `Pin 25 (AGND)` - Device analogue ground supply for internal clock multiplier.
+
+Miscellaneous Signal Group
+
+* `Pin 8, 24 (NC)` - No internal connection
+
+* `Pin 19 (RESET#)` - Active low reset pin. Can be used by an external device to reset the FT232R. If not required can be left unconnected, or pulled up to VCC.
+
+* `Pin 26 (TEST)` - Puts the device into IC test mode. Must be tied to GND for normal operation, otherwise the device will appear to fail.
+
+* `Pin 27 (OSCI)` - Input 12MHz Oscillator Cell. Optional and can be left unconnected for normal operation.
+
+* `Pin 28 (OSCO)` - Output from 12MHz Oscillator cell. Optional for normal operation if internal Oscillator is used.
+
+UART Interface and CUSB Group
+
+* `Pin 1 (TXD)` - Transmit Asynchronous Data Output.
+
+* `Pin 2 (DTR#)` - Data Terminal Ready Control Output / Handshake Signal.
+
+* `Pin 3 (RTS#)` - Request to Send Control Output / Handshake Signal.
+
+* `Pin 5 (RXD)` - Receiving Asynchronous Data Input.
+
+* `Pin 6 (RI#)` - Ring Indicator Control Input. When remote wake up is enabled in the internal EEPROM taking RI# low (20ms active low pulse) can be used to resume the PC USB host controller from suspend.
+
+* `Pin 9 (DSR#)` - Data Set Ready Control Input / Handshake Signal.
+
+* `Pin 10 (DCD)` - Data Carrier Detect Control Input.
+
+* `Pin 11 (CTS#)` - Clear To Send Control Input / Handshake Signal.
+
+* `Pin 12 (CBUS4)` - Configurable CBUS output only Pin.
+
+* `Pin 13 (CBUS2)` - Configurable CBUS I/O Pin.
+
+* `Pin 14 (CBUS3)` - Configurable CBUS I/O Pin.
+
+* `Pin 22 (CBUS1)` - Configurable CBUS I/O Pin.
+
+* `Pin 23 (CBUS0)` - Configurable CBUS I/O Pin.
+
+## What can we use this for?
