@@ -14,11 +14,11 @@ tags:
 
 ## Introduction
 
-This guide outlines how to get `Borrowed Space` storage pools created in EqualLogic storage manager talking with ESXi over an iSCSI link. I make the assumption that you already have the various storage pools setup, my guide uses three existing spaces called Gold, Silver and Bronze.
+This guide outlines how to get `Borrowed Space` storage pools created in `EqualLogic storage manager` talking with ESXi over an iSCSI link. I make the assumption that you already have the various storage pools setup, my guide uses three existing spaces called Gold, Silver and Bronze.
 
 ## Setup an iSCSI host adaptor
 
-Login to one of the ESXi boxes you want to configure with the vSphere client and navigate to the Configuration tab > Storage Adapters. You'll be greeted with various storage adapters that are currently attached to your physical system. In order for us to talk with the EqualLogic storage device we need an iSCSI adapter setup.
+Login to one of the ESXi boxes you want to configure with the vSphere client and navigate to the `Configuration tab > Storage Adapters`. You'll be greeted with various storage adapters that are currently attached to your physical system. In order for us to talk with the EqualLogic storage device we need an iSCSI adapter setup.
 
 ![Adapter Creation]({{ site.url }}/images/posts/equallogic-storage/equallogic-storage-pool-adapter.png)
 
@@ -38,7 +38,7 @@ Next open up the Access Policies section and check `New` under `Access Policies`
 
 ![Group Manager Access Policies Name]({{ site.url }}/images/posts/equallogic-storage/equallogic-storage-pool-access-policies-name.png)
 
-Click `New` to add a new access point. The only box we'll worry about here is the `iSCSI Initiator Name`, which will be the name of the adaptor I told you to copy down before. Punch that in and click `Ok` and then Ok on the remaining windows.
+Click `New` to add a new access point. The only box we'll worry about here is the `iSCSI Initiator Name`, which will be the name of the adaptor I told you to copy down before. Punch that in and click `Ok` and then `Ok` on the remaining windows.
 
 ![Group Manager Access Policies iSCSI Name]({{ site.url }}/images/posts/equallogic-storage/equallogic-storage-pool-access-policies-iscsi-name.png)
 
@@ -68,4 +68,4 @@ If they don't show up simply click `Add Storage` with the storage type `Disk/LUN
 
 ## Summary
 
-Using iSCSI Datastores means you can leverage some great vMotion and HA features that exist in vSphere without having to worry about large data migrations during VM moves. It's also a great way to ensure that all your various storage arrays are somewhat centralized.
+Using `iSCSI Datastores` mean you can leverage some great `vMotion` and `HA` features that exist in vSphere without having to worry about large data migrations during VM moves. It's also a great way to ensure that all your various storage arrays are somewhat centralized.
