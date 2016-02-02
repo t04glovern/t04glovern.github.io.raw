@@ -60,7 +60,7 @@ Click on Static Discovery and you'll likely already see the three storage target
 
 ![ESXi iSCSI Static Discovery]({{ site.url }}/images/posts/equallogic-storage/equallogic-storage-pool-adapter-discovery-static.png)
 
-Now we just need to add the discovered devices as storage locations; do this by navigating to the `Configuration > Storage` section. You might find that the Datastores already show up and have been added automatically. If they have then don't worry about the following steps (you're done!)
+Now we just need to add the discovered devices as storage locations; do this by navigating to the `Configuration > Storage` section. You might find that the Datastores already show up and have been added automatically. If they have, then don't worry about the following steps (you're done!)
 
 If they don't show up simply click `Add Storage` with the storage type `Disk/LUN` and individually add the three targets making sure to name them something reasonable.
 
