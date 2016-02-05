@@ -31,7 +31,7 @@ The following parts were used throughout the build of this project:
 
 The final schematic I'll be referring to throughout the design process is shown below. Output pins on the Thumbstick module might vary on different units, so just make sure your unit lines up with the four important pins I've used in my build.
 
-![Thumbstick RGB Circuit]({{ site.url }}/images/posts/arduino-thumbstick-rgb-led.png)
+![Thumbstick RGB Circuit]({{ site.url }}/images/posts/2015.12.21/arduino-thumbstick-rgb-led.png)
 
 ## Reading input from the Thumbstick
 
@@ -181,7 +181,7 @@ analogWrite(blueLEDPin, valueMix);
 
 Presto! my code works great
 
-![Thumbstick RGB Run]({{ site.url }}/images/posts/arduino-thumbstick.gif)
+![Thumbstick RGB Run]({{ site.url }}/images/posts/2015.12.21/arduino-thumbstick.gif)
 
 Below is a full copy of the final code used at runtime
 

@@ -18,7 +18,7 @@ I've made it a goal this year to learn a bit more about Linux in general. In the
 
 It's fitting that the first thing I explore is the most confusing, but also the most important part; The core file system and directory structure.
 
-![Linux Structure List]({{ site.url }}/images/posts/linux-directory-structure-list.png){:.center-image}
+![Linux Structure List]({{ site.url }}/images/posts/2016.01.10/linux-directory-structure-list.png){:.center-image}
 
 I'm only going to cover the top level directories for now, so I'll try my best to give just enough description to get by.
 

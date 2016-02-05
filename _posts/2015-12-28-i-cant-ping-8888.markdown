@@ -17,7 +17,7 @@ For the last 24 hours there has been a major fault with the vendor infrastructur
 
 ## Denial
 
-![Denial]({{ site.url }}/images/posts/internet-denial.jpg)
+![Denial]({{ site.url }}/images/posts/2015.12.28/internet-denial.jpg)
 
 I woke up this morning like any other morning in an Australian summer; with a dry mouth and covered in sweat. I picked up my phone to check see what everyone was up to and noticed the little yellow exclamation point on my WiFi symbol indicating that I was connected to WiFi, but had no connection to the outside world.
 
@@ -27,7 +27,7 @@ As I walked towards the room where the access point was a sickening through came
 
 ## Anger
 
-![Anger]({{ site.url }}/images/posts/internet-anger.jpg)
+![Anger]({{ site.url }}/images/posts/2015.12.28/internet-anger.jpg)
 
 NO! I am not ready for this... This is my damn day off and I had plans to play vidya and maybe do some study. Now I'm not going to get anything done and it's all *Insert ISP name here*'s fault! I slammed my finger down on the power button to my desktop and navigated to the IP of my router, while also loading up the *Insert ISP name here* Facebook page to check if anyone else was reporting issues.
 
@@ -45,39 +45,39 @@ There was also quite a few somewhat pissed of people who clearly shared my frust
 
 * `The one who thinks it's as easy as turning it off and on`
 
-![Not Qualified]({{ site.url }}/images/posts/internet-not-qualified.png)
+![Not Qualified]({{ site.url }}/images/posts/2015.12.28/internet-not-qualified.png)
 
 * `The one who states the obvious`
 
-![States the Obvious]({{ site.url }}/images/posts/internet-state-the-obvious.png)
+![States the Obvious]({{ site.url }}/images/posts/2015.12.28/internet-state-the-obvious.png)
 
 * `The one who wants technical support but complains when things don't work straight away`
 
-![Posting Heaps]({{ site.url }}/images/posts/internet-posting-heaps.png)
+![Posting Heaps]({{ site.url }}/images/posts/2015.12.28/internet-posting-heaps.png)
 
 * `The one who is feeling pissed off and angry.` Don't worry buddy, I feel your pain
 
-![Angry]({{ site.url }}/images/posts/internet-angry.png)
+![Angry]({{ site.url }}/images/posts/2015.12.28/internet-angry.png)
 
 * `The one with empty threats`
 
-![Empty Threat]({{ site.url }}/images/posts/internet-call-her-bluff.png)
+![Empty Threat]({{ site.url }}/images/posts/2015.12.28/internet-call-her-bluff.png)
 
 * `The one who uses the "O" word whenever he can`
 
-![O word]({{ site.url }}/images/posts/internet-throwing-around-the-O.png)
+![O word]({{ site.url }}/images/posts/2015.12.28/internet-throwing-around-the-O.png)
 
 * `The one who doesn't know how good they have it`
 
-![ADSL > NBN]({{ site.url }}/images/posts/internet-back-to-adsl.png)
+![ADSL > NBN]({{ site.url }}/images/posts/2015.12.28/internet-back-to-adsl.png)
 
 * `And then the one who gets trolled hard`
 
-![Trolled 2]({{ site.url }}/images/posts/internet-fuel-the-rage-2.png)
+![Trolled 2]({{ site.url }}/images/posts/2015.12.28/internet-fuel-the-rage-2.png)
 
 ## Bargaining
 
-![Bargin]({{ site.url }}/images/posts/internet-bargin.jpg)
+![Bargin]({{ site.url }}/images/posts/2015.12.28/internet-bargin.jpg)
 
 Once I'd finished reviewing some of the more humorous posts I began to brainstorm how I was going to get access to the internet while I wait for the home connection to come back up. All bets were on the table and I was seriously considering some pretty awful options.
 
@@ -89,7 +89,7 @@ The only option I had left is to maybe buy a datapack for my phone and use my me
 
 ## Depression
 
-![Hello Darkness]({{ site.url }}/images/posts/internet-hello-darkness.jpg)
+![Hello Darkness]({{ site.url }}/images/posts/2015.12.28/internet-hello-darkness.jpg)
 
 Hello darkness, my old friend.
 
@@ -103,7 +103,7 @@ I can't deal
 
 ## Acceptance
 
-![Acceptance]({{ site.url }}/images/posts/internet-acceptance.jpg)
+![Acceptance]({{ site.url }}/images/posts/2015.12.28/internet-acceptance.jpg)
 
 Okay It isn't as bad as I'd first thought. I worked out I could still blog locally as git would still track all my changes offline. I got a bit of cleaning done around the house and spent some time reading a book.
 

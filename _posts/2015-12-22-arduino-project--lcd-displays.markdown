@@ -20,7 +20,7 @@ I've had to use an `LCD display` a couple times with some projects in the past, 
 
 There are `16 pins` on a standard `2x16 LCD Display`
 
-![LCD Display Pins]({{ site.url }}/images/posts/arduino-lcd-pins.jpg)
+![LCD Display Pins]({{ site.url }}/images/posts/2015.12.22/arduino-lcd-pins.jpg)
 
 1. **Vss**
 * This is the `Negative supply`; or the `ground pin`. It is excepted to be at 0V, so in almost every case you will just link this pin straight to your circuits `GND pin`.
@@ -98,7 +98,7 @@ LCD Pin 16 -> GND
 
 Below is an example of how I wired it up. Yours might look completely different; especially with this many wires, it isn't easy to keep things neat.
 
-![LCD Display Wired]({{ site.url }}/images/posts/arduino-lcd-wired.jpg)
+![LCD Display Wired]({{ site.url }}/images/posts/2015.12.22/arduino-lcd-wired.jpg)
 
 ## Writing the Code
 
@@ -142,7 +142,7 @@ LiquidCrystal(rs, rw, enable, d0, d1, d2, d3, d4, d5, d6, d7)
 
 What it meant was that I'd done more work then I needed to, as the LCD display can function with just four data pins, the select pin and enable. All those wires for nothing!
 
-![Futurama Wires]({{ site.url }}/images/posts/arduino-lcd-wires.jpg)
+![Futurama Wires]({{ site.url }}/images/posts/2015.12.22/arduino-lcd-wires.jpg)
 
 Since there's no harm including all the inputs, I went ahead and used the `constructor` that required all inputs to be defined. The following code was added, ensuring I was referencing the constants I defined earlier on.
 
@@ -168,7 +168,7 @@ lcd.print("Hello, World!");
 
 Compiled the code and loaded it onto the board....
 
-![Hello world]({{ site.url }}/images/posts/arduino-lcd-helloworld.jpg)
+![Hello world]({{ site.url }}/images/posts/2015.12.22/arduino-lcd-helloworld.jpg)
 
 Sweet, that worked great! Lets try getting it to print out my blogs title
 
@@ -177,7 +177,7 @@ lcd.begin(16,2);
 lcd.print("TwoFactor Assimilation");
 {% endhighlight java %}
 
-![Print blog title]({{ site.url }}/images/posts/arduino-lcd-twofactor-wrong.jpg)
+![Print blog title]({{ site.url }}/images/posts/2015.12.22/arduino-lcd-twofactor-wrong.jpg)
 
 Oh dear... That didn't work how I'd hoped. The issue occurs because the LCD only has a particular number of slots it can write into per row. Because my blog title is longer than 16 characters we lose the portion of text that overflows.
 
@@ -194,7 +194,7 @@ lcd.setCursor(0,2);
 lcd.print("Assimilation");
 {% endhighlight java %}
 
-![Print blog title Fixed]({{ site.url }}/images/posts/arduino-lcd-twofactor-fixed.jpg)
+![Print blog title Fixed]({{ site.url }}/images/posts/2015.12.22/arduino-lcd-twofactor-fixed.jpg)
 
 And look at that, I can now read the entire name with no issues!
 

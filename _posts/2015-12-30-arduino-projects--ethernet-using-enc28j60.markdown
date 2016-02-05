@@ -19,7 +19,7 @@ I've been putting off learning about interfacing for a while now. It isn't becau
 
 So lets get started! The module I purchased to work with is a `Duinotech` board sporting a `HanRun HR911105A RJ45 connector` and the `ENC28J60 Ethernet controller`.
 
-![Ethernet Board]({{ site.url }}/images/posts/arduino-ethernet-board.jpg)
+![Ethernet Board]({{ site.url }}/images/posts/2015.12.30/arduino-ethernet-board.jpg)
 
 The first thing I did was look up the datasheet for the [ENC28J60 Ethernet controller](http://ww1.microchip.com/downloads/en/DeviceDoc/39662e.pdf). I was looking for detailed information on what each of the Ten interface pins on the board did and was happy to find that almost all the information I needed was available in the document provided.
 
@@ -41,7 +41,7 @@ Some of the key features the controller offers that I'm interested in are:
 
 Below is the schematic provided for the `ENC28J60 Ethernet controller`. There are only a couple pins that we have direct access to via the Pin headers, I'll try to explain as best I can what each of these pins are and what they do.
 
-![Ethernet Controller Schematic]({{ site.url }}/images/posts/arduino-controller-schem.png)
+![Ethernet Controller Schematic]({{ site.url }}/images/posts/2015.12.30/arduino-ethernet-controller-schem.png)
 
 1. `CLKOUT` - The Programmable clock output pin is provided for use as the host controller clock or as a clock source for other devices in the system.
 * Has an internal `Prescaler` which can divide the output by 1, 2, 3, 4 or 8. A `Prescaler` is used to reduce a high frequency electrical signal to a lower frequency by integer division.
@@ -66,7 +66,7 @@ Below is the schematic provided for the `ENC28J60 Ethernet controller`. There ar
 
 If you're interested in the full block diagram for the controller, it can be seen below. Take note of the various pin labels we just discussed and use them to work out how the system all comes together.
 
-![Controller Block Diagram]({{ site.url }}/images/posts/arduino-controller-block-diagram.png)
+![Controller Block Diagram]({{ site.url }}/images/posts/2015.12.30/arduino-ethernet-controller-block-diagram.png)
 
 ## Serial Peripheral Interface (SPI)
 
@@ -74,7 +74,7 @@ Commands and data are sent to the device via the `SI pin`, with data being clock
 
 Below is a timeline displaying the Pin states for both input and output.
 
-![Input Output]({{ site.url }}/images/posts/arduino-controller-input-output.png)
+![Input Output]({{ site.url }}/images/posts/2015.12.30/arduino-ethernet-controller-input-output.png)
 
 These interfaces are mapped to the following ports on the Arduino Uno. You can find the correct pins for other boards under Connections [here](https://www.arduino.cc/en/Reference/SPI). Note that the ENC28J60 controller uses a different pin for CS than the normal pin 10 (SS).
 
@@ -88,7 +88,7 @@ These interfaces are mapped to the following ports on the Arduino Uno. You can f
 
 `NOTE` You can also use the Reset, Ground and 3.3V pins on the ICSP interface. Else just use the normal pins. You can safely ignore the `RESET pin` for most examples.
 
-![ICSP]({{ site.url }}/images/posts/arduino-controller-icsp.png)
+![ICSP]({{ site.url }}/images/posts/2015.12.30/arduino-ethernet-controller-icsp.png)
 
 ## Ethercard Libraries + Examples
 

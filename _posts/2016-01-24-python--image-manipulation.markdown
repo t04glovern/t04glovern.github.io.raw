@@ -55,7 +55,7 @@ if __name__ == '__main__':
 
 Below is the image we'll be using to test; If you'd like to use your own, try to pick a `24-bit BMP` for the best results.
 
-![Earth Render Base]({{ site.url }}/images/posts/python-earth-render-base.png)
+![Earth Render Base]({{ site.url }}/images/posts/2016.01.24/python-earth-render-base.png)
 
 You can find the original copy that was rendered by `Wikimedia user Tesseract2` [Here.](https://commons.wikimedia.org/wiki/File:EarthRender.png). The copy on that site is not in the correct format. You can convert the image by opening it in `GIMP` and exporting as `Windows BMP`.
 
@@ -71,7 +71,7 @@ The rest of the tutorial will demonstrate the methods required to manipulate ima
 
 ## Invert
 
-![Earth Render Invert]({{ site.url }}/images/posts/python-earth-render-invert.bmp)
+![Earth Render Invert]({{ site.url }}/images/posts/2016.01.24/python-earth-render-invert.bmp)
 
 {% highlight python %}
 def invert(img):
@@ -91,7 +91,7 @@ def invert(img):
 
 ## Mask (Black and White)
 
-![Earth Render Mask]({{ site.url }}/images/posts/python-earth-render-mask.bmp)
+![Earth Render Mask]({{ site.url }}/images/posts/2016.01.24/python-earth-render-mask.bmp)
 
 {% highlight python %}
 def mask(img):
@@ -115,7 +115,7 @@ def mask(img):
 
 ## Grayscale
 
-![Earth Render Greyscale]({{ site.url }}/images/posts/python-earth-render-greyscale.bmp)
+![Earth Render Greyscale]({{ site.url }}/images/posts/2016.01.24/python-earth-render-greyscale.bmp)
 
 {% highlight python %}
 def greyscale(img):
@@ -133,7 +133,7 @@ def greyscale(img):
 
 ## Sepia Tone
 
-![Earth Render Sepia Tone]({{ site.url }}/images/posts/python-earth-render-sepia.bmp)
+![Earth Render Sepia Tone]({{ site.url }}/images/posts/2016.01.24/python-earth-render-sepia.bmp)
 
 {% highlight python %}
 def sepia(img):
@@ -162,7 +162,7 @@ def sepia(img):
 
 ## Swap Channels
 
-![Earth Render Swap Channels]({{ site.url }}/images/posts/python-earth-render-swap.bmp)
+![Earth Render Swap Channels]({{ site.url }}/images/posts/2016.01.24/python-earth-render-swap.bmp)
 
 {% highlight python %}
 def swap_channels(img):
@@ -179,7 +179,7 @@ def swap_channels(img):
 
 ## Flipping
 
-![Earth Render Flipping]({{ site.url }}/images/posts/python-earth-render-flip.bmp)
+![Earth Render Flipping]({{ site.url }}/images/posts/2016.01.24/python-earth-render-flip.bmp)
 
 {% highlight python %}
 def flip(img):
@@ -195,7 +195,7 @@ def flip(img):
 
 ## Mirroring
 
-![Earth Render Mirroring]({{ site.url }}/images/posts/python-earth-render-mirror.bmp)
+![Earth Render Mirroring]({{ site.url }}/images/posts/2016.01.24/python-earth-render-mirror.bmp)
 
 {% highlight python %}
 def mirror(img):
@@ -211,7 +211,7 @@ def mirror(img):
 
 ## Contrast
 
-![Earth Render Contrast]({{ site.url }}/images/posts/python-earth-render-contrast.bmp)
+![Earth Render Contrast]({{ site.url }}/images/posts/2016.01.24/python-earth-render-contrast.bmp)
 
 {% highlight python %}
 def contrast(img):
@@ -273,7 +273,7 @@ def get_block_average(img, x, y, block_size):
 
 ## Blur
 
-![Earth Render Blur]({{ site.url }}/images/posts/python-earth-render-blur.bmp)
+![Earth Render Blur]({{ site.url }}/images/posts/2016.01.24/python-earth-render-blur.bmp)
 
 {% highlight python %}
 def blur(img):
@@ -289,7 +289,7 @@ def blur(img):
 
 ## Stark Lines
 
-![Earth Render Stark Lines]({{ site.url }}/images/posts/python-earth-render-line.bmp)
+![Earth Render Stark Lines]({{ site.url }}/images/posts/2016.01.24/python-earth-render-line.bmp)
 
 {% highlight python %}
 def line(img):
@@ -314,7 +314,7 @@ def line(img):
 
 ## Pixelize
 
-![Earth Render Pixelize]({{ site.url }}/images/posts/python-earth-render-pixel.bmp)
+![Earth Render Pixelize]({{ site.url }}/images/posts/2016.01.24/python-earth-render-pixel.bmp)
 
 {% highlight python %}
 def pixelize(img):
@@ -336,7 +336,7 @@ def pixelize(img):
 
 Finally we can actually generate our own images using this library. Here's an interesting one that uses XOR
 
-![Earth Render XOR Synthesis]({{ site.url }}/images/posts/python-earth-render-xor-synth.bmp)
+![Earth Render XOR Synthesis]({{ site.url }}/images/posts/2016.01.24/python-earth-render-xor-synth.bmp)
 
 {% highlight python %}
 def xor_synth(img):

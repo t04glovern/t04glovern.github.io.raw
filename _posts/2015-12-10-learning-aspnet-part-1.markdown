@@ -19,7 +19,7 @@ tags:
 
 There are three frameworks available, each of them seamlessly integrate with one and other and provide different levels of functionality.
 
-![ASP.NET Hosting]({{ site.url }}/images/posts/asp.net-hosting.png)
+![ASP.NET Hosting]({{ site.url }}/images/posts/2015.12.10/asp.net-hosting.png)
 
 `.NET 4.6` is the .NET we've always known. It was built for the windows platform so it didn't natively function on other systems. This is where Mono came in.
 

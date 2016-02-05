@@ -48,7 +48,7 @@ $ source venv/bin/activate
 
 The name of the current virtual environment will now appear on the left of the prompt to let you know it's active
 
-![Virtualenv]({{ site.url }}/images/posts/python-virtualenv/python-virtualenv-path.png)
+![Virtualenv]({{ site.url }}/images/posts/2016.02.03/python-virtualenv-path.png)
 
 ## Removing environment
 

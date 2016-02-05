@@ -21,7 +21,7 @@ I picked up a kit recently that had a [SN74HC595N Shift Register](http://www.dig
 
 A `shift register` is a device that accepts a stream of serial bits and simultaneously output the values of those bits onto parallel I/O pins. They come in handy when trying to drive a large numbers of LEDs or basically any other component that might require a vast number of outputs. The diagram below illustrates all the various inputs and outputs available on a standard shift register IC.
 
-![Shift Register Basic]({{ site.url }}/images/posts/arduino-shift-reg-basic.png)
+![Shift Register Basic]({{ site.url }}/images/posts/2016.01.03/arduino-shift-reg-basic.png)
 
 The inputs are made up of three `serial communication lines` that connect to the shift register from the Arduino. The eight circles represent LEDs connected to eight outputs of the shift register.
 
@@ -31,7 +31,7 @@ We are going to be focusing on `serial in, parallel out` (SIPO) shift registers.
 
 Take a look at the pin-out diagram for our Shift register below
 
-![Shift Register Pinout]({{ site.url }}/images/posts/arduino-shift-pinout.png)
+![Shift Register Pinout]({{ site.url }}/images/posts/2016.01.03/arduino-shift-pinout.png)
 
 1. `Q(A) -> Q(H)` - Represent the eight parallel outputs from the shift register. These are the same outputs shown in the first diagram.
 
@@ -57,7 +57,7 @@ Simultaneously, the value currently on the DATA input is shifted into the first 
 
 Below depicts the process we would take if we wanted to set every other LED to the ON state (`Q(A)`, `Q(C)`, `Q(E)`, `Q(G)`). Represented in binary, we want the output of the parallel pins on the shift register to look like this: `10101010`.
 
-![Shift Register Process]({{ site.url }}/images/posts/arduino-shift-process.jpg)
+![Shift Register Process]({{ site.url }}/images/posts/2016.01.03/arduino-shift-process.jpg)
 
 First, the `LATCH pin` is set `low` so that the current LED states are not changed while new values are shifted in. Then, the LED states are shifted into the registers in order on the `CLOCK edge` from the `DATA line`. After all the values have been shifted in, the `LATCH pin` is set `high` again, and the values are outputted from the shift registers.
 
@@ -81,11 +81,11 @@ shiftOut(dataPin, clockPin, bitOrder, value)
 
 Using this knowledge I went about setting up my circuit. The goal was to have eight LEDs controlled by our three pin inputs and have them display in binary; the numbers 0-255. Refer to my circuit diagram below for details on the circuit design.
 
-![Shift Register Circuit]({{ site.url }}/images/posts/arduino-shift-reg-board.png)
+![Shift Register Circuit]({{ site.url }}/images/posts/2016.01.03/arduino-shift-reg-board.png)
 
 Once you've wired up your circuit you'll have something that will look at little bit like the following (yours will probably be neater than mine).
 
-![Shift Register Circuit]({{ site.url }}/images/posts/arduino-shift-reg-pic.jpg)
+![Shift Register Circuit]({{ site.url }}/images/posts/2016.01.03/arduino-shift-reg-pic.jpg)
 
 ## The Code
 
@@ -149,7 +149,7 @@ delay(100);
 
 Lets run the code!
 
-![Shift Demo]({{ site.url }}/images/posts/arduino-shift-demo.gif)
+![Shift Demo]({{ site.url }}/images/posts/2016.01.03/arduino-shift-demo.gif)
 
 ## Expand on ideas
 
@@ -157,7 +157,7 @@ With what we now know, we can do some pretty cool things. Another idea I went ah
 
 I used the Shift register circuit we built plus a simple potentiometer input. I've included the code and some pictures below that outline my design.
 
-![Shift Potentiometer Board]({{ site.url }}/images/posts/arduino-shift-reg-potent-board.png)
+![Shift Potentiometer Board]({{ site.url }}/images/posts/2016.01.03/arduino-shift-reg-potent-board.png)
 
 {% highlight c %}
 const int SER = 8; // Serial output to shift register
@@ -207,7 +207,7 @@ void loop() {
 }
 {% endhighlight c %}
 
-![Shift Demo Potentiometer]({{ site.url }}/images/posts/arduino-shift-demo-potent.gif)
+![Shift Demo Potentiometer]({{ site.url }}/images/posts/2016.01.03/arduino-shift-demo-potent.gif)
 
 ## Conclusion
 

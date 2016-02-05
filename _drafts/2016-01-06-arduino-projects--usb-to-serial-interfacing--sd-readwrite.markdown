@@ -21,43 +21,43 @@ I have a feeling this process might be harder than it lets on, so lets get start
 
 ## USB to Serial module
 
-![USB to Serial Board]({{ site.url }}/images/posts/arduino-ft232-board.png)
+![USB to Serial Board]({{ site.url }}/images/posts/2016.01.06/arduino-ft232-board.png)
 
 To start with lets have a look at the USB to Serial module. It is a 6-pin serial port module running a `FT232` chip. Before we have a look at the PINs themselves, lets first confirm that we can pick up the module in our operating system.
 
 If you plugin the module, and you haven't dealt with one like this before; there is a good chance you'll receive and error similar to the following indicating that there aren't any acceptable drivers available on your system to drive the module.
 
-![USB to Serial Error 1]({{ site.url }}/images/posts/arduino-usb-serial-driver-error-1.png)
+![USB to Serial Error 1]({{ site.url }}/images/posts/2016.01.06/arduino-usb-serial-driver-error-1.png)
 
 Navigate to device manager and you'll notice a similar warning on the new device
 
-![USB to Serial Error 2]({{ site.url }}/images/posts/arduino-usb-serial-driver-error-2.png)
+![USB to Serial Error 2]({{ site.url }}/images/posts/2016.01.06/arduino-usb-serial-driver-error-2.png)
 
 In order to get the correct drivers for your chip, I would recommend googling your ICs module number followed by something like `"usb serial drivers"` in order to track down the correct ones for yourself. For mine however, I know it's a FT232 so I'm able to just download the correct Operating system supported drivers from [here](http://www.ftdichip.com/Drivers/VCP.htm).
 
 Once downloaded, you can go through the sets of manually adding the new drivers by right clicking on the troublesome device in `Device manager` and selecting `Update Driver Software`
 
-![USB to Serial Error 3]({{ site.url }}/images/posts/arduino-usb-serial-driver-error-3.png)
+![USB to Serial Error 3]({{ site.url }}/images/posts/2016.01.06/arduino-usb-serial-driver-error-3.png)
 
 Then select `Browse for driver software on your computer` and point to the directory we just downloaded containing the new drivers (normally in a .ini format).
 
-![USB to Serial Error 4]({{ site.url }}/images/posts/arduino-usb-serial-driver-error-4.png)
+![USB to Serial Error 4]({{ site.url }}/images/posts/2016.01.06/arduino-usb-serial-driver-error-4.png)
 
 Once the drivers are loaded successfully you'll see the device appear under the `COM ports` section of the device view.
 
-![USB to Serial Error 5]({{ site.url }}/images/posts/arduino-usb-serial-driver-error-5.png)
+![USB to Serial Error 5]({{ site.url }}/images/posts/2016.01.06/arduino-usb-serial-driver-error-5.png)
 
 Awesome, we know that our device is actually going to function! Lets move on to interfacing with the module.
 
 ## FT232RL Pins
 
-![FT232RL Board]({{ site.url }}/images/posts/arduino-ft232rl-board.jpg)
+![FT232RL Board]({{ site.url }}/images/posts/2016.01.06/arduino-ft232rl-board.jpg)
 
 The FT232RL chip is a `28pin SSOP IC`. The specifics of the chip are outlined in the datasheet [here](http://www.ftdichip.com/Support/Documents/DataSheets/ICs/DS_FT232R.pdf).
 
 The Pin on the IC can be viewed below. I've tried my best to summarize.
 
-![FT232RL Pinout]({{ site.url }}/images/posts/arduino-ft232rl-pinouts.png)
+![FT232RL Pinout]({{ site.url }}/images/posts/2016.01.06/arduino-ft232rl-pinouts.png)
 
 1. USB Interface Group
 

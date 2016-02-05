@@ -32,13 +32,13 @@ When we create a sound with our Arduino we can control two properties of these v
 
 Example the waveforms below, specifically lets take a look at `Middle C`
 
-![Speaker Waveform]({{ site.url }}/images/posts/arduino-speaker-waves.jpg)
+![Speaker Waveform]({{ site.url }}/images/posts/2015.12.26/arduino-speaker-waves.jpg)
 
 `Middle C` has a `frequency of 261.63 Hertz (Hz)`. In other words, a speaker, a guitar string, or a piano string would complete `261.63 oscillations per second`. We find the period of that by taking `1 / 261.62` which equals `3.822 milliseconds`, which is the width of one complete oscillation in the graph. We can use that value and set it as the period for a square wave and thus adjust the tone of a note.
 
 `NOTE:` Since the Arduino cannot create a true sinusoidal wave that you'd normally hear in the real world, we have to work with a plain square wave. The square wave oscillates between `HIGH` and `LOW` while switching instantly, instead of slowly like a sine wave. This results in a pressure wave that doesn't fade off over time, leaving you with just a solid tone.
 
-![Speaker Parts]({{ site.url }}/images/posts/arduino-speaker-parts.png)
+![Speaker Parts]({{ site.url }}/images/posts/2015.12.26/arduino-speaker-parts.png)
 
 Looking at the speaker above, we can step through the process used to make a tone through a speaker.
 
