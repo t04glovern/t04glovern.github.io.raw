@@ -26,17 +26,17 @@ We will cover the following:
 
 ## Install Server Core
 
-I've opted to use `Windows Server 2012 R2 Evaluation` for this installation, making sure to also select `Server Core` and not the full standard install with GUI.
+I've opted to use `Windows Server 2012 R2 Evaluation` for this installation, making sure to select `Server Core` and not the full standard install with a GUI.
 
-When you first login you'll be greeted with a very bland command prompt with a blinking cursor. I know it seems daunting but stick with it; you'll find you learn a lot more when you work with less.
+When you first login you'll be greeted with a very bland command prompt sporting a blinking cursor. I know it seems daunting but stick with it; you'll find you learn a lot more when you're given less.
 
 ![Core Command Prompt]({{ site.url }}/images/posts/2016.02.05/ad-ds-cmdprompt.png)
 
-The command prompt shell won't be enough for what we want to do, so go ahead and fire up [PowerShell](https://msdn.microsoft.com/powershell) by simple running:
+The default command prompt won't be enough for what we want to do, so go ahead and fire up [PowerShell](https://msdn.microsoft.com/powershell) by simple running:
 
-{% highlight bat %}
+{% highlight bash %}
 PowerShell.exe
-{% endhighlight bat %}
+{% endhighlight bash %}
 
 You should see a small `PS` show up before the working directory now, this indicates that you're working with the PowerShell...shell.... *shruggs*
 
@@ -50,39 +50,39 @@ If you're like me and hate the look/feel of the windows console, you can run `ta
 
 Our first task will be to rename the server. We'll be using a simple PowerShell cmdlet for this:
 
-{% highlight bat %}
+{% highlight bash %}
 Rename-Computer -NewName PC-Name-Here
-{% endhighlight bat %}
+{% endhighlight bash %}
 
 ![PowerShell Rename]({{ site.url }}/images/posts/2016.02.05/ad-ds-powershell-rename.png)
 
 Now let's restart the server to apply those changes. You can do this through PowerShell as well! *(starting to see why it's awesome?)*
 
-{% highlight bat %}
+{% highlight bash %}
 Restart-Computer –Force
-{% endhighlight bat %}
+{% endhighlight bash %}
 
 Once you boot back in, fire up PowerShell and confirm the PC name changes went through with the following:
 
-{% highlight bat %}
+{% highlight bash %}
 $env:COMPUTERNAME
-{% endhighlight bat %}
+{% endhighlight bash %}
 
 ![PowerShell Rename Check]({{ site.url }}/images/posts/2016.02.05/ad-ds-powershell-rename-check.png)
 
 ## Set the IP and DNS Addresses
 
-Now that the Name is all setup lets have a crack at setting the IP and DNS Addresses with PowerShell. Before we jump in, run the following cmdlet to generate a list of network adapter interfaces currently registered with your system.
+Now that the name is all setup lets have a crack at setting the `IP` and `DNS Addresses` with PowerShell. Before we jump in, run the following cmdlet to generate a list of network adapter interfaces currently registered with your system.
 
-{% highlight bat %}
+{% highlight bash %}
 Get-NetAdapter
-{% endhighlight bat %}
+{% endhighlight bash %}
 
 **NOTE** If you are running this lab in `ESXi` or `VMware` then you'll need to install `VMware tools` on the server before PowerShell will be able to query the Adapter information. This can be done by mounting the tools in the DVD/CD drive as usual, changing to the tools directory (`cd D:\`) and then running the following:
 
-{% highlight bat %}
+{% highlight bash %}
 .\setup.exe
-{% endhighlight bat %}
+{% endhighlight bash %}
 
 ![PowerShell Check Network]({{ site.url }}/images/posts/2016.02.05/ad-ds-powershell-check-network.png)
 
@@ -99,25 +99,25 @@ DNS Server: 192.168.0.200 (itself)
 
 I achieve this with the following two commands:
 
-{% highlight bat %}
+{% highlight bash %}
 New-NetIPAddress -InterfaceIndex 12 -IPAddress 192.168.0.200 -PrefixLength 24 -DefaultGateway 192.168.0.1
-{% endhighlight bat %}
+{% endhighlight bash %}
 
 ![PowerShell Set Network IP]({{ site.url }}/images/posts/2016.02.05/ad-ds-powershell-set-network-ip.png)
 
-{% highlight bat %}
+{% highlight bash %}
 Set-DNSClientServerAddress -InterfaceIndex 12 -ServerAddresses 192.168.0.200
-{% endhighlight bat %}
+{% endhighlight bash %}
 
 ![PowerShell Set Network DNS]({{ site.url }}/images/posts/2016.02.05/ad-ds-powershell-set-network-dns.png)
 
 ## Install the Active Directory Domain Services role
 
-Next we install the AD DS Role onto the server. This is done using the `Install-WindowsFeature` cmdlet.
+Next we install the `AD DS Role` onto the server. This is done using the `Install-WindowsFeature` cmdlet.
 
-{% highlight bat %}
+{% highlight bash %}
 Install-WindowsFeature -Name AD-Domain-Services
-{% endhighlight bat %}
+{% endhighlight bash %}
 
 ![AD DS Role Install]({{ site.url }}/images/posts/2016.02.05/ad-ds-powershell-install-role.png)
 
@@ -125,32 +125,42 @@ Install-WindowsFeature -Name AD-Domain-Services
 
 Promoting the server to a domain controller can be done in a single line; granted it is a very long line... but still pretty impressive.
 
-Below is the full script we're going to run in order to setup the `CONTOSO` domain. I'll explain each part before we execute it
+Below is the full script we're going to run in order to setup the `CONTOSO` domain.
 
-{% highlight bat %}
+{% highlight bash %}
 $Password = ConvertTo-SecureString -AsPlainText -String PASSWORDHERE -Force
 Install-ADDSForest -DomainName contoso.com -SafeModeAdministratorPassword $Password `
 -DomainNetbiosName CONTOSO -DomainMode Win2012R2 -ForestMode Win2012R2 -DatabasePath "%SYSTEMROOT%\NTDS" `
 -LogPath "%SYSTEMROOT%\NTDS" -SysvolPath "%SYSTEMROOT%\SYSVOL" -NoRebootOnCompletion -InstallDns -Force
-{% endhighlight bat %}
+{% endhighlight bash %}
 
-###### $Password = ConvertTo-SecureString -AsPlainText -String PASSWORDHERE -Force, -SafeModeAdministratorPassword $Password `
+I'll explain each part before we execute it
+
+{% highlight bash %}
+$Password = ConvertTo-SecureString -AsPlainText -String PASSWORDHERE -Force, -SafeModeAdministratorPassword $Password `
+{% endhighlight bash %}
 
 During the installation we need to provide a `Safe Mode Administrator Password` and unfortunately it isn't as easy as just passing the install instructions a normal string.
 
-The `-SafeModeAdministratorPassword` cmdlet requires a [`SecureString`](https://msdn.microsoft.com/en-us/library/system.security.securestring%28v=vs.110%29.aspx) which we are able to create using the [`ConvertTo-SecureString`](https://technet.microsoft.com/en-us/library/hh849818.aspx) cmdlet.
+The `-SafeModeAdministratorPassword` cmdlet requires a [SecureString](https://msdn.microsoft.com/en-us/library/system.security.securestring%28v=vs.110%29.aspx) which we are able to create using the [ConvertTo-SecureString](https://technet.microsoft.com/en-us/library/hh849818.aspx) cmdlet.
 
 The Generated secure string is stored in a `$Password` variable and then referenced later in our main scripts body. Be sure to also change the -String PASSWORDHERE to include your desired password.
 
-###### Install-ADDSForest -DomainName contoso.com
+{% highlight bash %}
+Install-ADDSForest -DomainName contoso.com
+{% endhighlight bash %}
 
 At this point we need to specify the domain name so we can create the `Domain Forest`. I'm using `contoso.com` but feel free to use what you want.
 
-###### -DomainNetbiosName CONTOSO -DomainMode Win2012R2 -ForestMode Win2012R2
+{% highlight bash %}
+-DomainNetbiosName CONTOSO -DomainMode Win2012R2 -ForestMode Win2012R2
+{% endhighlight bash %}
 
-Here we specify the `NetBiosName` and the [`domain functioning level`](https://msdn.microsoft.com/en-us/library/cc771294.aspx). I'm just using the version of server we're building this lab on but your situation might be different.
+Here we specify the `NetBiosName` and the [domain functioning level](https://msdn.microsoft.com/en-us/library/cc771294.aspx). I'm just using the version of server we're building this lab on but your situation might be different.
 
-###### -NoRebootOnCompletion -InstallDns -Force
+{% highlight bash %}
+-NoRebootOnCompletion -InstallDns -Force
+{% endhighlight bash %}
 
 The final important part are `-NoRebootOnCompletion` which does exactly what it says it will do; `-InstallDns` which will also install the DNS Role on this server and `-Force` which will unconditionally try to complete all tasks.
 
@@ -160,9 +170,9 @@ Executing the full script should result in similar outputs displays below.
 
 Let's reboot the server and see if it worked!
 
-{% highlight bat %}
+{% highlight bash %}
 Restart-Computer -Force
-{% endhighlight bat %}
+{% endhighlight bash %}
 
 ![Login Screen]({{ site.url }}/images/posts/2016.02.05/ad-ds-powershell-login-screen.png)
 
@@ -177,7 +187,7 @@ Just because you don't have a GUI doesn't mean you can't effectively manage your
 1. Remote Server Administration Tools (RSAT)
 2. PowerShell
 
-###### RSAT Management
+### RSAT Management
 
 You can install the Remote Server Administration Tools from the following link.
 
@@ -187,7 +197,7 @@ For Active directory management I would recommend using the `Active Directory Ad
 
 ![RSAT User Create]({{ site.url }}/images/posts/2016.02.05/ad-ds-rsat-create-user.png)
 
-###### PowerShell
+### PowerShell
 
 You will also notice that when you commit changes, a `PowerShell history` entry is created along the bottom of the page. This gives you an idea of some of the various commands you can use to perform the same operations you just made with the GUI.
 
