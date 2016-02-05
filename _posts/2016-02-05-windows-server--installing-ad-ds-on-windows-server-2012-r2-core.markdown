@@ -17,7 +17,7 @@ Recently there has been a big shift away from the well known `GUI interface` tha
 
 Because of this trend I thought it would be best to look into the process required to setup a Domain entirely on [Server Core](https://msdn.microsoft.com/en-us/library/hh846323%28v=vs.85%29.aspx?f=255&MSPPError=-2147217396). I'm also in the process of setting up a test lab for my office; so I thought it would be nice to document my interpretation and execution of a *some-what* best practice environment.
 
-We will cover the following:
+##### **We will cover the following:**
 1. Installing Server Core (Server 2012 R2 specifically)
 2. Renaming Server with PowerShell
 3. Setting IP and DNS Addresses with PowerShell
