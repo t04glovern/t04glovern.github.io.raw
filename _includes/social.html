@@ -26,6 +26,13 @@
     </li>
     {% endif %}
 
+    {% if site.social.codepen %}
+    <li>
+        <a title="{{ site.social.codepen }} on CodePen"
+            href="http://codepen.io/{{ site.social.codepen }}"
+            target="_blank"><i class="fa fa-codepen fa-2x"></i></a>
+    </li>
+    {% endif %}
 
     {% if site.social.instagram %}
     <li>
@@ -34,7 +41,6 @@
             target="_blank"><i class="fa fa-instagram fa-2x"></i></a>
     </li>
     {% endif %}
-
 
     {% if site.social.lastfm %}
     <li>
