@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "What if Operating Systems were airlines?"
-date: "2016-02-26 22:23:32 +0800"
+date: "2016-02-26"
 comments: true
 description: A humorous post description of various operating systems re-imagined as if they were airlines
 share: true
