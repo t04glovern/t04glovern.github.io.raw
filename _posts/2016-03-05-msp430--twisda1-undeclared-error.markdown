@@ -47,6 +47,8 @@ You have two options:
 1. Clone/Update from the [GitHub repo](https://github.com/energia/Energia)
 2. Make the changes yourself!
 
+Your choice...
+
 #### Option 1 - Clone/Update
 
 Ensure you have [git](http://www.git-scm.com/) installed and clone the repo to a desired location on your harddrive
@@ -75,9 +77,9 @@ Energia\hardware\msp430\cores\msp430\twi_sw.c
 
 On line 26 you should see your `#include "twi_sw.h"`. Just below that add the following line:
 
-{% highlight bash %}
+{% highlight c %}
 #if DEFAULT_I2C == -1 /* indicates SW I2C on pseudo module 1 */
-{% endhighlight bash %}
+{% endhighlight c %}
 
 ![Line Change 1]({{ site.url }}/images/posts/2016.03.05/energia-line-change-1.png)
 
