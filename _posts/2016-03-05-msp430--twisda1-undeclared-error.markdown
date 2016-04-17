@@ -7,8 +7,8 @@ description: Instructions to resolve 'TWISDA1' undeclared errors in Energia 17
 share: true
 author: nathan
 tags:
- - MSP430
- - Energia
+ - msp430
+ - energia
 ---
 
 ## Problem
