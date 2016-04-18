@@ -156,23 +156,816 @@ Configure the interfaces of all routers for full connectivity with the following
 * IP addressing
 
 {% highlight cmd %}
+Bldg-1(config)#int s0/0/0
+Bldg-1(config-if)#ip address 192.168.100.22 255.255.255.252
+Bldg-1(config-if)#no shutdown
 
+Bldg-1(config)#int g0/0
+Bldg-1(config-if)#ip address 192.168.8.1 255.255.255.0
+Bldg-1(config-if)#no shutdown
+
+Bldg-1(config)#int g0/1
+Bldg-1(config-if)#ip address 192.168.9.1 255.255.255.0
+Bldg-1(config-if)#no shutdown
+
+Main(config)#int s0/0/0
+Main(config-if)#ip address 192.168.100.21 255.255.255.252
+Main(config-if)#no shutdown
+
+Main(config)#int s0/0/1
+Main(config-if)#ip address 192.168.100.37 255.255.255.252
+Main(config-if)#no shutdown
+
+Main(config)#int s0/1/0
+Main(config-if)#ip address 203.0.113.18 255.255.255.248
+Main(config-if)#no shutdown
+
+Bldg-2(config)#int s0/0/1
+Bldg-2(config-if)#ip address 192.168.100.38 255.255.255.252
+Bldg-2(config-if)#no shutdown
+
+Bldg-2(config)#int g0/1
+Bldg-2(config-if)#no shutdown
 {% endhighlight cmd %}
 
 * Descriptions for serial interfaces.
 
 {% highlight cmd %}
+Main(config)#int s0/0/0
+Main(config-if)#description 2-Building1
 
+Main(config)#int s0/0/1
+Main(config-if)#description 2-Building2
+
+Main(config)#int s0/1/0
+Main(config-if)#description 2-INTERNET
 {% endhighlight cmd %}
 
 * Configure DCE settings where required. Use a rate of 128000.
 
 {% highlight cmd %}
+Bldg-1(config)#int s0/0/0
+Bldg-1(config-if)#clock rate 128000
 
+Main(config)#int s0/0/1
+Main(config-if)#clock rate 128000
 {% endhighlight cmd %}
 
-* The Ethernet subinterfaces on Site 2 will configured later in this assessment.
+# Step 4: Configure inter-VLAN routing on Building 2
+
+#### **Task:**
+Configure router Building 2 to route between VLANs using information in the Addressing Table and VLAN Switch Port Assignment Table. The VLANs will be configured on the switches later in this assessment.
+
+* Do not route the VLAN 99 network.
+
+#### **How:**
+{% highlight cmd %}
+Bldg-2(config)#int g0/1.2
+Bldg-2(config-subif)#encapsulation dot1Q 2
+Bldg-2(config-subif)#ip address 10.10.2.1 255.255.255.0
+
+Bldg-2(config-subif)#int g0/1.4
+Bldg-2(config-subif)#encapsulation dot1Q 4
+Bldg-2(config-subif)#ip address 10.10.4.1 255.255.255.0
+
+Bldg-2(config-subif)#int g0/1.8
+Bldg-2(config-subif)#encapsulation dot1Q 8
+Bldg-2(config-subif)#ip address 10.10.8.1 255.255.255.0
+
+Bldg-2(config-subif)#int g0/1.15
+Bldg-2(config-subif)#encapsulation dot1Q 15
+Bldg-2(config-subif)#ip address 10.10.15.1 255.255.255.0
+
+Bldg-2(config-subif)#int g0/1.25
+Bldg-2(config-subif)#encapsulation dot1Q 25
+Bldg-2(config-subif)#ip address 10.10.25.1 255.255.255.0
+{% endhighlight cmd %}
+
+# Step 5: Configure Default Routing
+
+#### **Task:**
+On Main, configure a default route to the Internet. Use the exit interface argument.
+
+#### **How:**
+{% highlight cmd %}
+Main(config)#ip route 0.0.0.0 0.0.0.0 s0/1/0
+{% endhighlight cmd %}
+
+# Step 6: Configure OSPF Routing
+
+#### **Task:**
+1. On all routers:
+
+* Configure multiarea OSPFv2 to route between all internal networks. Use a process ID of 1.
+* Use the area numbers shown in the topology.
+* Use the correct wild card masks for all network statements.
+* You are not required to route the manage network on Building 2.
+* Prevent routing updates from being sent to the LANs.
+
+2. On the Main router:
+
+* Configure multiarea OSPFv2 to distribute the default route to the other routers.
+
+#### **How:**
+* Configure multiarea OSPFv2 to route between all internal networks. Use a process ID of 1.
+* Use the area numbers shown in the topology.
+* Use the correct wild card masks for all network statements.
+* You are not required to route the manage network on Building 2.
+
+Calculating the wildcard for each OSPF route is done by looking again at the subnet mask bit. lets use the 192.168.100.20/30 network. The following shows what a wild card mask for 0.0.0.0 or /32 would look like
 
 {% highlight cmd %}
-
+[00000000] . [00000000] . [00000000] . [00000000]
 {% endhighlight cmd %}
+
+If we have 30 bits instead we're left with two bits
+
+{% highlight cmd %}
+[00000000] . [00000000] . [00000000] . [00000011]
+{% endhighlight cmd %}
+
+This gives us a wild card of 0.0.0.3. Similarly you can look at what a /24 networks bit pattern looks like below.
+
+{% highlight cmd %}
+[00000000] . [00000000] . [00000000] . [11111111]
+{% endhighlight cmd %}
+
+/24's wild card mask is 0.0.0.255.
+
+Using this information we can setup the various networks on each of the routers
+
+{% highlight cmd %}
+Bldg-1(config)#router ospf 1
+Bldg-1(config-router)#network 192.168.100.20 0.0.0.3 area 0
+Bldg-1(config-router)#network 192.168.8.0 0.0.0.255 area 1
+Bldg-1(config-router)#network 192.168.9.0 0.0.0.255 area 1
+
+Main(config)#router ospf 1
+Main(config-router)#network 192.168.100.20 0.0.0.3 area 0
+Main(config-router)#network 192.168.100.36 0.0.0.3 area 0
+
+Bldg-2(config)#router ospf 1
+Bldg-2(config-router)#network 192.168.100.36 0.0.0.3 area 0
+Bldg-2(config-router)#network 10.10.2.0 0.0.0.255 area 2
+Bldg-2(config-router)#network 10.10.4.0 0.0.0.255 area 2
+Bldg-2(config-router)#network 10.10.8.0 0.0.0.255 area 2
+Bldg-2(config-router)#network 10.10.15.0 0.0.0.255 area 2
+{% endhighlight cmd %}
+
+* Prevent routing updates from being sent to the LANs.
+
+{% highlight cmd %}
+Bldg-1(config)#router ospf 1
+Bldg-1(config-router)#passive-interface GigabitEthernet0/0
+Bldg-1(config-router)#passive-interface GigabitEthernet0/1
+
+Main(config)#router ospf 1
+Main(config-router)#passive-interface Serial0/1/0
+
+Bldg-2(config)#router ospf 1
+Bldg-2(config-router)#passive-interface GigabitEthernet0/1
+Bldg-2(config-router)#passive-interface g0/1.2
+Bldg-2(config-router)#passive-interface g0/1.4
+Bldg-2(config-router)#passive-interface g0/1.8
+Bldg-2(config-router)#passive-interface g0/1.15
+{% endhighlight cmd %}
+
+* Configure multiarea OSPFv2 (Main) to distribute the default route to the other routers.
+
+{% highlight cmd %}
+Main(config)#router ospf 1
+Main(config-router)#default-information originate
+{% endhighlight cmd %}
+
+# Step 7: Customize Multiarea OSPFv2
+
+#### **Task:**
+Customize multiarea OSPFv2 by performing the following configuration tasks:
+
+1. Set the bandwidth of all serial interfaces to 128 kb/s.
+
+2. Configure OSPF router IDs as follows:
+
+* Building 1: 1.1.1.1
+* Main: 2.2.2.2
+* Building 2: 3.3.3.3
+* The configured router IDs should be in effect on all three routes.
+
+3. Configure the OSPF cost of the link between Building 1 and Main to 7500.
+
+#### **How:**
+1. Set the bandwidth of all serial interfaces to 128 kb/s.
+
+{% highlight cmd %}
+Bldg-1(config)#int s0/0/0
+Bldg-1(config-if)#bandwidth 128
+
+Main(config)#int s0/0/0
+Main(config-if)#bandwidth 128
+Main(config)#int s0/0/1
+Main(config-if)#bandwidth 128
+
+Bldg-2(config)#int s0/0/1
+Bldg-2(config-if)#bandwidth 128
+{% endhighlight cmd %}
+
+2. Configure OSPF router IDs as follows:
+
+* Building 1: 1.1.1.1
+
+{% highlight cmd %}
+Bldg-1(config)#router ospf 1
+Bldg-1(config-router)#router-id 1.1.1.1
+{% endhighlight cmd %}
+
+* Main: 2.2.2.2
+
+{% highlight cmd %}
+Main(config)#router ospf 1
+Main(config-router)#router-id 2.2.2.2
+{% endhighlight cmd %}
+
+* Building 2: 3.3.3.3
+
+{% highlight cmd %}
+Bldg-2(config)#router ospf 1
+Bldg-2(config-router)#router-id 3.3.3.3
+{% endhighlight cmd %}
+
+3. Configure the OSPF cost of the link between Building 1 and Main to 7500.
+
+{% highlight cmd %}
+Bldg-1(config)#int s0/0/0
+Bldg-1(config-if)#ip ospf cost 7500
+
+Main(config)#int s0/0/0
+Main(config-if)#ip ospf cost 7500
+{% endhighlight cmd %}
+
+# Step 8: Configure OSPF MD5 Authentication on the Required Interfaces
+
+#### **Task:**
+Configure OSPF to authenticate routing updates with MD5 authentication on the OSPF interfaces.
+
+* Use a key value of 1.
+* Use xyz_OSPF as the password.
+* Apply MD5 authentication to the required interfaces.
+
+#### **How:**
+* Use a key value of 1.
+* Use xyz_OSPF as the password.
+* Apply MD5 authentication to the required interfaces.
+
+{% highlight cmd %}
+Bldg-1(config)#int s0/0/0
+Bldg-1(config-if)#ip ospf message-digest-key 1 md5 xyz_OSPF
+Bldg-1(config-if)#ip ospf authentication message-digest
+
+Main(config)#int s0/1/0
+Main(config-if)#ip ospf message-digest-key 1 md5 xyz_OSPF
+Main(config-if)#ip ospf authentication message-digest
+Main(config)#int s0/0/1
+Main(config-if)#ip ospf message-digest-key 1 md5 xyz_OSPF
+Main(config-if)#ip ospf authentication message-digest
+
+Bldg-2(config)#int s0/0/1
+Bldg-2(config-if)#ip ospf message-digest-key 1 md5 xyz_OSPF
+Bldg-2(config-if)#ip ospf authentication message-digest
+{% endhighlight cmd %}
+
+# Step 9: Configure Access Control Lists
+
+#### **Task/How:**
+1. Restrict access to the vty lines on Main with an ACL:
+
+* Create a named standard ACL using the name TELNET-BLOCK. Be sure that you enter this name exactly as it appears in this instruction.
+
+{% highlight cmd %}
+Main(config)#ip access-list standard TELNET-BLOCK
+{% endhighlight cmd %}
+
+* Allow only Admin Host to access the vty lines of Main.
+* No other Internet hosts (including hosts not visible in the topology) should be able to access the vty lines of Main.
+* Your solution should consist of one ACL statement.
+* Your ACL should be placed in the most efficient location as possible to conserve network bandwidth and device processing resources.
+
+{% highlight cmd %}
+Main(config-std-nacl)#permit host 198.51.100.5
+Main(config)#line vty 0 15
+Main(config-line)#access-class TELNET-BLOCK in
+{% endhighlight cmd %}
+
+2. Block ping requests from the Internet with an ACL:
+
+* Use access list number 101.
+
+{% highlight cmd %}
+Main(config)#interface serial 0/1/0
+Main(config-if)#ip access-group 101 in
+{% endhighlight cmd %}
+
+* Allow only Admin Host to ping addresses within the Company A (Main) network. Only echo messages should be permitted.
+* Prevent all other Internet hosts (not only the Internet hosts visible in the topology) from pinging addresses inside the Company A network. Block echo messages only.
+* All other traffic should be allowed.
+* Your ACL should consist of three statements.
+* Your ACL should be placed in the most efficient location as possible to conserve network bandwidth and device processing resources.
+
+3. Control access to the management interfaces (SVI) of the three switches attached to Building 2 as follows:
+
+* Create a standard ACL.
+* Use the number 1 for the list.
+
+{% highlight cmd %}
+Bldg-2(config)#access-list 1 permit 10.10.15.0 0.0.0.255
+{% endhighlight cmd %}
+
+* Permit only addresses from the admin VLAN network to access any address on the manage network (VLAN25).
+
+{% highlight cmd %}
+Bldg-2(config)#interface gi0/1.25
+Bldg-2(config-if)#ip access-group 1 out
+{% endhighlight cmd %}
+
+* Hosts on the NetAdmin VLAN network should be able to reach all other destinations.
+* Your list should consist of one statement.
+* Your ACL should be placed in the most efficient location as possible to conserve network bandwidth and device processing resources.
+* You will be able to test this ACL at the end of this assessment.
+
+# Step 10: Create and name VLANs
+
+#### **Task:**
+On all three switches that are attached to Building 2, create and name the VLANs shown in the VLAN Table.
+
+* The VLAN names that you configure must match the values in the table exactly.
+* Each switch should be configured with all of the VLANs shown in the table.
+
+#### **How:**
+* The VLAN names that you configure must match the values in the table exactly.
+* Each switch should be configured with all of the VLANs shown in the table.
+
+{% highlight cmd %}
+FL-A(config)#vlan 2
+FL-A(config-vlan)#name dept1
+FL-A(config)#vlan 4
+FL-A(config-vlan)#name dept2
+FL-A(config)#vlan 8
+FL-A(config-vlan)#name dept3
+FL-A(config)#vlan 15
+FL-A(config-vlan)#name NetAdmin
+FL-A(config)#vlan 25
+FL-A(config-vlan)#name manage
+FL-A(config)#vlan 99
+FL-A(config-vlan)#name safe
+
+FL-B(config)#vlan 2
+FL-B(config-vlan)#name dept1
+FL-B(config)#vlan 4
+FL-B(config-vlan)#name dept2
+FL-B(config)#vlan 8
+FL-B(config-vlan)#name dept3
+FL-B(config)#vlan 15
+FL-B(config-vlan)#name NetAdmin
+FL-B(config)#vlan 25
+FL-B(config-vlan)#name manage
+FL-B(config)#vlan 99
+FL-B(config-vlan)#name safe
+
+FL-C(config)#vlan 2
+FL-C(config-vlan)#name dept1
+FL-C(config)#vlan 4
+FL-C(config-vlan)#name dept2
+FL-C(config)#vlan 8
+FL-C(config-vlan)#name dept3
+FL-C(config)#vlan 15
+FL-C(config-vlan)#name NetAdmin
+FL-C(config)#vlan 25
+FL-C(config-vlan)#name manage
+FL-C(config)#vlan 99
+FL-C(config-vlan)#name safe
+{% endhighlight cmd %}
+
+# Step 11:  Assign switch ports to VLANs.
+
+#### **Task:**
+Using the VLAN table, assign switch ports to the VLANs you created in Step 10, as follows:
+
+* All switch ports that you assign to VLANs should be configured to static access mode.
+* All switch ports that you assign to VLANs should be activated.
+* Note that all of the unused ports on SW-A should be assigned to VLAN 99. This configuration step on switches SW-B and SW-C is not required in this assessment for the sake of time.
+* Secure the unused switch ports on SW-A by shutting them down.
+
+#### **How:**
+Using the VLAN table, assign switch ports to the VLANs you created in Step 10, as follows:
+
+* All switch ports that you assign to VLANs should be configured to static access mode.
+* All switch ports that you assign to VLANs should be activated.
+
+{% highlight cmd %}
+FL-A(config)#interface fa0/5
+FL-A(config-if)#switchport mode access
+FL-A(config-if)#switchport access vlan 2
+FL-A(config-if)#no shutdown
+
+FL-A(config)#interface fa0/10
+FL-A(config-if)#switchport mode access
+FL-A(config-if)#switchport access vlan 4
+FL-A(config-if)#no shutdown
+
+FL-A(config)#interface fa0/15
+FL-A(config-if)#switchport mode access
+FL-A(config-if)#switchport access vlan 8
+FL-A(config-if)#no shutdown
+
+FL-A(config)#interface fa0/24
+FL-A(config-if)#switchport mode access
+FL-A(config-if)#switchport access vlan 15
+FL-A(config-if)#no shutdown
+
+FL-C(config)#interface fa0/7
+FL-C(config-if)#switchport mode access
+FL-C(config-if)#switchport access vlan 2
+FL-C(config-if)#no shutdown
+
+FL-C(config)#interface fa0/10
+FL-C(config-if)#switchport mode access
+FL-C(config-if)#switchport access vlan 4
+FL-C(config-if)#no shutdown
+
+FL-C(config)#interface fa0/15
+FL-C(config-if)#switchport mode access
+FL-C(config-if)#switchport access vlan 8
+FL-C(config-if)#no shutdown
+
+FL-C(config)#interface fa0/24
+FL-C(config-if)#switchport mode access
+FL-C(config-if)#switchport access vlan 15
+FL-C(config-if)#no shutdown
+{% endhighlight cmd %}
+
+* Note that all of the unused ports on SW-A should be assigned to VLAN 99. This configuration step on switches SW-B and SW-C is not required in this assessment for the sake of time.
+* Secure the unused switch ports on SW-A by shutting them down.
+
+{% highlight cmd %}
+FL-A(config)#interface range fa0/6-9,fa0/11-14,fa0/16-23
+FL-A(config-if-range)#switchport mode access
+FL-A(config-if-range)#switchport access vlan 99
+FL-A(config-if-range)#shutdown
+
+FL-A(config)#interface range g0/1-2
+FL-A(config-if-range)#switchport mode access
+FL-A(config-if-range)#switchport access vlan 99
+FL-A(config-if-range)#shutdown
+{% endhighlight cmd %}
+
+# Step 12:  Configure the SVIs
+
+#### **Task:**
+Refer to the Addressing Table. Create and address the SVIs on all three of the switches that are attached to Building 2. Configure the switches so that they can communicate with hosts on other networks. Full connectivity will be established after routing between VLANs has been configured later in this assessment.
+
+#### **How:**
+{% highlight cmd %}
+FL-A(config)#ip default-gateway 10.10.25.1
+FL-A(config)#interface vlan 25
+FL-A(config-vlan)#ip address 10.10.25.254 255.255.255.0
+FL-A(config-vlan)#no shutdown
+
+FL-B(config)#ip default-gateway 10.10.25.1
+FL-B(config)#interface vlan 25
+FL-B(config-vlan)#ip address 10.10.25.253 255.255.255.0
+FL-B(config-vlan)#no shutdown
+
+FL-C(config)#ip default-gateway 10.10.25.1
+FL-C(config)#interface vlan 25
+FL-C(config-vlan)#ip address 10.10.25.252 255.255.255.0
+FL-C(config-vlan)#no shutdown
+{% endhighlight cmd %}
+
+# Step 13: Configure Trunking and EtherChannel
+
+#### **Task/How:**
+1. Use the information in the Port-Channel Groups table to configure EtherChannel as follows:
+
+* Use LACP.
+* The switch ports on both sides of Channels 1 and 2 should initiate negotiations for channel establishment.
+
+{% highlight cmd %}
+FL-A(config)#interface range fa0/1-2
+FL-A(config-if-range)#channel-group 1 mode active
+FL-A(config-if-range)#no shutdown
+
+FL-A(config)#interface range fa0/3-4
+FL-A(config-if-range)#channel-group 2 mode active
+FL-A(config-if-range)#no shutdown
+
+FL-A(config)#interface port-channel 1
+FL-A(config-if)#switchport mode trunk
+
+FL-A(config)#interface port-channel 2
+FL-A(config-if)#switchport mode trunk
+
+FL-B(config)#interface range fa0/3-4
+FL-B(config-if-range)#channel-group 2 mode active
+FL-B(config-if-range)#no shutdown
+
+FL-B(config)#interface port-channel 2
+FL-B(config-if)#switchport mode trunk
+
+FL-C(config)#interface range fa0/1-2
+FL-C(config-if-range)#channel-group 1 mode active
+FL-C(config-if-range)#no shutdown
+
+FL-C(config)#interface port-channel 1
+FL-C(config-if)#switchport mode trunk
+{% endhighlight cmd %}
+
+* The switch ports on the FL-B side of Channel 3 should initiate negotiations with the switch ports on FL-C.
+
+{% highlight cmd %}
+FL-B(config)#interface range fa0/5-6
+FL-B(config-if-range)#channel-group 3 mode active
+FL-B(config-if-range)#no shutdown
+
+FL-B(config)#interface port-channel 3
+FL-B(config-if)#switchport mode trunk
+{% endhighlight cmd %}
+
+* The switch ports on the FL-C side of Channel 3 should not initiate negotiations with the switch ports on the other side of the channel.
+
+{% highlight cmd %}
+FL-C(config)#interface range fa0/5-6
+FL-C(config-if-range)#channel-group 3 mode passive
+FL-B(config-if-range)#no shutdown
+
+FL-C(config)#interface port-channel 3
+FL-C(config-if)#switchport mode trunk
+{% endhighlight cmd %}
+
+* All channels should be ready to forward data after they have been configured.
+
+{% highlight cmd %}
+FL-X(config-if)#no shutdown (if you didn't do it prior)
+{% endhighlight cmd %}
+
+2. Configure all port-channel interfaces as trunks.
+
+{% highlight cmd %}
+FL-X(config)#interface port-channel X (again you should have done it prior)
+FL-X(config-if)#switchport mode trunk
+{% endhighlight cmd %}
+
+3. Configure static trunking on the switch port on FL-B that is connected to Building 2.
+
+{% highlight cmd %}
+FL-B(config)#interface g0/1
+FL-B(config-if)#switchport mode trunk
+{% endhighlight cmd %}
+
+# Step 14: Configure Rapid PVST+
+
+#### **Task/How:**
+Configure Rapid PVST+ as follows:
+
+1. Activate Rapid PVST+ and set root priorities.
+
+* All three switches should be configured to run Rapid PVST+.
+
+{% highlight cmd %}
+FL-A(config)#spanning-tree mode rapid-pvst
+FL-B(config)#spanning-tree mode rapid-pvst
+FL-C(config)#spanning-tree mode rapid-pvst
+{% endhighlight cmd %}
+
+* FL-A should be configured as root primary for VLAN 2 and VLAN 4 using the default primary priority values.
+
+{% highlight cmd %}
+FL-A(config)#spanning-tree vlan 2 root primary
+FL-A(config)#spanning-tree vlan 4 root primary
+{% endhighlight cmd %}
+
+* FL-A should be configured as root secondary for VLAN 8 and VLAN 15 using the default secondary priority values.
+
+{% highlight cmd %}
+FL-A(config)#spanning-tree vlan 8 root secondary
+FL-A(config)#spanning-tree vlan 15 root secondary
+{% endhighlight cmd %}
+
+* FL-C should be configured as root primary for VLAN 8 and VLAN 15 using the default primary priority values.
+
+{% highlight cmd %}
+FL-C(config)#spanning-tree vlan 8 root primary
+FL-C(config)#spanning-tree vlan 15 root primary
+{% endhighlight cmd %}
+
+* FL-C should be configured as root secondary for VLAN 2 and VLAN 4 using the default secondary priority values.
+
+{% highlight cmd %}
+FL-C(config)#spanning-tree vlan 2 root secondary
+FL-C(config)#spanning-tree vlan 4 root secondary
+{% endhighlight cmd %}
+
+2. Activate PortFast and BPDU Guard on the active FL-C switch access ports.
+
+* On FL-C, configure PortFast on the access ports that are connected to hosts.
+
+{% highlight cmd %}
+FL-C(config)#interface range fa0/7, fa0/10, fa0/15, fa0/24
+FL-C(config-if-range)#spanning-tree portfast
+{% endhighlight cmd %}
+
+* On FL-C, activate BPDU Guard on the access ports that are connected to hosts.
+
+{% highlight cmd %}
+FL-C(config)#interface range fa0/7, fa0/10, fa0/15, fa0/24
+FL-C(config-if-range)#spanning-tree bpduguard enable
+FL-C(config-if-range)#no shutdown
+{% endhighlight cmd %}
+
+# Step 15: Configure switch security
+
+#### **Task/How:**
+You are required to complete the following only on some of the devices in the network for this assessment. In reality, security should be configured on all devices in the network.
+
+1. Configure port security on all active access ports that have hosts connected on FL-A.
+
+{% highlight cmd %}
+FL-A(config)#interface fa0/5
+FL-A(config-if)#switchport port-security
+
+FL-A(config)#interface fa0/10
+FL-A(config-if)#switchport port-security
+
+FL-A(config)#interface fa0/15
+FL-A(config-if)#switchport port-security
+
+FL-A(config)#interface fa0/24
+FL-A(config-if)#switchport port-security
+{% endhighlight cmd %}
+
+* Each active access port should accept only two MAC addresses before a security action occurs.
+
+{% highlight cmd %}
+FL-A(config)#interface fa0/5
+FL-A(config-if)#switchport port-security maximum 2
+FL-A(config)#interface fa0/10
+FL-A(config-if)#switchport port-security maximum 2
+FL-A(config)#interface fa0/15
+FL-A(config-if)#switchport port-security maximum 2
+FL-A(config)#interface fa0/24
+FL-A(config-if)#switchport port-security maximum 2
+{% endhighlight cmd %}
+
+* The learned MAC addresses should be recorded in the running configuration.
+
+{% highlight cmd %}
+FL-A(config)#interface fa0/5
+FL-A(config-if)#switchport port-security mac-address sticky
+FL-A(config)#interface fa0/10
+FL-A(config-if)#switchport port-security mac-address sticky
+FL-A(config)#interface fa0/15
+FL-A(config-if)#switchport port-security mac-address sticky
+FL-A(config)#interface fa0/24
+FL-A(config-if)#switchport port-security mac-address sticky
+{% endhighlight cmd %}
+
+* If a security violation occurs, the switch ports should provide notification that a violation has occurred but not place the interface in an err-disabled state.
+
+{% highlight cmd %}
+FL-A(config)#interface fa0/5
+FL-A(config-if)#switchport port-security violation restrict
+FL-A(config)#interface fa0/10
+FL-A(config-if)#switchport port-security violation restrict
+FL-A(config)#interface fa0/15
+FL-A(config-if)#switchport port-security violation restrict
+FL-A(config)#interface fa0/24
+FL-A(config-if)#switchport port-security violation restrict
+{% endhighlight cmd %}
+
+2. On FL-B, configure the virtual terminal lines to accept only SSH connections.
+
+* Use a domain name of ccnaPTSA.com.
+
+{% highlight cmd %}
+FL-B(config)#ip domain-name ccnaPTSA.com
+{% endhighlight cmd %}
+
+* Use FL-B as the host name.
+
+{% highlight cmd %}
+FL-B(config)#hostname FL-B
+{% endhighlight cmd %}
+
+* Use a modulus value of 1024.
+
+{% highlight cmd %}
+FL-B(config)#crypto key generate rsa
+select 1024 key length
+{% endhighlight cmd %}
+
+* Configure SSH version 2.
+
+{% highlight cmd %}
+FL-B(config)#ip ssh version 2
+{% endhighlight cmd %}
+
+* Configure the vty lines to only accept SSH connections.
+
+{% highlight cmd %}
+FL-B(config)#line vty 0 4
+FL-B(config-line)#login local
+FL-B(config-line)#transport input ssh
+FL-B(config)#line vty 5 15
+FL-B(config-line)#login local
+FL-B(config-line)#transport input ssh
+{% endhighlight cmd %}
+
+* Configure user-based authentication for the SSH connections with a user name of netadmin and a secret password of SSH_secret9. The user name and password must match the values provided here exactly.
+
+{% highlight cmd %}
+FL-B(config)#username netadmin password SSH_secret9
+{% endhighlight cmd %}
+
+3. Ensure that all unused switch ports on FL-A have been secured as follows:
+
+* They should be assigned to VLAN 99.
+* They should all be in access mode.
+* They should be shutdown.
+
+{% highlight cmd %}
+Should have been done in Step 11, but here they are anyway
+
+FL-A(config)#interface range fa0/6-9,fa0/11-14,fa0/16-23
+FL-A(config-if-range)#switchport mode access
+FL-A(config-if-range)#switchport access vlan 99
+FL-A(config-if-range)#shutdown
+
+FL-A(config)#interface range g0/1-2
+FL-A(config-if-range)#switchport mode access
+FL-A(config-if-range)#switchport access vlan 99
+FL-A(config-if-range)#shutdown
+{% endhighlight cmd %}
+
+# Step 16: Configure Building 2 as a DHCP server for the hosts attached to the FL-A and FL-C switches
+
+#### **Task/How:**
+Configure three DHCP pools as follows:
+
+* Refer to the information in the Addressing Table.
+* Create a DHCP pool for hosts on VLAN 2 using the pool name vlan2pool.
+
+{% highlight cmd %}
+Bldg-2(config)#ip dhcp pool vlan2pool
+Bldg-2(dhcp-config)#network 10.10.2.0 255.255.255.0
+Bldg-2(dhcp-config)#default-router 10.10.2.1
+Bldg-2(dhcp-config)#dns-server 192.168.200.225
+{% endhighlight cmd %}
+
+* Create a DHCP pool for hosts on VLAN 4 using the pool name vlan4pool.
+
+{% highlight cmd %}
+Bldg-2(config)#ip dhcp pool vlan4pool
+Bldg-2(dhcp-config)#network 10.10.4.0 255.255.255.0
+Bldg-2(dhcp-config)#default-router 10.10.4.1
+Bldg-2(dhcp-config)#dns-server 192.168.200.225
+{% endhighlight cmd %}
+
+* Create a DHCP pool for hosts on VLAN 8 using the pool name vlan8pool.
+
+{% highlight cmd %}
+Bldg-2(config)#ip dhcp pool vlan8pool
+Bldg-2(dhcp-config)#network 10.10.8.0 255.255.255.0
+Bldg-2(dhcp-config)#default-router 10.10.8.1
+Bldg-2(dhcp-config)#dns-server 192.168.200.225
+{% endhighlight cmd %}
+
+* All VLAN pool names must match the provided values exactly.
+* Exclude the first five addresses from each pool.
+
+{% highlight cmd %}
+Bldg-2(config)#ip dhcp excluded-address 10.10.2.1 10.10.2.5
+Bldg-2(config)#ip dhcp excluded-address 10.10.4.1 10.10.4.5
+Bldg-2(config)#ip dhcp excluded-address 10.10.8.1 10.10.8.5
+{% endhighlight cmd %}
+
+* Configure a DNS server address of 192.168.200.225.
+
+{% highlight cmd %}
+Bldg-2(dhcp-config)#dns-server 192.168.200.225 (this command from above)
+{% endhighlight cmd %}
+
+* All hosts should be able to communication with hosts on other networks.
+
+{% highlight cmd %}
+Bldg-2(dhcp-config)#default-router 10.10.X.1 (this command from above)
+{% endhighlight cmd %}
+
+# Step 17: Configure host addressing
+
+#### **Task:**
+Hosts should be able to ping each other and external hosts after they have been correctly addressed, where permitted.
+
+* Hosts on VLANs 2, 4, and 8 should be configured to receive addresses dynamically over DHCP.
+* Hosts on VLAN 15 should be addressed statically as indicated in the Addressing Table. Once configured, the hosts should be able to ping hosts on other networks.
+* Hosts on the LANs attached to Site 1 should be statically assigned addresses that enable them to communicate with hosts on other networks, as indicated in the Addressing Table.
+
+#### **How:**
+Simply setup all the addressing manually through the GUI on each workstation from the IP Addressing table
