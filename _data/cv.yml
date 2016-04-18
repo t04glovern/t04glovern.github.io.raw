@@ -49,9 +49,9 @@ career:
 technicalSkills:
   list:
     - tr: "Embedded Systems: MSP430/TI, Arduino, RPi"
-    - tr: "Scripting languages: Python/Powershell"
-    - tr: "Web Markdown: Jekyll"
-    - tr: "IDE: CCS/Eclipse/NetBeans"
+    - tr: "Scripting languages: Python, Powershell"
+    - tr: "Web: Jekyll, Markdown"
+    - tr: "IDE: CCS, Eclipse, NetBeans"
   systems:
    - name: Windows Server
      level: 80
@@ -67,12 +67,18 @@ technicalSkills:
    - name: C
      level: 70
    - name: C++
+     level: 60
+   - name: C#
      level: 70
+   - name: Java
+     level: 50
   other:
    - name: Linux
-     level: 80
+     level: 70
    - name: Git
-     level: 80
+     level: 65
+   - name: Networking
+     level: 70
 
 sideProjects:
   - name: Technical blog
@@ -87,3 +93,10 @@ education:
     location: Curtin University
     dates: 2014 – 2017
     link: http://www.curtin.edu.au/
+
+education:
+  - name: Diploma of IT
+    degree: Networking
+    location: eCentral Tafe
+    dates: 2011 – 2012
+    link: https://central.wa.edu.au
