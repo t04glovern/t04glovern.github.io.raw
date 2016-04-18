@@ -47,6 +47,11 @@ career:
     - accomplishment: Managing tasks and time-frames for Co-workers to follow.
 
 technicalSkills:
+    list:
+    - tr: "Embedded Systems: MSP430/TI, Arduino, RPi"
+    - tr: "Scripting languages: Python/Powershell"
+    - tr: "Web Markdown: Jekyll"
+    - tr: "IDE: CCS/Eclipse/NetBeans"
   systems:
    - name: Windows Server
      level: 80
@@ -63,10 +68,6 @@ technicalSkills:
      level: 70
    - name: C++
      level: 70
-   - name: Python
-     level: 80
-   - name: Jekyll/Markdown
-     level: 80
   other:
    - name: Linux
      level: 80
