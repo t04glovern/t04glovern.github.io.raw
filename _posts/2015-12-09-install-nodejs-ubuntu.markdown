@@ -14,11 +14,17 @@ tags:
 
 ## Problem
 
+***
+
 It's not uncommon to see `Node.js` listed as a requirement for packages; In the past I would simply attempt an install with a package manager and cross my fingers that the build given to be was correct, while also worrying about the location and environment variables not being setup correctly.
 
 Recently I got fed up while trying to build a particular package I was interested in and decided to track down a more permanent solution to this reoccurring problem.
 
+***
+
 ## Solution
+
+***
 
 After some google-fu (or more specifically, DuckDuck-fu?) I came across the following script.
 

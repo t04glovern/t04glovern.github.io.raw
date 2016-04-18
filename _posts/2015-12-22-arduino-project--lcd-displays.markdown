@@ -14,9 +14,15 @@ tags:
 
 ## Introduction
 
+***
+
 I've had to use an `LCD display` a couple times with some projects in the past, but never really understood what I was doing as I followed tutorials telling me what to plug where. Today I decided I would go through and document what each pin does on a standard `16x2 LCD display` does and try to get it printing my Blogs title.
 
+***
+
 ## The Pins
+
+***
 
 There are `16 pins` on a standard `2x16 LCD Display`
 
@@ -73,7 +79,11 @@ There are `16 pins` on a standard `2x16 LCD Display`
 16. **LED-**
 * `Backlight GND negative supply`. This pin is the `GND` pin for the backlight. Expected to be `0V`
 
+***
+
 # Wire up the LCD
+
+***
 
 Next I wired up the LCD using the following configurations.
 
@@ -100,7 +110,11 @@ Below is an example of how I wired it up. Yours might look completely different;
 
 ![LCD Display Wired]({{ site.url }}/images/posts/2015.12.22/arduino-lcd-wired.jpg)
 
+***
+
 ## Writing the Code
+
+***
 
 To start with we're going to want to define our `pin constants` as we'll be referencing them a lot. Make sure you use logical naming conventions.
 
@@ -198,7 +212,11 @@ lcd.print("Assimilation");
 
 And look at that, I can now read the entire name with no issues!
 
+***
+
 ## Conclusion
+
+***
 
 There's a tonne of things you can do with the `LiquidCrystal libraries`, so don't yet this be all you do. Something interesting you could look into is having text centered (by moving the cursor around), or even having [scrolling text](https://www.arduino.cc/en/Reference/LiquidCrystalAutoscroll).
 

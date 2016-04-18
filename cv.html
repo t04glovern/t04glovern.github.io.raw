@@ -1,219 +1,191 @@
-<html>
+---
+---
+
+<!DOCTYPE html>
+<!--[if lt IE 7 ]>
+<html class="ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]>
+<html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]>
+<html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!-->
+<html lang="en">
+<!--<![endif]-->
 
 <head>
-  <meta charset="UTF-8">
-  <title>Nathan Glover CV</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ site.data.cv.person.name }}'s CV</title>
+  <meta name="author" content="{{ site.data.cv.name }}" />
+  <meta name="description" content="{{ site.data.cv.name }}'s CV" />
+  <link rel="shortcut icon" href="/favicon.png">
+  <link href="{{site.url}}/css/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+  <link href="{{site.url}}/css/cv1.css" rel="stylesheet">
+<!--  <link href="{{site.url}}/css/printCV.css" rel="stylesheet" type="text/css" media="print">-->
 
-<!--
-  <link href="http://localhost:4000/css/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-  <link href="http://localhost:4000/css/cv.css" rel="stylesheet">
-  <link href="http://localhost:4000/css/print.css" rel="stylesheet" media="print">
--->
 
-  <link href="http://t04glovern.github.io/css/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-  <link href="http://t04glovern.github.io/css/cv.css" rel="stylesheet">
-  <link href="http://t04glovern.github.io/css/print.css" rel="stylesheet" media="print">
+  <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css" rel="stylesheet" media="all" />
+  <link href='http://fonts.googleapis.com/css?family=Lusitana:400,700' rel='stylesheet' type='text/css'>
 
+  <link href='https://fonts.googleapis.com/css?family=Archivo+Black' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300' rel='stylesheet' type='text/css'>
+  <script type="text/javascript">
+  WebFontConfig = {
+    google: { families: [ 'Passion+One:400,700:latin' ] }
+  };
+  (function() {
+    var wf = document.createElement('script');
+    wf.src = 'https://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+    wf.type = 'text/javascript';
+    wf.async = 'true';
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(wf, s);
+  })(); </script>
 </head>
 
 <body>
-  <div class="page">
-    <h1 id="nathan-glover">Nathan Glover</h1>
-    <h2 id="technology-enthusiast">Technology Enthusiast</h1>
-    <div style="width: 100%; overflow: hidden;">
-      <div style="width: 600px; float: left;">
-        <ul class="personal-info">
-          <li><i class="fa fa-map-marker"></i> Perth, Western Australia</li>
-          <li><i class="fa fa-flag-o"></i> Australia</li>
-        </ul>
-      </div>
-      <div>
-        <ul class="personal-info">
-          <li><i class="fa fa-envelope-o"></i> nathan@glovers.id.au</li>
-          <li><i class="fa fa-laptop"></i> <a href="http://nathanglover.com">nathanglover.com</a></li>
-          <li><i class="fa fa-phone"></i> +61 430 319 001</li>
+  <div class="container">
+      <div class="row header">
+        <div class="col-xs-9">
+          <h1 class="name">{{ site.data.cv.person.name }}</h1>
+          <span class="profesion">{{ site.data.cv.person.profesion }}</span>
+        </div>
 
-<!--
-      <li><i class="fa fa-github"></i> <a href="https://github.com/t04glovern">t04glovern</a></li>
-      <li><i class="fa fa-stack-overflow"></i> <a href="http://stackoverflow.com/users/5443325/nathan-glover">t04glovern</a></li>
-      <li><i class="fa fa-linkedin"></i> <a href="https://www.au.linkedin.com/in/glovernathan">t04glovern</a></li>
--->
-
-        </ul>
-      </div>
-    </div>
-
-    <!-- -------------- -->
-    <!-- Person Profile -->
-    <!-- -------------- -->
-    <!--<h2 class="section" id="personal-profile"><span>Objective</span></h2>-->
-
-  <!--<p>To actively contribute to the advancement of technology using IT experience and skills gained in an international context.-->
-<!--</p>-->
-    <!-- ---------- -->
-    <!-- Employment -->
-    <!-- ---------- -->
-    <h2 class="section" id="employment"><span>Employment</span></h2>
-
-    <div class="positionline">
-      <h3 id="system-administrator-galati-group-december-2014-current-">Network and System Administrator, Galati Group</h3>
-      <h4><em>December 2014 – Current</em></h4>
-    </div>
-
-    <p>Contracted through the Australian Computer Society scholarship program; I work as part of a motivated IT Team, servicing and managing 15+ sites across WA.</p>
-    <p>Regular tasks include maintaining backup systems, improving DR solutions, researching and investigating new technologies and managing a variety of server platforms and POS systems.</p>
-
-    <p><strong>Experience</strong>:</p>
-    <ul>
-      <li>
-        <p>Administration and Installation of 300+ Windows Desktop/Server based systems.</p>
-      </li>
-      <li>
-        <p>Thorough documentation of new and current hardware and software processes.</p>
-      </li>
-      <li>
-        <p>Experienced at dealing with users on a daily basis for any IT needs.</p>
-      </li>
-      <li>
-        <p>POS and EFTPOS installation and management.</p>
-      </li>
-      <li>
-        <p>ESXi / vCenter implementation and servicing.</p>
-      </li>
-      <li>
-        <p>Managing and Administering project documentation.</p>
-      </li>
-      <li>
-        <p>Task automation.</p>
-      </li>
-    </ul>
-
-    <div class="positionline">
-      <h3 id="support-technician-command-it-november-2012-november-2014-">Support Technician, Command IT</h3>
-      <h4><em>November 2012 – November 2014</em></h4>
-    </div>
-
-    <p>Design, configure, install and support Networking and Server solutions to a number of Small/Medium businesses across Perth and The Pilbara Region both Remotely and on site. I task myself to troubleshoot, diagnose and resolve any issues that our customers might be having. My role requires me to work and solve issues independently; but also offer my skills and knowledge to the other Technicians in my team.</p>
-
-    <p><strong>Experience</strong>:</p>
-    <ul>
-      <li>
-        <p>Documentation (Work Instructions, Network topology Diagrams).</p>
-      </li>
-      <li>
-        <p>Monitoring and site management for over 70 businesses across Western Australia through SolarWinds N-able Technologies.</p>
-      </li>
-      <li>
-        <p>Proper phone etiquette and strong relationships with my clients.</p>
-      </li>
-      <li>
-        <p>Design and implementation of Server 2008/2012 solutions in offices ranging from 5-70 users.</p>
-      </li>
-      <li>
-        <p>Implementation of Visualized Server solutions.</p>
-      </li>
-      <li>
-        <p>Experience with a range of Netgear solutions including UTM's, ReadyNAS/Data, WAP's and Switching.</p>
-      </li>
-    </ul>
-
-    <div class="positionline">
-      <h3 id="sales-ebgames-australia-november-2009-november-2012-">Sales, EB Games Australia</h3>
-      <h4><em>November 2009 – November 2012</em></h4>
-    </div>
-
-    <p>Assisted Customers by providing Trusted and Knowledgeable advice in a retail environment. Developed a strong connection of loyalty and trust from my Customers. Worked in a number of different Branches across Perth and was able to easily pick up tasks and complete my work at a High standard no matter the location.</p>
-
-    <p><strong>Experience</strong>:</p>
-    <ul>
-      <li>
-        <p>Stock Management (Stocktake and daily/weekly counts of all Products).</p>
-      </li>
-      <li>
-        <p>KPI Tracking and Training for myself and my co-workers.</p>
-      </li>
-      <li>
-        <p>Strong, Loyal Customer relationships.</p>
-      </li>
-      <li>
-        <p>Managing tasks and time-frames for Co-workers to follow.</p>
-      </li>
-    </ul>
-
-    <!-- ---------------- -->
-    <!-- Technical Skills -->
-    <!-- ---------------- -->
-    <br/>
-    <br/>
-    <br/>
-    <br/>
-    <br/>
-    <br/>
-    <br/>
-    <br/>
-    <h2 class="section" id="technical-skills"><span>Technical skills</span></h2>
-
-    <div>
-      <div id="container3">
-        <div id="container2">
-          <div id="container1">
-            <div id="col1">
-              <p><strong>Systems</strong></p>
-              <ul class="skillset">
-                <li>Windows Server, Windows Desktop OS</li>
-                <li>Hyper-V, Vmware ESXi, vCenter</li>
-                <li>Ubuntu, Manjaro</li>
-              </ul>
-
-            </div>
-            <div id="col2">
-              <p><strong>Languages</strong></p>
-              <ul class="skillset">
-                <li>C, C++, Java, Python</li>
-                <li>C#, PowerShell</li>
-                <li>Jekyll, Markdown</li>
-              </ul>
-            </div>
-            <div id="col3">
-              <p><strong>Others</strong></p>
-              <ul class="skillset">
-                <li>Docker, Vagrant</li>
-                <li>Git, SVN</li>
-                <li>Idea/Eclipse/Netbeans</li>
-            </div>
-          </div>
+        <div class="col-xs-3">
+          <ul class="list-unstyled">
+            <li><i class="fa fa-map-marker"></i> {{site.data.cv.person.location}}</li>
+            <li><i class="fa fa-flag-o"></i> {{site.data.cv.person.citizenship}}</li>
+            <li><i class="fa fa-envelope-o"></i> <a href="mailto: {{ site.data.cv.person.email }}">{{ site.data.cv.person.email }}</a></li>
+            <li><i class="fa fa-laptop"></i> <a href="http://pavelmakhov.com">pavelmakhov.com</a></li>
+            <li><i class="fa fa-phone"></i> {{site.data.cv.person.phone}}</li>
+            <li><i class="fa fa-github"></i> <a href="https://github.com{{site.data.cv.person.github}}">{{site.data.cv.person.github}}</a></li>
+            <li><i class="fa fa-stack-overflow"></i> <a href="http://stackoverflow.com/users/1252056{{site.data.cv.person.stackoverflow}}">{{site.data.cv.person.stackoverflow}}</a></li>
+            </ull>
         </div>
       </div>
+
+
+    <div class="row  section">
+      <div class="col-xs-3">
+        <h2>Career</h2>
+              </div>
+
+      <div class="col-xs-9">
+        {% for item in site.data.cv.career %}
+         <div class="jd">
+          <div class="row">
+            <div class="col-xs-6">
+              <h4><b>{{ item.position }}</b></h4>
+            </div>
+            <div class="col-xs-6 pull-right">
+              <h5 class="pull-right">{{ item.dates }}<br/>
+              {{item.company}} <i>({{item.location}})</i></h5>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-12">
+              <p>{{ item.summary }}</p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-12">
+
+                      {% if item.accomplishments.size > 0 %}
+            <b>Selected accomplishments:</b>
+           {% endif %}
+            <ul>
+            {% for itemm in item.accomplishments %}
+              <li>{{itemm.accomplishment}}</li>
+            {% endfor %}
+            </ul>
+          </div>
+           </div>
+        </div>
+        {% endfor %}
+      </div>
     </div>
-    <!-- ------------- -->
-    <!-- Side Projects -->
-    <!-- ------------- -->
-    <h2 class="section" id="side-projects"><span>Side Projects</span></h2>
 
-    <p><strong>Technical Blog</strong> - <a href="http://t04glovern.github.io">http://t04glovern.github.io</a></p>
 
-    <h2 class="section" id="education"><span>Education</span></h2>
+    <div class="row section pagebreakishere">
+      <div class="col-xs-3">
+        <h2>Technical skills</h2>
+      </div>
+      <div class="col-xs-9">
+        <div class="row">
+         <div class="col-xs-4">
 
-    <h3 id="computer-systems-networking-">Bachelor of Technology, Computer Systems and Networking, Curtin University </br> Perth, <em>2014 – 2017</em></h3>
+           <h4 class="techSkillHeader"><i class="fa fa-terminal"></i> Backend</h4>
+            {% for item in site.data.cv.technicalSkills.backend %} {{item.name}}
+          <div class="progress">
+            <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: {{item.level}}%"></div>
+          </div>
+          {% endfor %}
+        </div>
+        <div class="col-xs-4">
+          <h4 class="techSkillHeader"><i class="fa fa-code"></i> Frontend</h4> {% for item in site.data.cv.technicalSkills.frontend %} {{item.name}}
+          <div class="progress">
+            <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: {{item.level}}%"></div>
+          </div>
+          {% endfor %}
+        </div>
+        <div class="col-xs-4">
+          <h4 class="techSkillHeader"><i class="fa fa-cogs"></i> Other</h4> {% for item in site.data.cv.technicalSkills.other %} {{item.name}}
+          <div class="progress">
+            <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: {{item.level}}%"></div>
+          </div>
+          {% endfor %}
+        </div>
+        </div>
+        <div>
+          <h4><i class="fa fa-male"></i> Key competencies:</h4>
+        <ul>
+          {% for item in site.data.cv.technicalSkills.list %}
+            <li>{{item.tr}}</li>
+          {% endfor %}
+        </ul>
 
-    <h3 id="ecentral-it-networking-">Diploma of IT, Networking, eCentral Tafe </br> Perth, <em>2011 – 2012</em></h3>
+            </div>
+      </div>
+    </div>
 
-    <!-- ------------------- -->
-    <!-- Personal attributes -->
-    <!-- ------------------- -->
-    <h2 class="section" id="personal-attributes"><span>Personal Attributes</span></h2>
 
-    <ul>
-      <li>I am passionate and eager to learn new Systems and methods of providing reliable IT support and infrastructure.</li>
-      <li>Passionate about technology in general.</li>
-      <li>I have strong relationship skills talking to / helping people in a face to face situations.</li>
-      <li>Highly effective and practical problem solving skills.</li>
-    </ul>
+    <div class="row  section">
+      <div class="col-xs-3"><h2>Side Projects</h2></div>
+      <div class="col-xs-9">
+        {% for item in site.data.cv.sideProjects %}
+        <div class="row side-project">
+          <div class="col-xs-5">
+            <h4>
+            {% if item.type == 'github' %}
+                <i class="fa fa-github"></i>
+              {% elsif item.type == 'site' %}
+                <i class="fa fa-globe"></i>
+              {% endif %}
+              <a href="{{item.link}}">{{item.name}}</a>
+            </h4>
 
-    <h2 class="section" id="interests"><span>Interests</span></h2>
+            <h5>{{item.langs}}</h5>
+          </div>
+          <div class="col-xs-7">{{item.description}}</div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
 
-    <p>Computers, Mentally stimulating video games, Art/Science and Documentaries.</p>
-  </div>
+
+    <div class="row section">
+      <div class="col-xs-3"><h2>Education</h2></div>
+      <div class="col-xs-9">
+
+        {% for item in site.data.cv.education %}
+        <div class="row">
+          <div class="col-xs-12"><h4><b>{{item.name}}</b></h4></div>
+          <div class="col-xs-12"><i class="fa fa-graduation-cap"></i> {{item.degree}} ({{item.dates}})</div>
+          <div class="col-xs-12"><a href="{{item.link}}">{{item.link}}</a>, {{item.location}}</div>
+        </div>
+        {% endfor %}
+        </div>
+    </div>
 </body>
 
 </html>

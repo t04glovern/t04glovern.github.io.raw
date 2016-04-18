@@ -13,9 +13,15 @@ tags:
 
 ## Introduction
 
+***
+
 Virtualenv is a tool that is used to isolated Python environments. It does this by creating a folder that contains all the necessary executables to use the packages that a Python project would need.
 
+***
+
 ## Installation
+
+***
 
 You can install virtualenv via pip
 
@@ -23,9 +29,13 @@ You can install virtualenv via pip
 $ pip install virtualenv
 {% endhighlight bash %}
 
+***
+
 ## Basic Usage
 
-1. Create a virtual environment for a project
+***
+
+Create a virtual environment for a project
 
 {% highlight bash %}
 $ cd project_folder
@@ -50,6 +60,10 @@ The name of the current virtual environment will now appear on the left of the p
 
 ![Virtualenv]({{ site.url }}/images/posts/2016.02.03/python-virtualenv-path.png)
 
+***
+
 ## Removing environment
+
+***
 
 In order to remove and envinroment, simple `rm -rf` the virtualenv folder in your project; or delete the project folder all together.

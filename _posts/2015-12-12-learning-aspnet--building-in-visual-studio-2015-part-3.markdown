@@ -14,9 +14,15 @@ tags:
 
 ## Introduction
 
+***
+
 Now that we've learnt how to generate a project using `Yeoman`, we'll do the same thing using `Visual Studio 2015`. While `VSCode` and `Yeoman` are great ways to create projects, they can be limited with it comes to development.
 
+***
+
 ## Setting up your project
+
+***
 
 Open `Visual Studio 2015` and navigate to the Extension and Updates list. We'll be using a number of extensions to help make life easier; I would recommend installing them:
 
@@ -70,7 +76,11 @@ You might also want to uncheck `Host in the cloud`.
 
 A big thing to look out for is to make sure that you've got the correct `ASP.NET` runtime installed. If you have a look at the entries under `dependencies`; just make sure that they end in `1.0.0-rc1-final`. If they don't, or have a previous version; check back at my previous guide and follow the instructions to install the latest runtime.
 
+***
+
 ## Startup.cs
+
+***
 
 Have a look at the `Startup.cs` file below.
 
@@ -121,7 +131,11 @@ It does two things:
 * Within configure we call `app.UseIISPlatformHandler();` which is middleware that integrates with IIS. We're going to go ahead and get rid of that though. Also delete `"Microsoft.AspNet.IISPlatformHandler": "1.0.0-rc1-final"` from the `project.json` file
 * `app.Run` contains a little piece of code that runs each time a new request comes in.
 
+***
+
 ## Running our App
+
+***
 
 If you have a look in the menu above our project you'll see a green arrow with `IIS Express` next to it. This is how we will be running/debugging our web app. If you click the small black arrow pointing down you'll be greeting with a couple options asking how we want to run our code.
 
@@ -153,7 +167,11 @@ Build and run your app again and try to navigate to various subpages on your sit
 
 This is called middleware! We'll be working with a lot of things like this in the following tutorials.
 
+***
+
 ## Summary - What have we learnt?
+
+***
 
 So far we've covered the installation and basic use of `ASP.NET` and familiarized ourselves with different ways of generating and creating .NET projects. All the code we have used and are going to use is completely open source so we can dig around and understand exactly what's going on. You can actually check out the entire [.NET Core framework on github](https://github.com/dotnet/core).
 

@@ -3,20 +3,27 @@ layout: page
 title: About
 
 ---
+***
 
-### Who am I?
+## <center>Who am I?</center>
+
+***
 
 I'm a Full time Computer Science student who is also currently working as a sysadmin part time. When I'm not cramming for exams or working I'm normally expanding my skillsets by trying/experimenting new things.
 
 Here is a picture of me being all professional:
 
-![This is me!]({{ site.url }}/images/about-me/nathan-dp.png)
+![This is me!]({{ site.url }}/images/about-me/nathan-dp.png){:.center-image}
 
 I was on a reality show a few year back which resulted in me growing a really bad beard. The results are as follows:
 
-![This is bearded me!]({{ site.url }}/images/about-me/nathan-batg-pic.jpg)
+![This is bearded me!]({{ site.url }}/images/about-me/nathan-batg-pic.jpg){:.center-image}
 
-### What's the point?
+***
+
+## <center>What's the point?</center>
+
+***
 
 I just want a place I can share/post my thoughts or just descriptions or problems that I face. Because I'm constantly trying to learn new things my focus jumps around and I regularly forget things that I would consider to be important.
 

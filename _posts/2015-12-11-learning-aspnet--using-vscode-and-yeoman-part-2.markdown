@@ -15,6 +15,8 @@ tags:
 
 ## Installing and Using Yeoman
 
+***
+
 `ASP.NET` uses a tool called yeoman to assist in the development of applications for the web by generating the base project file structure and configurations so you can get to work quickly; rather than fiddling around with the same things every time you need to create a new project.
 
 You can install `Yeoman` using the following command:
@@ -136,7 +138,11 @@ C:\Users\Nathan\OneDrive\02 - Code\15 - ASP.NET\vscode\TheWorld>dir
                9 Dir(s)  43,917,889,536 bytes free
 {% endhighlight bat %}
 
+***
+
 ## Using Visual Studio Code (VS Code)
+
+***
 
 Next we want to open this project in VSCode. This can easily be done by simply typing:
 
@@ -279,6 +285,10 @@ info: Microsoft.AspNet.Hosting.Internal.HostingEngine[2]
       Request finished in 0.2016ms 200 image/png
 {% endhighlight bat %}
 
+***
+
 ## Summary
+
+***
 
 We've learned how to generate code using Yeoman and edit/view it in `Visual Studio Code`. In the next lesson we'll be learning how to do the same thing, from scratch in `Visual Studio 2015`. Hopefully I'm not going into too much detail, but I think it's beneficial to have the whole process documented instead of assuming everything will understand exactly what's going on.

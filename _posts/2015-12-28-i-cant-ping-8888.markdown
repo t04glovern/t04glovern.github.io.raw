@@ -13,9 +13,15 @@ tags:
 
 ## Introduction (To Hell)
 
+***
+
 For the last 24 hours there has been a major fault with the vendor infrastructure that provides the NBN connection to our house. I've been through periods without Internet before, but I've never had to deal with an outage on a public holiday and knew from the get-go that It was likely to be a difficult time in my life.
 
+***
+
 ## Denial
+
+***
 
 ![Denial]({{ site.url }}/images/posts/2015.12.28/internet-denial.jpg)
 
@@ -25,7 +31,11 @@ I rolled my eyes assuming that the kittens we were looking after had bumped the 
 
 As I walked towards the room where the access point was a sickening through came to mind; my phone had been connected to the WiFi, it just wasn't routing to any outside networks.... meaning that the issue probably wasn't the access point at all. I made a sharp turn into my study and ripped the cord from the wall connecting my router/modem to power. After a moment I plugged the cord back in and took a long, deep breath as I watched the internet LED light flash on then back off.
 
+***
+
 ## Anger
+
+***
 
 ![Anger]({{ site.url }}/images/posts/2015.12.28/internet-anger.jpg)
 
@@ -75,7 +85,11 @@ There was also quite a few somewhat pissed of people who clearly shared my frust
 
 ![Trolled 2]({{ site.url }}/images/posts/2015.12.28/internet-fuel-the-rage-2.png)
 
+***
+
 ## Bargaining
+
+***
 
 ![Bargin]({{ site.url }}/images/posts/2015.12.28/internet-bargin.jpg)
 
@@ -87,7 +101,11 @@ Maybe I could go to a friends house or my parents? No that would require sociali
 
 The only option I had left is to maybe buy a datapack for my phone and use my megabytes sparingly. Unfortunately I have a high daily usage as it is (over 4-5gb easily) and I doubt I could hold back from spending $50+ on data, so I best not tempt myself at all.
 
+***
+
 ## Depression
+
+***
 
 ![Hello Darkness]({{ site.url }}/images/posts/2015.12.28/internet-hello-darkness.jpg)
 
@@ -101,7 +119,11 @@ If there is an all powerful god out there, why does he put me through this tortu
 
 I can't deal
 
+***
+
 ## Acceptance
+
+***
 
 ![Acceptance]({{ site.url }}/images/posts/2015.12.28/internet-acceptance.jpg)
 

@@ -13,11 +13,17 @@ tags:
 
 ## Introduction
 
+***
+
 We just had a [Jaycar](http://www.jaycar.com.au/) open in our area and I've taken it upon myself to drop in and pick up some in-expensive components every now and then in preparation for some of the `Arduino/Pi` based units I'll be taking next semester when Uni goes back.
 
 I was able to pick up a relatively cheap analog thumbstick today and I came up with the idea to have it control one of the RGB LED units I had sitting around gathering dust at home. I didn't want to over complicate the project, as I didn't have a huge amount of experience with the platform and was honestly going to be happy just getting analog serial readings from the thumbstick showing in the `Arduino IDE`.
 
+***
+
 ## Part List
+
+***
 
 The following parts were used throughout the build of this project:
 
@@ -33,7 +39,11 @@ The final schematic I'll be referring to throughout the design process is shown 
 
 ![Thumbstick RGB Circuit]({{ site.url }}/images/posts/2015.12.21/arduino-thumbstick-rgb-led.png)
 
+***
+
 ## Reading input from the Thumbstick
+
+***
 
 To start with I wanted to make sure that I could easily read from logical values from the thumbstick. In order to do this I connected the `VRx` and `VRy` lines to the Analog IN Pins `AO` and `A1` on the `Arduino` board.
 
@@ -94,7 +104,11 @@ Fixing this problem is as simple as adding a delay to the bottom of the `loop()`
 delay(30);
 {% endhighlight java %}
 
+***
+
 ## Understanding the RGB Module
+
+***
 
 The `RGB` unit I decided to use has four inputs. Three of those inputs take a variable voltage and uses that value to display a colour based on three sets of 0-255 integers (`Red` `Blue` `Green` combination).
 
@@ -130,7 +144,11 @@ if (sensorYValue < sensorYLow){
 
 Using this setup means that I always deal with expected values and even if I do get a curve-ball input, my system will know how to deal with it.
 
+***
+
 ## Interface RGB Unit with PWM Pins
+
+***
 
 Now that we are importing logical data, we're safe to move forward and interface the RGB unit. First I connected the `Digital PWM pins` in series with the RGB legs and a single 220Ω Resistor on  each leg of my LED. Following that I added code to map the digital ports to meaningful names
 
@@ -177,7 +195,11 @@ analogWrite(greenLEDPin, valueY);
 analogWrite(blueLEDPin, valueMix);
 {% endhighlight java %}
 
+***
+
 ## Run the Code
+
+***
 
 Presto! my code works great
 

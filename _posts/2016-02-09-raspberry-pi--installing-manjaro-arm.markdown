@@ -13,6 +13,8 @@ tags:
 
 ## Introduction
 
+***
+
 Anyone who knows me knows that recently I've gotten a little bit too attached to a particular distribution called [Manjaro Linux](https://manjaro.github.io/). So when I heard that an `ARM version` was released and would work on my `Raspberry Pi 2` I got pretty excited!
 
 In this tutorial I go through the steps required to setup the Manjaro Full ARM release, but the same steps can be followed for installation of the headless/minimal version.
@@ -25,7 +27,11 @@ These instructions are pretty heavily copied from [this official post](http://wi
 2. Copy of the latest build [found here](http://manjaro-arm.org/downloads.php).
 3. A distribution with access to various partitioning tools
 
+***
+
 ## Preparing Environment
+
+***
 
 Open up a terminal and navigate to your HOME directory. From there create two folder; `root` and `boot`
 
@@ -39,7 +45,11 @@ $ mkdir boot
 
 You'll also notice I have copies of both the `tar.gz` builds. I'll only be using `Manjaro-Arm_Base_16.01-alpha1.tar.gz` from this point on.
 
+***
+
 ## Making the Partitions
+
+***
 
 Insert the MicroSD card into an adapter on your Linux computer and run `lsblk` to see if the device is registered. You will get an output similar to the following.
 
@@ -91,7 +101,11 @@ Your output should look similar to the following:
 ![Manjaro ARM fdisk 1]({{ site.url }}/images/posts/2016.02.09/manjaro-arm-fdisk-1.png)
 ![Manjaro ARM fdisk 2]({{ site.url }}/images/posts/2016.02.09/manjaro-arm-fdisk-2.png)
 
+***
+
 ## Making the Filesystems
+
+***
 
 Now that the `partitions` are created on the device, we need to construct `filesystems` on them to hold the data. These commands will also need to be done as root (not using sudo).
 
@@ -145,7 +159,11 @@ Finally just unmount the sdcard and you're good to remove it from the system
 # exit <to return to standard user>
 {% endhighlight bash %}
 
+***
+
 ## Using the System
+
+***
 
 Plug the MicroSD into your `Raspberry Pi 2` and boot it up! If you used the `headless` build you can login to your system over `ssh`
 
@@ -165,6 +183,10 @@ If you opted for the full build the system will automatically log you in as the 
 
 ![Manjaro ARM booted gui]({{ site.url }}/images/posts/2016.02.09/manjaro-arm-manjaro-gui.png)
 
+***
+
 ## Conclusion
+
+***
 
 I love Manajaro for x86, and the ARM version is just as lovable! I would highly recommend it to anyone looking at moving away from the standard distributions available for the Raspberry Pi. Not only is it a good `introduction to Arch`, but it can utilize `AUR` for updates so you've got a good foundation for binary and application build support.

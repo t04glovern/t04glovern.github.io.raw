@@ -13,11 +13,17 @@ tags:
 
 ## Introduction
 
+***
+
 I've been looking into some projects involving an `LED matrix`; but hit a few road blocks due to issues with the sheer number of LEDs I need to control. I've always known about the existence of `shift registers` and their ability to control many LEDs and other components without needing separate pins to drive each small bit of my circuits, so I thought I'd look into how they work.
 
 I picked up a kit recently that had a [SN74HC595N Shift Register](http://www.digikey.com/product-detail/en/SN74HC595N/296-1600-5-ND/277246) in it, and with a bit of help from the [datasheet](http://www.ti.com/lit/ds/symlink/sn74hc595.pdf) I was able to begin working on some projects with it.
 
+***
+
 ## Understanding Shift Registers
+
+***
 
 A `shift register` is a device that accepts a stream of serial bits and simultaneously output the values of those bits onto parallel I/O pins. They come in handy when trying to drive a large numbers of LEDs or basically any other component that might require a vast number of outputs. The diagram below illustrates all the various inputs and outputs available on a standard shift register IC.
 
@@ -49,7 +55,11 @@ Take a look at the pin-out diagram for our Shift register below
 
 8. `SRCLR` - Serial Clear pin, again the bar means that is is also an active low. When pulled low, it empties the contents of the shift register.
 
+***
+
 ## How the Shift Register works
+
+***
 
 A shift register is a `synchronous device`; it only acts on the `rising edge` of the clock signal. Every time the clock signal transitions from low to high, all the values currently stored in the eight output registers are shifted over one position (the last one is either discarded or output on the `Q(H)'` pin if you are cascading registers).
 
@@ -61,7 +71,11 @@ Below depicts the process we would take if we wanted to set every other LED to t
 
 First, the `LATCH pin` is set `low` so that the current LED states are not changed while new values are shifted in. Then, the LED states are shifted into the registers in order on the `CLOCK edge` from the `DATA line`. After all the values have been shifted in, the `LATCH pin` is set `high` again, and the values are outputted from the shift registers.
 
+***
+
 ## Shifting Serial Data from the Arduino
+
+***
 
 Now that we understand how the Shift Register works, we can write Arduino code to control the shift register. Luckily there is already a library for controlling this type of system called [shiftOut](https://www.arduino.cc/en/Reference/ShiftOut).
 
@@ -87,7 +101,11 @@ Once you've wired up your circuit you'll have something that will look at little
 
 ![Shift Register Circuit]({{ site.url }}/images/posts/2016.01.03/arduino-shift-reg-pic.jpg)
 
+***
+
 ## The Code
+
+***
 
 The code is actually super easy; We start with our pin constants along with a variable to store the current value we're inserting into the LED
 
@@ -151,7 +169,11 @@ Lets run the code!
 
 ![Shift Demo]({{ site.url }}/images/posts/2016.01.03/arduino-shift-demo.gif)
 
+***
+
 ## Expand on ideas
+
+***
 
 With what we now know, we can do some pretty cool things. Another idea I went ahead and implemented was a potentiometer controlled bar that will light up as the value extracted from the potentiometer increases.
 
@@ -209,7 +231,11 @@ void loop() {
 
 ![Shift Demo Potentiometer]({{ site.url }}/images/posts/2016.01.03/arduino-shift-demo-potent.gif)
 
+***
+
 ## Conclusion
+
+***
 
 Shift Registers are very powerful when used in the right places. They can be changed together allowing expansion outwards from `8bit` to as many Shift Registers as required. Overall this project was a really interesting look into what is available and has given me a lot of really interesting ideas for future projects.
 

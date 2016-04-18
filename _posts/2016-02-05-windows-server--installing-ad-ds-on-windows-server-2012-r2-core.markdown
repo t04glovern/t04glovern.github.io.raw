@@ -13,6 +13,8 @@ tags:
 
 ## Introduction
 
+***
+
 Recently there has been a big shift away from the well known `GUI interface` that comes with the standard `Windows Server` products and more focus has been put on building infrastructure that does a single task with very little overhead.
 
 Because of this trend I thought it would be best to look into the process required to setup a Domain entirely on [Server Core](https://msdn.microsoft.com/en-us/library/hh846323%28v=vs.85%29.aspx?f=255&MSPPError=-2147217396). I'm also in the process of setting up a test lab for my office; so I thought it would be nice to document my interpretation and execution of a *some-what* best practice environment.
@@ -24,7 +26,11 @@ Because of this trend I thought it would be best to look into the process requir
 4. Installing the Active Directory Domain Services role with PowerShell
 5. Domain Services / General Server Management
 
+***
+
 ## Install Server Core
+
+***
 
 I've opted to use `Windows Server 2012 R2 Evaluation` for this installation, making sure to select `Server Core` and not the full standard install with a GUI.
 
@@ -46,7 +52,11 @@ If you're like me and hate the look/feel of the windows console, you can run `ta
 
 ![Task Manager PowerShell]({{ site.url }}/images/posts/2016.02.05/ad-ds-taskmgr-powershell.png)
 
+***
+
 ## Renaming the Server
+
+***
 
 Our first task will be to rename the server. We'll be using a simple PowerShell cmdlet for this:
 
@@ -70,7 +80,11 @@ $env:COMPUTERNAME
 
 ![PowerShell Rename Check]({{ site.url }}/images/posts/2016.02.05/ad-ds-powershell-rename-check.png)
 
+***
+
 ## Set the IP and DNS Addresses
+
+***
 
 Now that the name is all setup lets have a crack at setting the `IP` and `DNS Addresses` with PowerShell. Before we jump in, run the following cmdlet to generate a list of network adapter interfaces currently registered with your system.
 
@@ -111,7 +125,11 @@ Set-DNSClientServerAddress -InterfaceIndex 12 -ServerAddresses 192.168.0.200
 
 ![PowerShell Set Network DNS]({{ site.url }}/images/posts/2016.02.05/ad-ds-powershell-set-network-dns.png)
 
+***
+
 ## Install the Active Directory Domain Services role
+
+***
 
 Next we install the `AD DS Role` onto the server. This is done using the `Install-WindowsFeature` cmdlet.
 
@@ -121,7 +139,11 @@ Install-WindowsFeature -Name AD-Domain-Services
 
 ![AD DS Role Install]({{ site.url }}/images/posts/2016.02.05/ad-ds-powershell-install-role.png)
 
+***
+
 ## Promote the server to a Domain Controller
+
+***
 
 Promoting the server to a domain controller can be done in a single line; granted it is a very long line... but still pretty impressive.
 
@@ -180,14 +202,22 @@ Awesome! Now join a client to the new domain and confirm everything works as exp
 
 ![Domain Join Successful]({{ site.url }}/images/posts/2016.02.05/ad-ds-powershell-joined-domain.png)
 
+***
+
 ## Domain Management
+
+***
 
 Just because you don't have a GUI doesn't mean you can't effectively manage your Active directory suite, in fact it's pretty damn easy to get what you need done with one of two methods.
 
 1. Remote Server Administration Tools (RSAT)
 2. PowerShell
 
+***
+
 ### RSAT Management
+
+***
 
 You can install the Remote Server Administration Tools from the following link.
 
@@ -197,13 +227,21 @@ For Active directory management I would recommend using the `Active Directory Ad
 
 ![RSAT User Create]({{ site.url }}/images/posts/2016.02.05/ad-ds-rsat-create-user.png)
 
+***
+
 ### PowerShell
+
+***
 
 You will also notice that when you commit changes, a `PowerShell history` entry is created along the bottom of the page. This gives you an idea of some of the various commands you can use to perform the same operations you just made with the GUI.
 
 ![RSAT User Create PowerShell]({{ site.url }}/images/posts/2016.02.05/ad-ds-rsat-create-user-powershell.png)
 
+***
+
 ## Conclusion
+
+***
 
 Overall I can see the appeal in Core; It isn't really that much more difficult to manage than Server Standard, plus you save resources by not including anything you don't absolutely need.
 

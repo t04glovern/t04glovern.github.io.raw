@@ -11,7 +11,7 @@ tags:
  - ospf
 ---
 
-# Overview
+## Overview
 
 ***
 
@@ -34,7 +34,7 @@ The following are the skills covered in the following assessment:
 
 ***
 
-# Initial Information
+## Initial Information
 
 ***
 
@@ -52,7 +52,7 @@ The following are the skills covered in the following assessment:
 
 ***
 
-# Step 1: Plan the Addressing
+## Step 1: Plan the Addressing
 
 ***
 
@@ -90,7 +90,7 @@ Using the information above will normally allow you to easily work through the t
 
 ***
 
-# Step 2: Configure Building 1
+## Step 2: Configure Building 1
 
 ***
 
@@ -159,7 +159,7 @@ Bldg-1(config)#service password-encryption
 
 ***
 
-# Step 3: Configure the Router Interfaces
+## Step 3: Configure the Router Interfaces
 
 ***
 
@@ -231,7 +231,7 @@ Main(config-if)#clock rate 128000
 
 ***
 
-# Step 4: Configure inter-VLAN routing on Building 2
+## Step 4: Configure inter-VLAN routing on Building 2
 
 ***
 
@@ -265,7 +265,7 @@ Bldg-2(config-subif)#ip address 10.10.25.1 255.255.255.0
 
 ***
 
-# Step 5: Configure Default Routing
+## Step 5: Configure Default Routing
 
 ***
 
@@ -279,22 +279,20 @@ Main(config)#ip route 0.0.0.0 0.0.0.0 s0/1/0
 
 ***
 
-# Step 6: Configure OSPF Routing
+## Step 6: Configure OSPF Routing
 
 ***
 
 #### **Task:**
 1. On all routers:
-
-* Configure multiarea OSPFv2 to route between all internal networks. Use a process ID of 1.
-* Use the area numbers shown in the topology.
-* Use the correct wild card masks for all network statements.
-* You are not required to route the manage network on Building 2.
-* Prevent routing updates from being sent to the LANs.
+  * Configure multiarea OSPFv2 to route between all internal networks. Use a process ID of 1.
+  * Use the area numbers shown in the topology.
+  * Use the correct wild card masks for all network statements.
+  * You are not required to route the manage network on Building 2.
+  * Prevent routing updates from being sent to the LANs.
 
 2. On the Main router:
-
-* Configure multiarea OSPFv2 to distribute the default route to the other routers.
+  * Configure multiarea OSPFv2 to distribute the default route to the other routers.
 
 #### **How:**
 * Configure multiarea OSPFv2 to route between all internal networks. Use a process ID of 1.
@@ -369,7 +367,7 @@ Main(config-router)#default-information originate
 
 ***
 
-# Step 7: Customize Multiarea OSPFv2
+## Step 7: Customize Multiarea OSPFv2
 
 ***
 
@@ -379,16 +377,15 @@ Customize multiarea OSPFv2 by performing the following configuration tasks:
 1. Set the bandwidth of all serial interfaces to 128 kb/s.
 
 2. Configure OSPF router IDs as follows:
-
-* Building 1: 1.1.1.1
-* Main: 2.2.2.2
-* Building 2: 3.3.3.3
-* The configured router IDs should be in effect on all three routes.
+  * Building 1: 1.1.1.1
+  * Main: 2.2.2.2
+  * Building 2: 3.3.3.3
+  * The configured router IDs should be in effect on all three routes.
 
 3. Configure the OSPF cost of the link between Building 1 and Main to 7500.
 
 #### **How:**
-1. Set the bandwidth of all serial interfaces to 128 kb/s.
+Set the bandwidth of all serial interfaces to 128 kb/s.
 
 {% highlight bash %}
 Bldg-1(config)#int s0/0/0
@@ -403,7 +400,7 @@ Bldg-2(config)#int s0/0/1
 Bldg-2(config-if)#bandwidth 128
 {% endhighlight bash %}
 
-2. Configure OSPF router IDs as follows:
+Configure OSPF router IDs as follows:
 
 * Building 1: 1.1.1.1
 
@@ -426,7 +423,7 @@ Bldg-2(config)#router ospf 1
 Bldg-2(config-router)#router-id 3.3.3.3
 {% endhighlight bash %}
 
-3. Configure the OSPF cost of the link between Building 1 and Main to 7500.
+Configure the OSPF cost of the link between Building 1 and Main to 7500.
 
 {% highlight bash %}
 Bldg-1(config)#int s0/0/0
@@ -438,7 +435,7 @@ Main(config-if)#ip ospf cost 7500
 
 ***
 
-# Step 8: Configure OSPF MD5 Authentication on the Required Interfaces
+## Step 8: Configure OSPF MD5 Authentication on the Required Interfaces
 
 ***
 
@@ -473,12 +470,12 @@ Bldg-2(config-if)#ip ospf authentication message-digest
 
 ***
 
-# Step 9: Configure Access Control Lists
+## Step 9: Configure Access Control Lists
 
 ***
 
 #### **Task/How:**
-1. Restrict access to the vty lines on Main with an ACL:
+Restrict access to the vty lines on Main with an ACL:
 
 * Create a named standard ACL using the name TELNET-BLOCK. Be sure that you enter this name exactly as it appears in this instruction.
 
@@ -497,7 +494,7 @@ Main(config)#line vty 0 15
 Main(config-line)#access-class TELNET-BLOCK in
 {% endhighlight bash %}
 
-2. Block ping requests from the Internet with an ACL:
+Block ping requests from the Internet with an ACL:
 
 * Use access list number 101.
 
@@ -512,7 +509,7 @@ Main(config-if)#ip access-group 101 in
 * Your ACL should consist of three statements.
 * Your ACL should be placed in the most efficient location as possible to conserve network bandwidth and device processing resources.
 
-3. Control access to the management interfaces (SVI) of the three switches attached to Building 2 as follows:
+Control access to the management interfaces (SVI) of the three switches attached to Building 2 as follows:
 
 * Create a standard ACL.
 * Use the number 1 for the list.
@@ -535,7 +532,7 @@ Bldg-2(config-if)#ip access-group 1 out
 
 ***
 
-# Step 10: Create and name VLANs
+## Step 10: Create and name VLANs
 
 ***
 
@@ -592,7 +589,7 @@ FL-C(config-vlan)#name safe
 
 ***
 
-# Step 11:  Assign switch ports to VLANs.
+## Step 11:  Assign switch ports to VLANs.
 
 ***
 
@@ -601,8 +598,8 @@ Using the VLAN table, assign switch ports to the VLANs you created in Step 10, a
 
 * All switch ports that you assign to VLANs should be configured to static access mode.
 * All switch ports that you assign to VLANs should be activated.
-* Note that all of the unused ports on SW-A should be assigned to VLAN 99. This configuration step on switches SW-B and SW-C is not required in this assessment for the sake of time.
-* Secure the unused switch ports on SW-A by shutting them down.
+* Note that all of the unused ports on FL-A should be assigned to VLAN 99. This configuration step on switches FL-B and FL-C is not required in this assessment for the sake of time.
+* Secure the unused switch ports on FL-A by shutting them down.
 
 #### **How:**
 Using the VLAN table, assign switch ports to the VLANs you created in Step 10, as follows:
@@ -652,8 +649,8 @@ FL-C(config-if)#switchport access vlan 15
 FL-C(config-if)#no shutdown
 {% endhighlight bash %}
 
-* Note that all of the unused ports on SW-A should be assigned to VLAN 99. This configuration step on switches SW-B and SW-C is not required in this assessment for the sake of time.
-* Secure the unused switch ports on SW-A by shutting them down.
+* Note that all of the unused ports on FL-A should be assigned to VLAN 99. This configuration step on switches FL-B and FL-C is not required in this assessment for the sake of time.
+* Secure the unused switch ports on FL-A by shutting them down.
 
 {% highlight bash %}
 FL-A(config)#interface range fa0/6-9,fa0/11-14,fa0/16-23
@@ -669,7 +666,7 @@ FL-A(config-if-range)#shutdown
 
 ***
 
-# Step 12:  Configure the SVIs
+## Step 12:  Configure the SVIs
 
 ***
 
@@ -696,12 +693,12 @@ FL-C(config-vlan)#no shutdown
 
 ***
 
-# Step 13: Configure Trunking and EtherChannel
+## Step 13: Configure Trunking and EtherChannel
 
 ***
 
 #### **Task/How:**
-1. Use the information in the Port-Channel Groups table to configure EtherChannel as follows:
+Use the information in the Port-Channel Groups table to configure EtherChannel as follows:
 
 * Use LACP.
 * The switch ports on both sides of Channels 1 and 2 should initiate negotiations for channel establishment.
@@ -764,14 +761,14 @@ FL-C(config-if)#switchport mode trunk
 FL-X(config-if)#no shutdown (if you didn't do it prior)
 {% endhighlight bash %}
 
-2. Configure all port-channel interfaces as trunks.
+Configure all port-channel interfaces as trunks.
 
 {% highlight bash %}
 FL-X(config)#interface port-channel X (again you should have done it prior)
 FL-X(config-if)#switchport mode trunk
 {% endhighlight bash %}
 
-3. Configure static trunking on the switch port on FL-B that is connected to Building 2.
+Configure static trunking on the switch port on FL-B that is connected to Building 2.
 
 {% highlight bash %}
 FL-B(config)#interface g0/1
@@ -780,7 +777,7 @@ FL-B(config-if)#switchport mode trunk
 
 ***
 
-# Step 14: Configure Rapid PVST+
+## Step 14: Configure Rapid PVST+
 
 ***
 
@@ -844,14 +841,14 @@ FL-C(config-if-range)#no shutdown
 
 ***
 
-# Step 15: Configure switch security
+## Step 15: Configure switch security
 
 ***
 
 #### **Task/How:**
 You are required to complete the following only on some of the devices in the network for this assessment. In reality, security should be configured on all devices in the network.
 
-1. Configure port security on all active access ports that have hosts connected on FL-A.
+Configure port security on all active access ports that have hosts connected on FL-A.
 
 {% highlight bash %}
 FL-A(config)#interface fa0/5
@@ -906,7 +903,7 @@ FL-A(config)#interface fa0/24
 FL-A(config-if)#switchport port-security violation restrict
 {% endhighlight bash %}
 
-2. On FL-B, configure the virtual terminal lines to accept only SSH connections.
+On FL-B, configure the virtual terminal lines to accept only SSH connections.
 
 * Use a domain name of ccnaPTSA.com.
 
@@ -950,7 +947,7 @@ FL-B(config-line)#transport input ssh
 FL-B(config)#username netadmin password SSH_secret9
 {% endhighlight bash %}
 
-3. Ensure that all unused switch ports on FL-A have been secured as follows:
+Ensure that all unused switch ports on FL-A have been secured as follows:
 
 * They should be assigned to VLAN 99.
 * They should all be in access mode.
@@ -972,7 +969,7 @@ FL-A(config-if-range)#shutdown
 
 ***
 
-# Step 16: Configure Building 2 as a DHCP server for the hosts attached to the FL-A and FL-C switches
+## Step 16: Configure Building 2 as a DHCP server for the hosts attached to the FL-A and FL-C switches
 
 ***
 
@@ -1030,7 +1027,7 @@ Bldg-2(dhcp-config)#default-router 10.10.X.1 (this command from above)
 
 ***
 
-# Step 17: Configure host addressing
+## Step 17: Configure host addressing
 
 ***
 

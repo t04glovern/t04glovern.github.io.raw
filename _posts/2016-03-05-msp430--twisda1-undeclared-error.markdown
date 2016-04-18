@@ -13,6 +13,8 @@ tags:
 
 ## Problem
 
+***
+
 When trying to compile code for the MSP430 Experimental board (specifically the MSP-EXP430FR5739) in Energia version 0101E0017 the following error stream is presented:
 
 {% highlight bash %}
@@ -38,7 +40,11 @@ C:\Program Files (x86)\Energia\hardware\msp430\cores\msp430\twi_sw.c:159:11: err
 
 The issues occurs because the the I2C SW library loads but isn't included explicitely so the sketch won't load (yay c)
 
+***
+
 ## Resolution
+
+***
 
 The fix is documented [here](https://github.com/energia/Energia/commit/827e338d22f57e03f21ffb5a064c271498d983b6) and is available for people who clone their Energia from git instead of using the installation binary.
 
@@ -49,7 +55,11 @@ You have two options:
 
 Your choice...
 
+***
+
 #### Option 1 - Clone/Update
+
+***
 
 Ensure you have [git](http://www.git-scm.com/) installed and clone the repo to a desired location on your harddrive
 
@@ -67,7 +77,11 @@ git pull
 cd ..
 {% endhighlight bash %}
 
+***
+
 #### Option 2 - Update yourself
+
+***
 
 Navigate to the following subdirectory of the Energia folder and open twi_sw.c
 
@@ -91,6 +105,10 @@ On the last line in the file (just after the last bracket) add your endif statem
 
 ![Line Change 2]({{ site.url }}/images/posts/2016.03.05/energia-line-change-2.png)
 
+***
+
 ## Results
+
+***
 
 After making the changes above you should be able to push your sketch over to your MSP430 without any issues

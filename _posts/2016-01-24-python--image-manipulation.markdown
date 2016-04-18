@@ -12,9 +12,15 @@ tags:
 
 ## Introduction
 
+***
+
 As part of a program through my University and [CoderdojoWA](http://www.coderdojowa.org.au/) I've been asked to oversee a project relating to image manipulation in `Python` using the [Python Image Library](http://pythonware.com/products/pil/). While I wasn't the one to write the guide, I have been asked to test and confirm I understand it well enough to be able to teach the content this coming February.
 
+***
+
 ## Base Code + Image
+
+***
 
 The following code was written with `PIL (Python Imaging Library)` that is currently only supported officially on `Python2.7`. Below is the base code that we will be using throughout the course of this lesson.
 
@@ -69,7 +75,11 @@ The code now will export an identical copy of the original BMP file but with the
 
 The rest of the tutorial will demonstrate the methods required to manipulate images in a number of different ways. Simply add the new function into your code and change the `new_img = filter_name(img)` line in your `__main__` to match the method you'd like to execute.
 
+***
+
 ## Invert
+
+***
 
 ![Earth Render Invert]({{ site.url }}/images/posts/2016.01.24/python-earth-render-invert.bmp)
 
@@ -89,7 +99,11 @@ def invert(img):
     return new_img
 {% endhighlight python %}
 
+***
+
 ## Mask (Black and White)
+
+***
 
 ![Earth Render Mask]({{ site.url }}/images/posts/2016.01.24/python-earth-render-mask.bmp)
 
@@ -113,7 +127,11 @@ def mask(img):
     return new_img
 {% endhighlight python %}
 
+***
+
 ## Grayscale
+
+***
 
 ![Earth Render Greyscale]({{ site.url }}/images/posts/2016.01.24/python-earth-render-greyscale.bmp)
 
@@ -131,7 +149,11 @@ def greyscale(img):
     return new_img
 {% endhighlight python %}
 
+***
+
 ## Sepia Tone
+
+***
 
 ![Earth Render Sepia Tone]({{ site.url }}/images/posts/2016.01.24/python-earth-render-sepia.bmp)
 
@@ -160,7 +182,11 @@ def sepia(img):
     return new_img
 {% endhighlight python %}
 
+***
+
 ## Swap Channels
+
+***
 
 ![Earth Render Swap Channels]({{ site.url }}/images/posts/2016.01.24/python-earth-render-swap.bmp)
 
@@ -177,7 +203,11 @@ def swap_channels(img):
     return new_img
 {% endhighlight python %}
 
+***
+
 ## Flipping
+
+***
 
 ![Earth Render Flipping]({{ site.url }}/images/posts/2016.01.24/python-earth-render-flip.bmp)
 
@@ -193,7 +223,11 @@ def flip(img):
     return new_img
 {% endhighlight python %}
 
+***
+
 ## Mirroring
+
+***
 
 ![Earth Render Mirroring]({{ site.url }}/images/posts/2016.01.24/python-earth-render-mirror.bmp)
 
@@ -209,7 +243,11 @@ def mirror(img):
     return new_img
 {% endhighlight python %}
 
+***
+
 ## Contrast
+
+***
 
 ![Earth Render Contrast]({{ site.url }}/images/posts/2016.01.24/python-earth-render-contrast.bmp)
 
@@ -238,7 +276,11 @@ def contrast(img):
     return new_img
 {% endhighlight python %}
 
+***
+
 ## Get Block Average Function
+
+***
 
 For the remaining tasks we'll be utilizing the following function. Be sure to add it into your project so we can reference it.
 
@@ -271,7 +313,11 @@ def get_block_average(img, x, y, block_size):
             sums[2] / len(pixel_list))
 {% endhighlight python %}
 
+***
+
 ## Blur
+
+***
 
 ![Earth Render Blur]({{ site.url }}/images/posts/2016.01.24/python-earth-render-blur.bmp)
 
@@ -287,7 +333,11 @@ def blur(img):
     return new_img
 {% endhighlight python %}
 
+***
+
 ## Stark Lines
+
+***
 
 ![Earth Render Stark Lines]({{ site.url }}/images/posts/2016.01.24/python-earth-render-line.bmp)
 
@@ -312,7 +362,11 @@ def line(img):
     return new_img
 {% endhighlight python %}
 
+***
+
 ## Pixelize
+
+***
 
 ![Earth Render Pixelize]({{ site.url }}/images/posts/2016.01.24/python-earth-render-pixel.bmp)
 
@@ -332,7 +386,11 @@ def pixelize(img):
     return new_img
 {% endhighlight python %}
 
+***
+
 ## Image Synthesis
+
+***
 
 Finally we can actually generate our own images using this library. Here's an interesting one that uses XOR
 

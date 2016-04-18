@@ -13,9 +13,15 @@ tags:
 
 ## Introduction to the ASP.NET Runtime
 
+***
+
 `ASP.NET` is an open-source server-side web application framework designed for web development to produce dynamic webpages. That's what [Wikipedia](https://en.wikipedia.org/wiki/ASP.NET) says about it anyway... I personally had no clue what it was until I recently began [taking a course](https://app.pluralsight.com/library/courses/aspdotnet-5-ef7-bootstrap-angular-web-app) that was available as part of the free 6 months worth of [Pluralsight](https://app.pluralsight.com) I picked up from the [Visual Studio Dev Essentials pack](https://myprodscussu1.app.vssubscriptions.visualstudio.com/Dashboard).
 
+***
+
 ## Three Frameworks
+
+***
 
 There are three frameworks available, each of them seamlessly integrate with one and other and provide different levels of functionality.
 
@@ -29,7 +35,11 @@ There are three frameworks available, each of them seamlessly integrate with one
 
 * **CoreCLR** is a subset of the .NET Framework.
 
+***
+
 ## Installing ASP.NET
+
+***
 
 1. Start by first installing [Visual Studio 2015](https://www.visualstudio.com/downloads/download-visual-studio-vs.aspx) if you haven't already got it on your system.
 * The install process can be quite lengthy, maybe go get 5-6 cups of coffee while you wait.
@@ -71,7 +81,11 @@ commands:
     version         Displays the DNVM version.
 {% endhighlight bat %}
 
+***
+
 ## Setting up
+
+***
 
 Running the command `dnvm list` from command line will result in a list of the current versions of ASP.NET 5 you currently have installed on your system
 
@@ -150,7 +164,11 @@ Microsoft .NET Execution environment
  Runtime Id:   win10-x86
 {% endhighlight bat %}
 
+***
+
 ## Hello World
+
+***
 
 At this stage we are ready to use the runtime we just installed. In order to do this you'll need to create two new files in a working directory with the following contents
 
@@ -188,6 +206,10 @@ C:\Users\Nathan\OneDrive\02 - Code\15 - ASP.NET\helloWorld>dnx run program.cs
 Hello World
 {% endhighlight bat %}
 
+***
+
 ## Summary
+
+***
 
 As someone new to the .NET scene I was astounded by how simple it was to get started with ASP.NET and I can't wait to get my fingers into some more difficult challenges. I would highly recommend checking out the [course](https://app.pluralsight.com/library/courses/aspdotnet-5-ef7-bootstrap-angular-web-app) I wrote this for; and even follow along with me as I make my way through the several hours worth of [FREE](https://myprodscussu1.app.vssubscriptions.visualstudio.com/Dashboard) content.

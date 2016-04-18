@@ -14,9 +14,15 @@ tags:
 
 ## Introduction
 
+***
+
 This guide outlines how to get `Borrowed Space` storage pools created in `EqualLogic storage manager` talking with ESXi over an iSCSI link. I make the assumption that you already have the various storage pools setup, my guide uses three existing spaces called Gold, Silver and Bronze.
 
+***
+
 ## Setup an iSCSI host adaptor
+
+***
 
 Login to one of the ESXi boxes you want to configure with the vSphere client and navigate to the `Configuration tab > Storage Adapters`. You'll be greeted with various storage adapters that are currently attached to your physical system. In order for us to talk with the EqualLogic storage device we need an iSCSI adapter setup.
 
@@ -28,7 +34,11 @@ Go ahead and check out the properties of the new adapter. Take note (copy) the i
 
 ![Adapter Creation with Name]({{ site.url }}/images/posts/2016.02.02/equallogic-storage-pool-adapter-name.png)
 
+***
+
 ## EqualLogic Access policies
+
+***
 
 Login to the `EqualLogic Group Manager` and jump into the `Group Configuration` section. You can see I've already setup the pools to connect with my first ESXi host.
 
@@ -50,7 +60,11 @@ Simply check all the various volumes you'd like to be available to the host conn
 
 ![Group Manager Access Policies Target Select]({{ site.url }}/images/posts/2016.02.02/equallogic-storage-pool-access-policies-targets-select.png)
 
+***
+
 ## Connect iSCSI Storage
+
+***
 
 Back in ESXi right click and select `Properites` on your `iSCSI Software Adapter` and click the `Dynamic Discovery` tab. Add a new location and put in the IP Address of the EqualLogic group manager (port is standard iSCSI 3260) and click `Ok`
 
@@ -66,6 +80,10 @@ If they don't show up simply click `Add Storage` with the storage type `Disk/LUN
 
 ![ESXi iSCSI Datastores]({{ site.url }}/images/posts/2016.02.02/equallogic-storage-pool-added.png)
 
+***
+
 ## Summary
+
+***
 
 Using `iSCSI Datastores` mean you can leverage some great `vMotion` and `HA` features that exist in vSphere without having to worry about large data migrations during VM moves. It's also a great way to ensure that all your various storage arrays are somewhat centralized.

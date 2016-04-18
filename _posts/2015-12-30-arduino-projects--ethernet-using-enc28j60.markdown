@@ -13,9 +13,15 @@ tags:
 
 ## Introduction
 
+***
+
 I've been putting off learning about interfacing for a while now. It isn't because I don't want to learn it though; In fact it's probably the part of embedded systems that I was looking most forward to. No; the reason I've been putting it off is purely due to the difficulty I've had trying to find a good, concise explanation of how it all works. I'm not content just loading in the interfacing libraries and accepting that as complete; I would really like to understand what is actually happening on each pin that I'm interfacing with and maybe even understand what the driver is doing.
 
+***
+
 ## The Module
+
+***
 
 So lets get started! The module I purchased to work with is a `Duinotech` board sporting a `HanRun HR911105A RJ45 connector` and the `ENC28J60 Ethernet controller`.
 
@@ -37,7 +43,11 @@ Some of the key features the controller offers that I'm interested in are:
 
 6. `WOL or Magic Packet` - Wake on LAN, another neat feature I'd love to explore on the board.
 
+***
+
 ## Pin Description
+
+***
 
 Below is the schematic provided for the `ENC28J60 Ethernet controller`. There are only a couple pins that we have direct access to via the Pin headers, I'll try to explain as best I can what each of these pins are and what they do.
 
@@ -68,7 +78,11 @@ If you're interested in the full block diagram for the controller, it can be see
 
 ![Controller Block Diagram]({{ site.url }}/images/posts/2015.12.30/arduino-ethernet-controller-block-diagram.png)
 
+***
+
 ## Serial Peripheral Interface (SPI)
+
+***
 
 Commands and data are sent to the device via the `SI pin`, with data being clocked in on the rising edge of `SCK`. Data is driven out on the `SO line` on the falling edge of `SCK`. The `CS pin` must be held low while any operation is performed and returned high when finished.
 
@@ -90,7 +104,11 @@ These interfaces are mapped to the following ports on the Arduino Uno. You can f
 
 ![ICSP]({{ site.url }}/images/posts/2015.12.30/arduino-ethernet-controller-icsp.png)
 
+***
+
 ## Ethercard Libraries + Examples
+
+***
 
 In order to get our device communicating we'll need to use a library called `Ethercard`. It can be downloaded from here:
 
@@ -116,7 +134,11 @@ DNS IP: 192.168.188.254
 
 Yay! We got it working. That's a really simple example though, and we still don't really know how it's working. Next we'll take a look at the code and try to build our own code from scratch.
 
+***
+
 ## Build a Webserver
+
+***
 
 Lets open a new project and begin. Start by adding the appropriate code to include the EtherCard library:
 
@@ -318,7 +340,11 @@ Keep learning!
 And have a happy new year
 {% endhighlight html %}
 
+***
+
 ## Conclusion
+
+***
 
 That was fun! Difficult, but very fun once I'd found the datasheet for the Ethernet controller. Something I've noticed is that I've become a lot better at tracking down information myself instead of relying on other peoples description to explain things to me. I think it's important to do things like what I did in this post; instead of relying on something else's knowledge to solve a problem, try to understand why everything happens rather than simply accepting that it does.
 
