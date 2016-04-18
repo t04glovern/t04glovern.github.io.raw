@@ -38,7 +38,7 @@ C:\Program Files (x86)\Energia\hardware\msp430\cores\msp430\twi_sw.c:157:11: err
 C:\Program Files (x86)\Energia\hardware\msp430\cores\msp430\twi_sw.c:159:11: error: 'TWISCL1' undeclared (first use in this function)
 {% endhighlight bash %}
 
-The issues occurs because the the I2C SW library loads but isn't included explicitely so the sketch won't load (yay c)
+The issues occurs because the I2C SW library loads but isn't included explicitly so the sketch won't load (yay c)
 
 ***
 
@@ -46,7 +46,7 @@ The issues occurs because the the I2C SW library loads but isn't included explic
 
 ***
 
-The fix is documented [here](https://github.com/energia/Energia/commit/827e338d22f57e03f21ffb5a064c271498d983b6) and is available for people who clone their Energia from git instead of using the installation binary.
+The fix is documented [here](https://github.com/energia/Energia/commit/827e338d22f57e03f21ffb5a064c271498d983b6) and is available for people who clone their Energia from Github instead of using the installation binary.
 
 You have two options:
 
@@ -61,7 +61,7 @@ Your choice...
 
 ***
 
-Ensure you have [git](http://www.git-scm.com/) installed and clone the repo to a desired location on your harddrive
+Ensure you have [git](http://www.git-scm.com/) installed and clone the repo to a desired location on your hard drive
 
 {% highlight bash %}
 git clone --recursive https://github.com/energia/Energia.git
