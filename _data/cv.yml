@@ -47,7 +47,7 @@ career:
     - accomplishment: Managing tasks and time-frames for Co-workers to follow.
 
 technicalSkills:
-    list:
+  list:
     - tr: "Embedded Systems: MSP430/TI, Arduino, RPi"
     - tr: "Scripting languages: Python/Powershell"
     - tr: "Web Markdown: Jekyll"
