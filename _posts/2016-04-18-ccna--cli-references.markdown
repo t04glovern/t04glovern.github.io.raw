@@ -22,6 +22,8 @@ tags:
   * Password Encryption
   * Password Limit Login Attempts
   * Disable Domain Lookup
+  * Save Configuration
+  * Clear Configuration
 
 2. **SSH Configure**
   * Configure Domain
@@ -42,7 +44,7 @@ tags:
 
 4. **Configure Static Route**
   * Setup Default route to internet
-  * Static Route to neighbour network
+  * Static Route to neighbor network
 
 5. **OSPF Configuration**
   * Enable OSPF with Process ID 1
@@ -52,26 +54,53 @@ tags:
   * Prevent Routing updates being sent to LAN
   * OSPF MD5 Authentication
 
-6. **VLANs and Trunking**
+6. **EIGRP Configuration**
+  * Display the directly connected networks
+  * Configure EIGRP to advertise to directly connected networks
+  * Configure Passive Interface (Prevent Updates sent to LAN)
+  * Disable Auto Summary
+  * Verify EIGRP Routing
+  * Manual Summary Calculations
+  * Manual Summary Address - Example 1
+  * Manual Summary Address - Example 2
+  * Manual Summary of the Previous Examples
+  * IPv6 Manual Summary - Example 1
+  * IPv6 Manual Summary - Example 2
+  * IPv6 Manual Summary of the Previous Examples
+
+7. **VLANs and Trunking**
   * Creating VLANs
   * Assign Switch Ports to VLANs
   * Switchport Static Access
+  * Sub-interface configuration
+  * Defines the encapsulation format as IEEE 802.1Q (dot1q)
+  * Specifies the VLAN identifier
 
-7. **EtherChannel and Trunking**
+8. **EtherChannel and Trunking**
   * Channel 1 and 2 initiate negotiations
-  * Channel 3 side B should negotiiate with side C
+  * Channel 3 side B should negotiate with side C
   * Channel 3 side C should not initiate negotiations with B
   * Configure Static Trunking on switchport
 
-8. **Switch Security**
+9. **Switch Security**
   * Configure port security on all active access ports
   * Accept only two MAC addresses
   * MAC addresses should be recorded
-  * Switchports should provide notification, but not place interface in disabled state.
+  * Switchport should provide notification, but not place interface in disabled state.
 
-9. **Configure DHCP**
+10. **Configure DHCP**
   * DHCP Pool Creation
   * Exclude the first five addresses from pool.
+
+11. **Configure Access Control Lists**
+  * Create a named standard ACL using the name MANAGE
+  * Allow only the host on 203.0.113.18 access
+  * Apply this policy to the VTY lines
+  * Create an Access list with number 101
+  * Allow external host 203.0.113.18 full access to inside network
+  * Allow outside access to 198.51.100.14 over HTTP only
+  * Allow responses to data requests to enter the Network
+  * Activate access list on interface
 
 ***
 
@@ -196,6 +225,29 @@ Pass: SSH_secret9
 R1(config)#username netadmin password SSH_secret9
 {% endhighlight bash %}
 
+**Save Configuration**
+
+{% highlight bash %}
+R1#copy running-config startup-config
+{% endhighlight bash %}
+
+**Clear Configuration**
+
+{% highlight bash %}
+Routers:
+R1# clear config all
+This command will clear all configuration in NVRAM.
+This command will cause ifIndex to be reassigned on the next system startup.
+Do you want to continue (y/n) [n]? y
+
+Switches:
+S1# write erase
+Erasing the nvram filesystem will remove all files! Continue? [confirm]y[OK]
+Erase of nvram: complete
+S1#
+S1# reload
+{% endhighlight bash %}
+
 ***
 
 #### <center>3. Configure Interface</center>
@@ -286,7 +338,6 @@ R2(config)#ip route 192.168.200.0 255.255.252.0 s0/0/1
 **<center>Network Diagram</center>**
 ![Addressing Table Complete]({{ site.url }}/images/posts/2016.04.18/ospf-network-diagram.png){:.center-image}
 
-
 **<center>Addressing Table</center>**
 ![Addressing Table Complete]({{ site.url }}/images/posts/2016.04.18/ospf-address-table-complete.png){:.center-image}
 
@@ -366,7 +417,134 @@ Main(config-if)#ip ospf authentication message-digest
 
 ***
 
-#### <center>6. VLANs and Trunking</center>
+#### <center>6. EIGRP Configuration</center>
+
+***
+
+**<center>EIGRP Sample Topology</center>**
+![EIGRP Routing Table]({{ site.url }}/images/posts/2016.04.18/eigrp-sample-topology.png){:.center-image}
+
+**<center>EIGRP Address Table</center>**
+![EIGRP Routing Table]({{ site.url }}/images/posts/2016.04.18/eigrp-address-table.png){:.center-image}
+
+**Display the directly connected networks**
+
+{% highlight bash %}
+R1(config-router)#do show ip route
+{% endhighlight bash %}
+
+![EIGRP Routing Table]({{ site.url }}/images/posts/2016.04.18/eigrp-routing-table.png){:.center-image}
+
+**Configure EIGRP to advertise to directly connected networks**
+
+{% highlight bash %}
+R1(config-router)#network 172.16.1.0 0.0.0.255
+R1(config-router)#network 172.16.3.0 0.0.0.3
+R1(config-router)#network 192.168.10.4 0.0.0.3
+
+R2(config-router)#network 172.16.2.0 0.0.0.255
+R2(config-router)#network 172.16.3.0 0.0.0.3
+R2(config-router)#network 192.168.10.8 0.0.0.3
+
+R3(config-router)#network 192.168.1.0 0.0.0.255
+R3(config-router)#network 192.168.10.4 0.0.0.3
+R3(config-router)#network 192.168.10.8 0.0.0.3
+{% endhighlight bash %}
+
+**Configure Passive Interface (Prevent Updates sent to LAN)**
+
+{% highlight bash %}
+R1(config-router)#passive-interface g0/0
+R2(config-router)#passive-interface g0/0
+R3(config-router)#passive-interface g0/0
+{% endhighlight bash %}
+
+**Disable Auto Summary**
+
+{% highlight bash %}
+R1(config)#router eigrp 1
+R1(config-router)#no auto-summary
+{% endhighlight bash %}
+
+**Verify EIGRP Routing**
+
+{% highlight bash %}
+R1#show ip eigrp neighbors
+{% endhighlight bash %}
+
+![EIGRP Routing neighbors]({{ site.url }}/images/posts/2016.04.18/eigrp-route-neighbours.png){:.center-image}
+
+**Manual Summary Calculations**
+
+![EIGRP Topology]({{ site.url }}/images/posts/2016.04.18/eigrp-topology.png){:.center-image}
+
+![EIGRP Address]({{ site.url }}/images/posts/2016.04.18/eigrp-addresses.png){:.center-image}
+
+**Manual Summary Address - Example 1**
+
+1. Find the Last place a common bit pattern occurs in the 4 octets. This will be our summary
+
+![EIGRP Summary 1]({{ site.url }}/images/posts/2016.04.18/eigrp-summary-1.png){:.center-image}
+
+{% highlight bash %}
+Branch-1(config)#int s0/0/0
+Branch-1(config-if)#ip summary-address eigrp 1 172.31.8.0 255.255.252.0
+{% endhighlight bash %}
+
+**Manual Summary Address - Example 2**
+
+![EIGRP Summary 2]({{ site.url }}/images/posts/2016.04.18/eigrp-summary-2.png){:.center-image}
+
+{% highlight bash %}
+Branch-2(config-if)#int s0/0/1
+Branch-2(config-if)#ip summary-address eigrp 1 172.31.12.0 255.255.252.0
+{% endhighlight bash %}
+
+**Manual Summary of the Previous Examples**
+
+![EIGRP Summary 3]({{ site.url }}/images/posts/2016.04.18/eigrp-summary-3.png){:.center-image}
+
+{% highlight bash %}
+IPv4-Edge(config)#int s0/1/0
+IPv4-Edge(config-if)#ip summary-address eigrp 1 172.31.8.0 255.255.248.0
+{% endhighlight bash %}
+
+**IPv6 Manual Summary - Example 1**
+
+![EIGRP Summary 4]({{ site.url }}/images/posts/2016.04.18/eigrp-summary-4.png){:.center-image}
+
+{% highlight bash %}
+Branch-3(config)#ipv6 router eigrp 1
+Branch-3(config-rtr)#eigrp router-id 3.3.3.3
+Branch-3(config-rtr)#int s0/0/0
+Branch-3(config-if)#ipv6 summary-address eigrp 1 2001:DB8:1:8::/62
+{% endhighlight bash %}
+
+**IPv6 Manual Summary - Example 2**
+
+![EIGRP Summary 5]({{ site.url }}/images/posts/2016.04.18/eigrp-summary-5.png){:.center-image}
+
+{% highlight bash %}
+Branch-4(config)#ipv6 router eigrp 1
+Branch-4(config-rtr)#eigrp router-id 4.4.4.4
+Branch-4(config-rtr)#int s0/0/1
+Branch-4(config-if)#ipv6 summary-address eigrp 1 2001:DB8:1:C::/62
+{% endhighlight bash %}
+
+**IPv6 Manual Summary of the Previous Examples**
+
+![EIGRP Summary 6]({{ site.url }}/images/posts/2016.04.18/eigrp-summary-6.png){:.center-image}
+
+{% highlight bash %}
+HQ-IPv6(config)#ipv6 router eigrp 1
+HQ-IPv6(config-rtr)#eigrp router-id 1.1.1.1
+HQ-IPv6(config)#int s0/0/1
+HQ-IPv6(config-if)#ipv6 summary-address eigrp 1 2001:DB8:1:8::/61
+{% endhighlight bash %}
+
+***
+
+#### <center>7. VLANs and Trunking</center>
 
 ***
 
@@ -422,9 +600,27 @@ FL-A(config)#interface fa0/24
 FL-A(config-if)#switchport mode access
 {% endhighlight bash %}
 
+**Sub-interface configuration**
+**Defines the encapsulation format as IEEE 802.1Q (dot1q), and specifies the VLAN identifier**
+**Specifies the VLAN identifier**
+
+{% highlight bash %}
+PoliceDept(config)#int g0/0
+PoliceDept(config-if)#no shutdown
+PoliceDept(config-if)#int g0/0.45
+PoliceDept(config-subif)#encapsulation dot1Q 45
+PoliceDept(config-subif)#ip address 192.168.45.1 255.255.255.0
+PoliceDept(config-subif)#int g0/0.47
+PoliceDept(config-subif)#encapsulation dot1Q 47
+PoliceDept(config-subif)#ip address 192.168.47.1 255.255.255.0
+PoliceDept(config-subif)#int g0/0.101
+PoliceDept(config-subif)#encapsulation dot1Q 101
+PoliceDept(config-subif)#ip address 192.168.101.1 255.255.255.0
+{% endhighlight bash %}
+
 ***
 
-#### <center>7. EtherChannel and Trunking</center>
+#### <center>8. EtherChannel and Trunking</center>
 
 ***
 
@@ -491,7 +687,7 @@ FL-B(config-if)#switchport mode trunk
 
 ***
 
-#### <center>8. Switch Security</center>
+#### <center>9. Switch Security</center>
 
 ***
 
@@ -552,7 +748,7 @@ FL-A(config-if)#switchport port-security violation restrict
 
 ***
 
-#### <center>9. Configure DHCP</center>
+#### <center>10. Configure DHCP</center>
 
 ***
 
@@ -571,4 +767,58 @@ Bldg-2(dhcp-config)#dns-server 192.168.200.225
 Bldg-2(config)#ip dhcp excluded-address 10.10.2.1 10.10.2.5
 Bldg-2(config)#ip dhcp excluded-address 10.10.4.1 10.10.4.5
 Bldg-2(config)#ip dhcp excluded-address 10.10.8.1 10.10.8.5
+{% endhighlight bash %}
+
+***
+
+#### <center>11. Configure Access Control Lists</center>
+
+***
+
+**Create a named standard ACL using the name MANAGE**
+
+{% highlight bash %}
+Central(config)#ip access-list standard MANAGE
+{% endhighlight bash %}
+
+**Allow only the host on 203.0.113.18 access**
+
+{% highlight bash %}
+Central(config-std-nacl)#permit host 203.0.113.18
+{% endhighlight bash %}
+
+**Apply this policy to the VTY lines**
+
+{% highlight bash %}
+Central(config)#line vty 0 4
+Central(config-line)#password class
+Central(config-line)#login
+Central(config-line)#access-class MANAGE in
+{% endhighlight bash %}
+
+**Create an Access list with number 101**
+**Allow external host 203.0.113.18 full access to inside network**
+
+{% highlight bash %}
+Central(config)#access-list 101 permit ip host 203.0.113.18 any
+{% endhighlight bash %}
+
+**Allow outside access to 198.51.100.14 over HTTP only**
+
+{% highlight bash %}
+Central(config)#access-list 101 permit tcp any host 198.51.100.14 eq www
+{% endhighlight bash %}
+
+**Allow responses to data requests to enter the Network**
+
+{% highlight bash %}
+Central(config)#access-list 101 permit tcp any any established
+Central(config)#access-list 101 deny ip any any
+{% endhighlight bash %}
+
+**Activate access list on interface**
+
+{% highlight bash %}
+Central(config)#int s0/1/0
+Central(config-if)#ip access-group 101 in
 {% endhighlight bash %}
