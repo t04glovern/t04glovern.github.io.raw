@@ -102,6 +102,22 @@ tags:
   * Allow responses to data requests to enter the Network
   * Activate access list on interface
 
+12. **Spanning Tree Protocol**
+  * Activate Rapid PVST+ and set root priorities
+  * FL-A should be configured as root primary for VLAN 2 and VLAN 4 using the default primary priority values.
+  * FL-A should be configured as root secondary for VLAN 8 and VLAN 15 using the default secondary priority values.
+  * FL-C should be configured as root primary for VLAN 8 and VLAN 15 using the default primary priority values.
+  * FL-C should be configured as root secondary for VLAN 2 and VLAN 4 using the default secondary priority values.
+  * Activate PortFast and BPDU Guard on the active FL-C switch access ports.
+  * On FL-C, configure PortFast on the access ports that are connected to hosts.
+  * On FL-C, activate BPDU Guard on the access ports that are connected to hosts.
+
+13. **NAT**
+  * Translate the internal address of the server to the address 198.51.100.14
+  * Configure the correct interfaces to perform this NAT translation
+  * Configure Dynamic NAT, Use a pool name of INTERNET
+  * Hosts on LAN can use Internet, source list number 1
+
 ***
 
 #### <center>1. Common Setup</center>
@@ -821,4 +837,98 @@ Central(config)#access-list 101 deny ip any any
 {% highlight bash %}
 Central(config)#int s0/1/0
 Central(config-if)#ip access-group 101 in
+{% endhighlight bash %}
+
+***
+
+#### <center>12. Spanning Tree Protocol</center>
+
+***
+
+**Activate Rapid PVST+ and set root priorities**
+
+{% highlight bash %}
+FL-A(config)#spanning-tree mode rapid-pvst
+FL-B(config)#spanning-tree mode rapid-pvst
+FL-C(config)#spanning-tree mode rapid-pvst
+{% endhighlight bash %}
+
+**FL-A should be configured as root primary for VLAN 2 and VLAN 4 using the default primary priority values**
+
+{% highlight bash %}
+FL-A(config)#spanning-tree vlan 2 root primary
+FL-A(config)#spanning-tree vlan 4 root primary
+{% endhighlight bash %}
+
+**FL-A should be configured as root secondary for VLAN 8 and VLAN 15 using the default secondary priority values**
+
+{% highlight bash %}
+FL-A(config)#spanning-tree vlan 8 root secondary
+FL-A(config)#spanning-tree vlan 15 root secondary
+{% endhighlight bash %}
+
+**FL-C should be configured as root primary for VLAN 8 and VLAN 15 using the default primary priority values**
+
+{% highlight bash %}
+FL-C(config)#spanning-tree vlan 8 root primary
+FL-C(config)#spanning-tree vlan 15 root primary
+{% endhighlight bash %}
+
+**FL-C should be configured as root secondary for VLAN 2 and VLAN 4 using the default secondary priority values**
+
+{% highlight bash %}
+FL-C(config)#spanning-tree vlan 2 root secondary
+FL-C(config)#spanning-tree vlan 4 root secondary
+{% endhighlight bash %}
+
+**Activate PortFast and BPDU Guard on the active FL-C switch access ports**
+**On FL-C, configure PortFast on the access ports that are connected to hosts**
+
+{% highlight bash %}
+FL-C(config)#interface range fa0/7, fa0/10, fa0/15, fa0/24
+FL-C(config-if-range)#spanning-tree portfast
+{% endhighlight bash %}
+
+**On FL-C, activate BPDU Guard on the access ports that are connected to hosts**
+
+{% highlight bash %}
+FL-C(config)#interface range fa0/7, fa0/10, fa0/15, fa0/24
+FL-C(config-if-range)#spanning-tree bpduguard enable
+FL-C(config-if-range)#no shutdown
+{% endhighlight bash %}
+
+***
+
+#### <center>13. NAT</center>
+
+***
+
+**Translate the internal address of the server to the address 198.51.100.14**
+
+{% highlight bash %}
+Central(config)#ip nat inside source static 192.168.18.46 198.51.100.14
+{% endhighlight bash %}
+
+**Configure the correct interfaces to perform this NAT translation**
+
+{% highlight bash %}
+Central(config)#int g0/0
+Central(config-if)#ip nat inside
+Central(config-if)#int s0/1/0
+Central(config-if)#ip nat outside
+{% endhighlight bash %}
+
+**Configure Dynamic NAT, Use a pool name of INTERNET**
+
+{% highlight bash %}
+Central(config)#ip nat pool INTERNET 198.51.100.3 198.51.100.13 netmask 255.255.255.240
+{% endhighlight bash %}
+
+**Hosts on LAN can use Internet, source list number 1**
+
+{% highlight bash %}
+Central(config)#access-list 1 permit 192.168.45.0 0.0.0.255
+Central(config)#access-list 1 permit 192.168.47.0 0.0.0.255
+Central(config)#access-list 1 permit 192.168.200.0 0.0.3.255
+Central(config)#ip nat inside source list 1 pool INTERNET
 {% endhighlight bash %}
