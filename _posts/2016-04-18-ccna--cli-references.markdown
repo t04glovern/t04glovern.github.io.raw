@@ -13,6 +13,8 @@ tags:
 
 ## <center>Contents</center>
 
+0. **Subnetting Reference**
+
 1. **Common Setup**
   * Hostname
   * Privileged Exec Password
@@ -117,6 +119,16 @@ tags:
   * Configure the correct interfaces to perform this NAT translation
   * Configure Dynamic NAT, Use a pool name of INTERNET
   * Hosts on LAN can use Internet, source list number 1
+
+***
+
+#### <center>0. Subnetting Reference</center>
+
+***
+
+I'll make this more beautiful when I have more time
+
+![Subnetting]({{ site.url }}/images/posts/2016.04.18/subnet-reference.png){:.center-image}
 
 ***
 
