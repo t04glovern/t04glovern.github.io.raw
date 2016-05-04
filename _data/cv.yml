@@ -1,8 +1,9 @@
 person:
   name: Nathan Glover
-  profesion: Technology Enthusiast
+  profession: Technology Enthusiast
   location: Perth, Western Australia
   citizenship: Australia
+  birthday: 31.12.1990
   email: nathan@glovers.id.au
   site: nathanglover.com
   phone: +61 430 319 001
@@ -51,7 +52,7 @@ technicalSkills:
     - tr: "Embedded Systems: MSP430/TI, Arduino, RPi"
     - tr: "Scripting languages: Python, Powershell"
     - tr: "Web: Jekyll, Markdown"
-    - tr: "IDE: CCS, Eclipse, NetBeans"
+    - tr: "IDE: CCS, Eclipse, Atom, Sublime"
   systems:
    - name: Windows Server
      level: 80
@@ -60,25 +61,25 @@ technicalSkills:
    - name: Hyper-V
      level: 70
    - name: Vmware ESXi
-     level: 80
-   - name: vCenter
      level: 70
+   - name: vCenter
+     level: 65
   languages:
    - name: C
-     level: 70
-   - name: C++
-     level: 60
-   - name: C#
-     level: 70
-   - name: Java
      level: 50
+   - name: C++
+     level: 50
+   - name: C#
+     level: 55
+   - name: Java
+     level: 35
   other:
    - name: Linux
-     level: 70
-   - name: Git
      level: 65
+   - name: Git
+     level: 50
    - name: Networking
-     level: 70
+     level: 65
 
 sideProjects:
   - name: Technical blog
