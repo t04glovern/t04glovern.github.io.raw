@@ -14,7 +14,7 @@ tags:
 
 Over the past couple years OneNote has been my life. I decided I'd share some of the small quirks and modification you can use to make it better for you as well.
 
-#### Import PDF/Documents
+### Import PDF/Documents
 
 OneNote installs its own printing device that has the capabilities of converting anything you print through it into a OneNote document.
 
@@ -31,3 +31,11 @@ You will be prompted to then choose the location you would like to insert conten
 In the OneNote app, go to `File > Options > Advanced` and scroll down to the `Printouts` section. In here you can uncheck `Insert long printouts on multiple pages`. I would also recommend enabling `Automatically set inserted file printouts in the background` as this setting makes it easier to do markups without moving the underlying document around.
 
 ![OneNote Printer Settings Printout]({{ site.url }}/images/posts/2016.05.12/onenote-tips-printer-settings-printout.png){:.center-image}
+
+### Disable/Enable content snapping
+
+Onenote by default with snap to grid whilst moving objects and images around. You can easily disable this by doing the following:
+
+Under the `Draw` tab, you will find a section called `Shapes`. Click the `|> down arrow` and you'll be presented with a `Snap to Grid` check button. Simply untick this.
+
+![OneNote Disable Snapping]({{ site.url }}/images/posts/2016.05.12/onenote-tips-disable-snapping.png){:.center-image}
