@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Onenote Tips & Tricks
+title: Onenote Tips and Tricks
 date: "2016-05-12"
 comments: true
 description: Make OneNote better
