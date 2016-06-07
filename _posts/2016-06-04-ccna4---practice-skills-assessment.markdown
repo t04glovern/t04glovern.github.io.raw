@@ -386,8 +386,8 @@ R2(config)#int s0/0/1
 R2(config-if)#description PPP Connection to ISP
 R2(config-if)#ip address 209.165.200.225 255.255.255.248
 R2(config-if)#clock rate 128000
-R2(config-if)#no shutdown
 R2(config-if)#encapsulation ppp
+R2(config-if)#no shutdown
 {% endhighlight bash %}
 
 Set a static default route out S0/0/1
@@ -452,7 +452,6 @@ Define the NAT from the inside source to the outside pool. Make sure to allow mu
 
 {% highlight bash %}
 R2(config)#ip nat inside source list 1 pool R1-LAN overload
-R2(config)#ip nat pool R1-LAN 209.165.200.227 209.165.200.227 netmask
 {% endhighlight bash %}
 
 Define an access control list to permit the R2 LAN for dynamic NAT
@@ -470,7 +469,6 @@ R2(config)#ip nat pool R2-LAN 209.165.200.228 209.165.200.228 netmask 255.255.25
 Define the NAT from the inside source to the outside pool. Make sure to allow multiple PCs access to this single Inside Global address
 
 {% highlight bash %}
-R2(config)#ip nat pool R2-LAN 209.165.200.228 209.165.200.228 netmask
 R2(config)#ip nat inside source list 2 pool R2-LAN overload
 {% endhighlight bash %}
 
@@ -550,8 +548,8 @@ R1(config)#ntp server 172.27.12.2
 Enable the timestamp service on R1 and R2 for system logging purposes
 
 {% highlight bash %}
-R1(config)#services timestamp log datetime msec
-R2(config)#services timestamp log datetime msec
+R1(config)#service timestamp log datetime msec
+R2(config)#service timestamp log datetime msec
 {% endhighlight bash %}
 
 Enable logging of messages on R1 and R2
@@ -580,21 +578,18 @@ R1(config-std-nacl)#permit 192.168.11.3
 Enable SNMP community access to the SNMP-ACCESS access list
 
 {% highlight bash %}
-**HELP**
 R1(config)#snmp-server community SA-LAB ro SNMP-ACCESS
 {% endhighlight bash %}
 
 Set the SNMP notification host
 
 {% highlight bash %}
-**HELP**
 R1(config)#snmp-server host 192.168.11.3 version 2c SA-LAB
 {% endhighlight bash %}
 
 Enable all SNMP traps
 
 {% highlight bash %}
-**HELP**
 R1(config)#snmp-server enable traps
 {% endhighlight bash %}
 
@@ -711,7 +706,7 @@ Configure S0/0/0
 
 {% highlight bash %}
 R1(config)#int s0/0/0
-R1(config-if)#description Frame-Relay Connection to R3
+R1(config-if)#description Frame Relay Connection to R3
 R1(config-if)#ip address 172.27.13.1 255.255.255.252
 R1(config-if)#encapsulation frame-relay
 R1(config-if)#clock rate 128000
@@ -761,7 +756,6 @@ Configure S0/0/1
 
 {% highlight bash %}
 R3(config)#int s0/0/1
-R3(config-if)#description Frame Relay Connection to R1
 R3(config-if)#encapsulation frame-relay ietf
 R3(config-if)#no shutdown
 {% endhighlight bash %}
@@ -867,9 +861,9 @@ R1 Configure S0/0/0
 R1(config)#int s0/0/0
 R1(config-if)#description HDLC Connection to ISP
 R1(config-if)#ip address 172.27.12.1 255.255.255.252
-R1(config-if)#no shutdown
 R1(config-if)#encapsulation hdlc
 R1(config-if)#clock rate 128000
+R1(config-if)#no shutdown
 {% endhighlight bash %}
 
 R2 Configure S0/0/0
@@ -909,6 +903,7 @@ Create a GRE tunnel interface
 
 {% highlight bash %}
 R1(config)#int tunnel 0
+R1(config-if)#description GRE VPN tunnel to R3
 R1(config-if)#ip address 172.27.13.1 255.255.255.252
 {% endhighlight bash %}
 
@@ -939,8 +934,8 @@ R1(config)#router eigrp 1
 Advertise the LAN and Tunnel subnets in EIGRP. Set the LAN interface to passive
 
 {% highlight bash %}
-R1(config-router)#network 172.27.13.0 0.0.0.3
 R1(config-router)#network 192.168.11.0 0.0.0.255
+R1(config-router)#network 172.27.13.0 0.0.0.3
 R1(config-router)#passive-interface g0/0
 {% endhighlight bash %}
 
