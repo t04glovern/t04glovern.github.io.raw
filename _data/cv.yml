@@ -23,7 +23,8 @@ career:
     - accomplishment: POS and EFTPOS installation and management.
     - accomplishment: ESXi / vCenter implementation and servicing.
     - accomplishment: Managing and Administering project documentation.
-    - accomplishment: Task automation.
+    - accomplishment: Task automation when applicable.
+    - accomplishment: Responsible for upgrading and managing our support desks ticketing system.
  - position: Support Technician
    company: Command IT
    location: Perth, Western Australia
@@ -50,9 +51,9 @@ career:
 technicalSkills:
   list:
     - tr: "Embedded Systems: MSP430/TI, Arduino, RPi"
-    - tr: "Scripting languages: Python, Powershell"
     - tr: "Web: Jekyll, Markdown"
-    - tr: "IDE: CCS, Eclipse, Atom, Sublime"
+    - tr: "IDE: CCS, Jetbrains, Sublime"
+    - tr: "Endpoint Management: SolarWinds N-Central"
   systems:
    - name: Windows Server
      level: 80
@@ -63,16 +64,16 @@ technicalSkills:
    - name: Vmware ESXi
      level: 70
    - name: vCenter
-     level: 65
+     level: 60
   languages:
-   - name: C
+   - name: Python
      level: 50
-   - name: C++
+   - name: C/C++
      level: 50
    - name: C#
      level: 55
    - name: Java
-     level: 35
+     level: 45
   other:
    - name: Linux
      level: 65
@@ -84,9 +85,15 @@ technicalSkills:
 sideProjects:
   - name: Technical blog
     description: Github pages site that I maintain as my personal blog for information regarding any problems I deal with at work and at home.
-    link: http://t04glovern.github.io/
+    link: https://t04glovern.github.io/
     type: site
-    langs: Technology
+    langs: https://t04glovern.github.io/
+
+  - name: Hand Map
+    description: Github pages site that I use to blog on while I progress through my final year University project on 3D hand scan/mapping.
+    link: https://handmap.github.io/
+    type: site
+    langs: https://handmap.github.io/
 
 education:
   - name: Bachelor of Technology
