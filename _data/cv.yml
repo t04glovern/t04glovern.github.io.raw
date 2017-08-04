@@ -11,17 +11,29 @@ person:
   stackoverflow: /nathan-glover
 
 career:
+ - position: Technical Intern
+   company: Cisco IoE Innovation Centre
+   location: Perth, Western Australia
+   dates: February 2017 – Current
+   summary: Working as a motivated team member on Software/Network engineering projects to design platforms and systems for the world of IoT. I work with a team of developers and follow a scrum methodology for our software development.
+   accomplishments:
+    - accomplishment: Design dynamic and flexible frontends with Python web frameworks (Flask & Django).
+    - accomplishment: Network hardware design and configuration.
+    - accomplishment: Container deployment and management on a broad range of architectures.
+    - accomplishment: Mobile application development using typical package/build management methods (Gradle, Maven)
+    - accomplishment: Concise workflow documentation
  - position: Network and System Administrator
    company: Galati Group
    location: Perth, Western Australia
-   dates: December 2014 – Current
-   summary: Contracted through the Australian Computer Society scholarship program; I work as part of a motivated IT Team, servicing and managing 15+ sites across WA. Regular tasks include maintaining backup systems, improving DR solutions, researching and investigating new technologies and managing a variety of server platforms and POS systems.
+   dates: December 2014 – November 2016
+   summary: Contracted through the Australian Computer Society scholarship program; I worked as part of a motivated IT Team, servicing and managing 15+ sites across WA. Regular tasks included maintaining backup systems, improving DR solutions, researching and investigating new technologies and managing a variety of server platforms and POS systems. I worked directly on a number of Infrastructure projects that had me assist in the design and implementation of a large upgrade to our existing core business systems. I managed the majority of service request that came through that requiring changes to be made to our virtualization platform and storage cluster.
    accomplishments:
     - accomplishment: Administration and Installation of 300+ Windows Desktop/Server based systems.
     - accomplishment: Thorough documentation of new and current hardware and software processes.
     - accomplishment: Experienced at dealing with users on a daily basis for any IT needs.
     - accomplishment: POS and EFTPOS installation and management.
     - accomplishment: ESXi / vCenter implementation and servicing.
+    - accomplishment: Veeam & ShadowProtect backup scheduling & maintainence.
     - accomplishment: Managing and Administering project documentation.
     - accomplishment: Task automation when applicable.
     - accomplishment: Responsible for upgrading and managing our support desks ticketing system.
@@ -51,9 +63,10 @@ career:
 technicalSkills:
   list:
     - tr: "Embedded Systems: MSP430/TI, Arduino, RPi"
-    - tr: "Web: Jekyll, Markdown"
-    - tr: "IDE: CCS, Jetbrains, Sublime"
+    - tr: "Web: Jekyll, Markdown, Flask"
+    - tr: "IDE: CCS, Jetbrains, Atom"
     - tr: "Endpoint Management: SolarWinds N-Central"
+    - tr: "Game Development: Unity3D, Blender, Spine"
   systems:
    - name: Windows Server
      level: 80
@@ -67,20 +80,20 @@ technicalSkills:
      level: 60
   languages:
    - name: Python
-     level: 50
+     level: 70
    - name: C/C++
      level: 50
    - name: C#
-     level: 55
+     level: 70
    - name: Java
-     level: 45
+     level: 65
   other:
    - name: Linux
-     level: 65
+     level: 70
    - name: Git
-     level: 50
-   - name: Networking
      level: 65
+   - name: Networking
+     level: 70
 
 sideProjects:
   - name: Technical blog
