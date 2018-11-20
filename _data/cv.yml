@@ -19,8 +19,15 @@ career:
    accomplishments:
     - accomplishment: Accustomed to an agile deliver, and adding value through software and hardware sprints
     - accomplishment: Embedded software and hardware design and implementation
-    - accomplishment: Continuous integration across infrustructure and software pipelines. This includes CodeBuild, GoCD and Jenkins.
+    - accomplishment: Continuous integration across infrustructure and software pipelines.
     - accomplishment: AWS orchastration of developer workflows through the targeted usage of AWS Cloudformation & Terraform.
+   competencies:
+    - skill: Cloudformation
+    - skill: CodeBuild / GoCD
+    - skill: Docker
+    - skill: Kubernetes
+    - skill: ReactJS
+    - skill: Springboot
  - position: Software/Network Engineer (Intern)
    company: Cisco IoE Innovation Centre
    location: Perth, Western Australia
@@ -32,6 +39,14 @@ career:
     - accomplishment: Container deployment and management on a broad range of architectures.
     - accomplishment: Mobile application development using typical package/build management methods (Gradle, Maven)
     - accomplishment: Concise workflow documentation
+   competencies:
+    - skill: Python Flask
+    - skill: Javascript / Bootstrap
+    - skill: Cisco IOS
+    - skill: RPi / IoT
+    - skill: Docker
+    - skill: Jenkins
+    - skill: Nagios
  - position: Network and System Administrator
    company: Galati Group
    location: Perth, Western Australia
@@ -47,6 +62,12 @@ career:
     - accomplishment: Managing and Administering project documentation.
     - accomplishment: Task automation when applicable.
     - accomplishment: Responsible for upgrading and managing our support desks ticketing system.
+   competencies:
+    - skill: ESXi / vCenter
+    - skill: Redmine
+    - skill: Veeam / ShadowProtect
+    - skill: N-able
+    - skill: PC-EFTPOS
  - position: Support Technician
    company: Command IT
    location: Perth, Western Australia
@@ -59,6 +80,11 @@ career:
     - accomplishment: Design and implementation of Server 2008/2012 solutions in offices ranging from 5-70 users.
     - accomplishment: Implementation of Visualized Server solutions.
     - accomplishment: Experience with a range of Netgear solutions including UTM's, ReadyNAS/Data, WAP's and Switching.
+   competencies:
+    - skill: Hyper-V
+    - skill: ShadowProtect
+    - skill: N-able
+    - skill: SMB Architecture
  - position: Sales
    company: EB Games Australia
    location: Perth, Western Australia
@@ -72,12 +98,12 @@ career:
 
 technicalSkills:
   list:
-    - tr: "AWS / Cloud Native: CloudFormation, Kubernetes, Helm, CI/CD"
-    - tr: "Embedded Systems: MSP430/TI, Arduino, RPi, STM32"
-    - tr: "Web: Jekyll, Markdown, Flask, Hugo"
-    - tr: "IDE: CCS, Jetbrains, Atom, Visual Studio, VSCode"
-    - tr: "Endpoint Management: SolarWinds N-Central, Nagios, Ansible"
-    - tr: "Game Development: Unity3D, Blender, Spine"
+    - tr: "<b>AWS / Cloud Native:</b> CloudFormation, Kubernetes, Helm, CI/CD"
+    - tr: "<b>Embedded Systems:</b> MSP430/TI, Arduino, RPi, STM32"
+    - tr: "<b>Web:</b> Jekyll, Markdown, Flask, Hugo"
+    - tr: "<b>IDE:</b> CCS, Jetbrains, Atom, Visual Studio, VSCode"
+    - tr: "<b>Endpoint Management:</b> SolarWinds N-Central, Nagios, Ansible"
+    - tr: "<b>Game Development:</b> Unity3D, Blender, Spine"
   systems:
    - name: Windows Infrustructure
      level: 85
@@ -141,7 +167,7 @@ sideProjects:
     type: site
     langs: https://devpost.com/software/stubber
 
-  - name: MediSense - AWS IoT App Challenge 2017 [Honorable Mention]
+  - name: MediSense - AWS IoT App Challenge 2017
     description: MediSense is a Software/Hardware hybrid, that aims to make medical research highly affordable and available to anyone.
     link: https://devpost.com/software/aws-iot-hackathon
     type: site
