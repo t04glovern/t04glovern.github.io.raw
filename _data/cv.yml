@@ -15,12 +15,12 @@ career:
    company: BHP
    location: Perth, Western Australia
    dates: August 2017 – Current
-   summary: Working as an energetic member of the Digital Tribe, I work with a variety of people with a diverse backgrounds on big problems as we drive a Digital Transformation within the Decision automation space.
+   summary: Working as an energetic member of the Digital Tribe, I work with a variety of people with a diverse backgrounds on big problems as we drive a Digital Transformation within the Decision automation space. More recently I've moved into a DevOp support role where I ensure that Cloud deployments for various services are standardized and automated (using tools like CloudFormation and Terraform).
    accomplishments:
     - accomplishment: Accustomed to an agile deliver, and adding value through software and hardware sprints
     - accomplishment: Embedded software and hardware design and implementation
-    - accomplishment: Process automation mindset
-    - accomplishment: Continuous integration across infrustructure and software pipelines
+    - accomplishment: Continuous integration across infrustructure and software pipelines. This includes CodeBuild, GoCD and Jenkins.
+    - accomplishment: AWS orchastration of developer workflows through the targeted usage of AWS Cloudformation & Terraform.
  - position: Software/Network Engineer (Intern)
    company: Cisco IoE Innovation Centre
    location: Perth, Western Australia
@@ -72,6 +72,7 @@ career:
 
 technicalSkills:
   list:
+    - tr: "AWS / Cloud Native: CloudFormation, Kubernetes, Helm, CI/CD"
     - tr: "Embedded Systems: MSP430/TI, Arduino, RPi, STM32"
     - tr: "Web: Jekyll, Markdown, Flask, Hugo"
     - tr: "IDE: CCS, Jetbrains, Atom, Visual Studio, VSCode"
@@ -81,20 +82,24 @@ technicalSkills:
    - name: Windows Infrustructure
      level: 85
    - name: Linux / Unix Administration
-     level: 70
+     level: 85
    - name: Hyper-V, ESXi, vCenter
      level: 70
-   - name: Cisco & Dell Edge Gateways
-     level: 70
+   - name: Docker
+     level: 80
+   - name: Kubernetes
+     level: 65
   languages:
    - name: Python
      level: 85
-   - name: Java / Android
+   - name: Java
      level: 75
+   - name: Javascript / React
+     level: 70
    - name: C#
      level: 70
    - name: C/C++
-     level: 50
+     level: 45
   other:
    - name: System Management
      level: 90
@@ -124,17 +129,23 @@ sideProjects:
     type: site
     langs: https://handmap.github.io/
 
-  - name: Fluffy Finder - AWS Chatbot Challenge 2017
-    description: Fluffy Finder aims to help people find animals that need love using Amazon LEX, Lambda and Slack chat integration. I developed it for the AWS Chatbot Challenge.
-    link: https://devpost.com/software/fluffy-finder
+  - name: Traffic Cop - Serverless Apps for Social Good 2018 [Winner]
+    description: WiFi Beacon & Client sniffing pipeline for analysing the movements of Human Traffickers.
+    link: https://devpost.com/software/traffic-cop
     type: site
-    langs: https://devpost.com/software/fluffy-finder
+    langs: https://devpost.com/software/traffic-cop
 
-  - name: Fourious Movements - Intel Hacks 2017
-    description: Combines open source software and low cost off the shelf hardware into an easily expandable system to assist medical researchers in measuring, logging and characterizing seizures and muscle spasms.
-    link: https://devpost.com/software/fourious-movements
+  - name: Stubber - Smackathon 2018 [Finalist]
+    description: Digitally traceable ticket sales on the Ethereum blockchain. I was a finalist and pitched my solution to a number of high profile judges in Miami (Armando Christian Pérez; aka Pitbull)
+    link: https://devpost.com/software/stubber
     type: site
-    langs: https://devpost.com/software/fourious-movements
+    langs: https://devpost.com/software/stubber
+
+  - name: MediSense - AWS IoT App Challenge 2017 [Honorable Mention]
+    description: MediSense is a Software/Hardware hybrid, that aims to make medical research highly affordable and available to anyone.
+    link: https://devpost.com/software/aws-iot-hackathon
+    type: site
+    langs: https://devpost.com/software/aws-iot-hackathon
 
 education:
   - name: Bachelor of Technology
@@ -142,7 +153,7 @@ education:
     location: Curtin University
     dates: 2014 – 2017
     link: http://www.curtin.edu.au/
-    
+
   - name: Diploma of IT
     degree: Networking
     location: eCentral Tafe
