@@ -137,11 +137,11 @@ technicalSkills:
      level: 70
 
 sideProjects:
-  - name: Makers Today
-    description: A Work in progress space for makers and general technologists to share their success stories while they design and implement new ideas!
-    link: https://maker.today/
+  - name: DevOpStar
+    description: DevOps themed blog and education platform I manage to discuss technical solutions to interesting problems I come across
+    link: https://devopstar.com/
     type: site
-    langs: https://maker.today/
+    langs: https://devopstar.com/
 
   - name: Technical blog
     description: Github pages site that I maintain as my personal blog for information regarding any problems I deal with at work and at home.
@@ -155,19 +155,19 @@ sideProjects:
     type: site
     langs: https://handmap.github.io/
 
-  - name: Traffic Cop - Serverless Apps for Social Good 2018 [Winner]
+  - name: Serverless Apps for Social Good 2018
     description: WiFi Beacon & Client sniffing pipeline for analysing the movements of Human Traffickers.
     link: https://devpost.com/software/traffic-cop
     type: site
     langs: https://devpost.com/software/traffic-cop
 
-  - name: Stubber - Smackathon 2018 [Finalist]
+  - name: Smackathon 2018
     description: Digitally traceable ticket sales on the Ethereum blockchain. I was a finalist and pitched my solution to a number of high profile judges in Miami (Armando Christian Pérez; aka Pitbull)
     link: https://devpost.com/software/stubber
     type: site
     langs: https://devpost.com/software/stubber
 
-  - name: MediSense - AWS IoT App Challenge 2017
+  - name: AWS IoT App Challenge 2017
     description: MediSense is a Software/Hardware hybrid, that aims to make medical research highly affordable and available to anyone.
     link: https://devpost.com/software/aws-iot-hackathon
     type: site
@@ -185,3 +185,10 @@ education:
     location: eCentral Tafe
     dates: 2011 – 2012
     link: https://central.wa.edu.au
+
+certification:
+  - name: AWS Certified Developer - Associate
+    degree: AWS Certified Developer - Associate
+    dates: 2019 – 2022
+    number: C62D1Q31JJF1QNWV
+    link: https://aw.certmetrics.com/amazon/public/verification.aspx
